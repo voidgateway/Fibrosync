@@ -1,0 +1,375 @@
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+============================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body.login-body {
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(120deg, #f1eaff 5%, #ffffff 60%, #edf2ff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 30px;
+    color: #252238;
+}
+/* ==============================
+   CONTAINER PRINCIPAL
+============================== */
+.login-container {
+    width: 200%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+/* ==============================
+   CARTÃO DE LOGIN
+============================== */
+.login-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 14px 26px 27px;
+    box-shadow:
+        0 8px 14px rgba(30, 25, 60, 0.12),
+        0 2px 5px rgba(30, 25, 60, 0.06);
+}
+/* ==============================
+   CABEÇALHO E LOGO
+============================== */
+.login-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+.login-logo {
+    display: block;
+    width: 200px;
+    height: 120px;
+    object-fit: contain;
+    margin: 0 auto;
+}
+.login-header p:first-of-type {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #28243c;
+}
+.login-header p:last-of-type {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #85859a;
+}
+/* ==============================
+   FORMULÁRIO
+============================== */
+#loginForm {
+    width: 100%;
+}
+.form-group {
+    width: 100%;
+    margin-bottom: 17px;
+}
+.form-group label {
+    display: block;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    color: #333047;
+    margin-bottom: 2px;
+    text-align: left;
+}
+/* ==============================
+   CAMPOS DE ENTRADA
+============================== */
+.input-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 24px;
+    border: 1px solid #e9a5eb;
+    border-radius: 6px;
+    padding: 0 6px;
+    gap: 5px;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-container:focus-within {
+    border-color: #a33cb2;
+    box-shadow:0 0 0 2px rgba(163, 60, 178, 0.10);
+}
+/* Ícones dentro dos campos */
+.input-container > .material-symbols-outlined {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Material Symbols Outlined';
+    font-size: 13px;
+    font-style: normal;
+    color: #c76acb;
+}
+/* Inputs de e-mail e senha */
+.input-container input {
+    display: block;
+    flex: 1;
+    width: 0;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    color: #343047;
+}
+.input-container input::placeholder {
+    font-family: inherit;
+    font-size: 12px;
+    color: #d18bd4;
+    opacity: 1;
+}
+/* ==============================
+   BOTÃO MOSTRAR/OCULTAR SENHA
+============================== */
+.toggle-password {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 2px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #e51a96;
+    cursor: pointer;
+}
+.toggle-password .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 14px;
+    font-style: normal;
+}
+.toggle-password:focus-visible {
+    outline: 2px solid #a33cb2;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+/* ==============================
+   ESQUECI A SENHA
+============================== */
+.forgot-password {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -11px;
+    margin-bottom: 15px;
+}
+.forgot-password a {
+    text-decoration: none;
+    font-size: 10px;
+    color: #302a40;
+}
+.forgot-password a:hover {
+    color: #a51c9a;
+}
+/* ==============================
+   BOTÃO ENTRAR
+============================== */
+.login-button {
+    display: block;
+    width: 100%;
+    height: 26px;
+    border: none;
+    border-radius: 7px;
+    background: linear-gradient(100deg, #89058d 0%, #6e6bb5 42%, #50bdc7 100%);
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:filter 0.2s ease,transform 0.2s ease;
+}
+.login-button:hover {
+    filter: brightness(1.06);
+}
+.login-button:active {
+    transform: scale(0.98);
+}
+.login-button:focus-visible {
+    outline: 2px solid #89058d;
+    outline-offset: 3px;
+}
+/* ==============================
+   MENSAGENS DE VALIDAÇÃO
+============================== */
+.error-message {
+    display: block;
+    min-height: 0;
+    margin-top: 3px;
+    color: #d62965;
+    font-size: 11px;
+}
+.login-message {
+    margin-top: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+    color: #d62965;
+}
+.login-message:empty {
+    display: none;
+}
+.input-container input[aria-invalid="true"] {
+    color: #d62965;
+}
+/* ==============================
+   LOGIN SOCIAL
+============================== */
+.social-login {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 24px;
+    width: 100%;
+}
+.social-login button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-width: 0;
+    min-height: 40px;
+    padding: 8px 5px;
+    border: 1px solid #f0d8f0;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #343047;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+.social-login button:hover {
+    background: #faf3ff;
+    border-color: #d9b8e8;
+}
+.social-login button:focus-visible {
+    outline: 2px solid #a56cc1;
+    outline-offset: 3px;
+}
+.social-login .social-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+/* Ajuste para telas pequenas */
+@media (max-width: 360px) {
+    .social-login {
+        gap: 6px;
+    }
+    .social-login button {
+        gap: 4px;
+        padding: 8px 3px;
+        font-size: 10px;
+    }
+    .social-login .social-icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+/* Ícones dos botões sociais */
+.social-google {
+    font-size: 14px;
+    font-weight: 800;
+    color: #4285f4;
+}
+.social-facebook {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #1877f2;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 50px;
+    font-weight: 800;
+}
+/* ==============================
+   CADASTRO
+============================== */
+.register-section {
+    position: relative;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 2px solid #e4e1e8;
+    text-align: center;
+}
+.register-section p {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 8px;
+    background: #ffffff;
+    color: #777387;
+    white-space: nowrap;
+    font-size: 10px;
+}
+.register-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 29px;
+    border: 2px solid #f4c6f5;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #fff8ff, #fffaff);
+    color: #e41a9c;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+.register-button:hover {
+    background: #f9eafa;
+}
+/* ==============================
+   RODAPÉ
+============================== */
+.login-footer {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666274;
+    padding: 0 5px;
+}
+/* ==============================
+   RESPONSIVIDADE
+============================== */
+@media (max-width: 400px) {
+    body.login-body {
+        padding: 20px 14px;
+    }
+    .login-container {
+        max-width: 345px;
+    }
+    .login-card {
+        padding-left: 22px;
+        padding-right: 22px;
+    }
+    .social-login {
+        gap: 6px;
+    }
+}

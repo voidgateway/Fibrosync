@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acesse sua conta FibroSync.">
+    <title>FibroSync</title>
+    
+    <!-- JavaScript -->
+    <script src="login.js" defer></script>
+
+    <!-- Fonte principal -->
+
+
+    <!-- Ícones -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+
+    <!-- CSS da tela de login -->
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body class="login-body">
+
+    <main class="login-container">
+
+        <section class="login-card">
+
+            <header class="login-header">
+                <!--Logo Fibrosync-->
+                <img src="/public/img/logo-removebg-preview.png" alt="Logo FibroSync" class="login-logo">
+                
+                <p>Bem-vindo(a) de volta!</p>
+
+                <p>Faça login para continuar cuidando de você.</p>
+
+            </header>
+
+            <form id="loginForm" novalidate>
+
+                <!-- Campo de e-mail -->
+                <div class="form-group">
+
+                    <label for="email">E-mail</label>
+
+                    <div class="input-container">
+
+                        <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" autocomplete="email" required>
+                        </div>
+
+                    <small class="error-message" id="emailError"></small>
+                </div>
+
+                <!-- Campo de senha -->
+                <div class="form-group">
+
+                    <label for="senha">Sua senha</label>
+
+                    <div class="input-container">
+ 
+                        <span class="material-symbols-outlined" aria-hidden="true">lock</span>
+
+                        <input type="password" id="senha" name="senha"
+                            placeholder="Digite sua senha" autocomplete="current-password" minlength="8" required>
+
+                        <button type="button" id="toggleSenha" class="toggle-password"
+                            aria-label="Mostrar senha" aria-pressed="false">
+
+                            <span class="material-symbols-outlined" id="iconeSenha" aria-hidden="true">visibility</span>
+                       
+                        </button>
+                    </div>
+                    
+                    <small class="error-message" id="senhaError"></small>
+                </div>
+
+                <!-- Recuperação de senha -->
+                <div class="forgot-password">
+                    <a href="recuperar-senha.html"> Esqueci a senha </a>
+                </div>
+
+                <!-- Botão de login -->
+                <button type="submit" class="login-button">Entrar</button>
+
+                <!-- Mensagem de retorno -->
+                <p id="loginMessage" class="login-message" role="alert" aria-live="polite"></p>
+
+                <!-- Opções de login social -->
+                <div class="social-login">
+                   <button type="button" aria-label="Entrar com Google">
+                     <img src="/public/img/g.png" alt="" class="social-icon">
+                     <span>Google</span>
+                   </button>
+
+                    <button type="button" aria-label="Entrar com Apple">
+                      <img src="/public/img/ap.png" alt="" class="social-icon">
+                      <span>Apple</span>
+                    </button>
+
+                     <button type="button" aria-label="Entrar com Facebook">
+                         <img src="/public/img/face.png" alt="" class="social-icon">
+                         <span>Facebook</span>
+                     </button>
+                </div>
+
+                <!-- Cadastro -->
+                <div class="register-section">
+                    <p>Ainda não tem uma conta?</p>
+
+                    <a href="cadastro.html" class="register-button">
+                        Criar uma conta
+                    </a>
+                <!--vi-->
+                </div>
+            </form>
+        </section>
+
+        <footer class="login-footer">
+            Ao continuar, você concorda com os termos e a Política de Privacidade.
+        </footer>
+    </main>
+</body>
+</html>
+
