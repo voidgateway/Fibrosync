@@ -10,6 +10,8 @@ Antes de contribuir, consulte também:
 
 ## Fluxo de desenvolvimento
 
+Adotamos **trunk-based development com branches curtas e Pull Requests para `main`**. Divida o trabalho em incrementos seguros, busque integração diária e use um ou dois dias como referência para a duração das branches. Priorize a revisão e remova a branch após o merge. A `main` deve permanecer funcional; consulte as práticas completas em [Git Workflow](docs/workflows/git.flow.md#2-fluxo-de-desenvolvimento).
+
 Todo trabalho deve estar associado a um item do Jira. Use a chave em letras maiúsculas, como `FIB-123`, na branch, em cada commit e no título do Pull Request. Se o item ainda não existir, crie-o antes de iniciar o desenvolvimento; não invente uma chave.
 
 Como exceção, pequenas alterações internas de documentação técnica, automação, configuração, ferramentas ou manutenção simples podem usar diretamente a chave do épico técnico vigente. A exceção deve ser justificada no Pull Request. Funcionalidades, bugs, mudanças de comportamento, segurança, dados, migrações e trabalhos que precisem de acompanhamento individual continuam exigindo tarefa, história ou bug próprio, associado ao épico quando aplicável.
@@ -57,7 +59,7 @@ git checkout FIB-123-feat/tela-login
 git merge main
 ```
 
-Execute as verificações disponíveis no projeto. O Pull Request não deve introduzir erros de lint, build ou testes.
+Revise o diff, execute as verificações que estiverem disponíveis no projeto e registre no PR as evidências e limitações da validação. CI, testes, build e deploy permanecem **A definir**. O merge em `main` não implica publicação automática.
 
 Preencha o template do Pull Request, incluindo:
 

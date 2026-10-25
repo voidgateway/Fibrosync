@@ -63,6 +63,31 @@ Referências oficiais:
 
 ## 2. Fluxo de desenvolvimento
 
+O Fibrosync adota **trunk-based development com branches curtas e Pull Requests**. A `main` é a linha principal de integração e deve permanecer funcional. Toda alteração parte dela e retorna por um PR revisado, preservando os padrões de rastreabilidade do Jira.
+
+### Práticas adotadas
+
+- Divida o trabalho em incrementos pequenos, que possam ser revisados e integrados com segurança.
+- Busque integrar diariamente quando houver trabalho em andamento, com branches de até um ou dois dias como referência. Esse prazo não dispensa revisão nem justifica integrar código quebrado.
+- Abra o PR cedo e priorize sua revisão para evitar que as branches acumulem divergências.
+- Divida funcionalidades maiores em vários PRs. Cada PR deve manter um único objetivo e a referência ao item do Jira correspondente; um item pode ter mais de um PR.
+- Integre partes incompletas somente quando preservarem o funcionamento existente. Quando necessário, mantenha o novo comportamento desativado por uma feature flag, com remoção prevista após a liberação.
+- Após o merge, remova a branch de trabalho e crie a próxima a partir da `main` atualizada.
+- Se uma alteração quebrar a `main`, priorize a correção ou a reversão por PR.
+
+Integrar código não significa publicar em produção. A adoção deste fluxo mantém a revisão por PR; ferramentas de testes, CI, regras automatizadas de proteção e deploy permanecem **A definir**.
+
+### Por que adotar o trunk-based development?
+
+O objetivo é reduzir conflitos acumulados, facilitar revisões e descobrir incompatibilidades mais cedo. Isso exige mudanças pequenas e disponibilidade para revisar com frequência.
+
+Referências:
+
+- [Trunk-based development — Atlassian](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development)
+- [Gitflow — Atlassian](https://www.atlassian.com/en/git/tutorials/comparing-workflows/gitflow-workflow)
+
+### Passo a passo
+
 Atualize a branch principal:
 
 ```bash
@@ -247,9 +272,20 @@ Pull Requests que alteram a interface devem incluir screenshots. Sempre que rele
 
 Screenshots normalmente não são necessárias para alterações exclusivamente internas, como `refactor`, `chore` ou `test`, mas outras evidências técnicas podem ser solicitadas.
 
-## 7. Builds e deployments
+## 7. CI, testes, builds e deploy
 
-Para que um build ou deployment seja associado ao item do Jira, pelo menos um commit incluído na entrega deve conter a chave correspondente na mensagem. Por isso, todos os commits devem seguir o padrão definido neste documento.
+As etapas de automação e entrega ainda não estão implementadas por este fluxo:
+
+| Etapa | Status | Definições pendentes |
+|---|---|---|
+| Integração contínua (CI) | A definir | Ferramentas, gatilhos e verificações obrigatórias |
+| Testes | A definir | Ferramentas, comandos e critérios de execução |
+| Build | A definir | Necessidade, comandos e artefatos |
+| Deploy | A definir | Ambientes, gatilhos, aprovações e rollback |
+
+Consulte a [estratégia de testes](../testing/strategy.md) e o [processo de deploy](../operations/deployment.md) para acompanhar essas definições. O merge em `main` não estabelece um deploy automático.
+
+Quando builds e deployments forem configurados, a associação ao Jira deverá preservar a chave do item nos commits incluídos na entrega. Por isso, todos os commits devem seguir o padrão definido neste documento.
 
 Depois do `push`, consulte a área **Desenvolvimento** do item no Jira para confirmar a associação da branch, dos commits e do Pull Request.
 
@@ -265,15 +301,9 @@ git checkout FIB-123-feat/tela-login
 git merge main
 ```
 
-Resolva eventuais conflitos e execute as verificações disponíveis no projeto, como lint, testes e build.
+Resolva eventuais conflitos, revise o diff e registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Execute somente verificações que estiverem configuradas no projeto e informe as limitações da validação.
 
-```bash
-npm run lint
-npm run test
-npm run build
-```
-
-Execute somente os comandos que estiverem configurados no projeto.
+Os comandos de CI, testes e build permanecem **A definir**, conforme a seção anterior.
 
 ## 9. Revisão
 
@@ -286,7 +316,7 @@ Durante a revisão:
 - use a mesma chave do Jira nos novos commits;
 - evite criar outro Pull Request para corrigir o atual.
 
-Após aprovação e validação, o Pull Request pode ser integrado à branch principal.
+Após aprovação e validação, o Pull Request pode ser integrado à `main`. Remova a branch integrada e mantenha a revisão dos próximos incrementos frequente.
 
 ## Resumo
 
@@ -304,9 +334,7 @@ Branch
   ↓
 Commits
   ↓
-Pull Request
+Pull Request e revisão
   ↓
-Build
-  ↓
-Deploy
+main
 ```
