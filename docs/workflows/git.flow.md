@@ -81,6 +81,9 @@ Integrar código não significa publicar em produção. A adoção deste fluxo m
 
 O objetivo é reduzir conflitos acumulados, facilitar revisões e descobrir incompatibilidades mais cedo. Isso exige mudanças pequenas e disponibilidade para revisar com frequência.
 
+<!--Descrever como o trunk casa com o xp e o scrumm -->
+
+
 Referências:
 
 - [Trunk-based development — Atlassian](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development)
