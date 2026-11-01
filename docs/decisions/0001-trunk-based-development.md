@@ -46,4 +46,4 @@ Manter duas branchs permanetes em um time pequeno e com apenas um revisor poderi
 - Jira: [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74)
 - Confluence: (não aplicavel)
 - Figma: (não aplicavel)
-- Pull Request: (não aplicavel)
+- Pull Request: [#17](https://github.com/voidgateway/Fibrosync/pull/17)

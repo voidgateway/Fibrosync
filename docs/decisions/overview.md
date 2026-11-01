@@ -10,13 +10,13 @@ Este diretório centraliza as decisões técnicas relevantes para a arquitetura 
 | Jira | Tarefas e contexto de execução | [FIB no jira](https://aluno-team-zylgcwkh.atlassian.net/jira/software/projects/FIB/summary) |
 | Confluence | Requisitos e documentação funcional | [Fibrosync](https://aluno-team-zylgcwkh.atlassian.net/wiki/spaces/F/overview) |
 | Figma | Protótipos e decisões de interface | [Fibrosync](https://www.figma.com/files/team/1635721117049360128/all-folders?fuid=1635749553250315535) |
-| GitHub | Implementação e revisão do código | [Fibrosyn](https://https://github.com/voidgateway/Fibrosync) |
+| GitHub | Implementação e revisão do código | [Fibrosync](https://github.com/voidgateway/Fibrosync) |
 
 ## Mapa de decisões
 
 | ADR | Decisão | Status | Jira | Confluence | Figma | Pull Request |
 |---|---|---|---|---|---|---|
-| — | Nenhuma decisão registrada | — | — | — | — | — |
+| [0001](0001-trunk-based-development.md) | Adoção de trunk-based development | `Accepted` | [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74) | Não aplicável | Não aplicável | [#17](https://github.com/voidgateway/Fibrosync/pull/17) |
 
 ## Estrutura dos registros
 

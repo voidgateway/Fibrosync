@@ -81,13 +81,27 @@ Integrar código não significa publicar em produção. A adoção deste fluxo m
 
 O objetivo é reduzir conflitos acumulados, facilitar revisões e descobrir incompatibilidades mais cedo. Isso exige mudanças pequenas e disponibilidade para revisar com frequência.
 
-<!--Descrever como o trunk casa com o xp e o scrumm -->
+#### Relação com o Scrum e o XP
 
+Os três atuam em níveis diferentes e se complementam: o Scrum organiza o trabalho, o XP orienta as práticas de engenharia e o trunk-based development define como o código é integrado.
+
+**Scrum:** o framework não prescreve um fluxo de branches, mas espera um Incremento utilizável a cada Sprint. Integrar partes pequenas à `main` ao longo da Sprint evita que o trabalho fique isolado até o final dela e torna o progresso real visível para a equipe. Um item do Sprint Backlog pode gerar vários PRs, e integrar um deles não significa que o item esteja concluído.
+
+**XP:** o fluxo apoia diretamente algumas práticas do XP:
+
+- **Integração contínua:** branches curtas e integração diária mantêm a divergência pequena.
+- **Pequenas entregas:** incrementos pequenos facilitam a revisão e a reversão, embora o merge em `main` não signifique publicação.
+- **Propriedade coletiva e padrões de código:** a `main` compartilhada e a revisão por PR expõem o código a toda a equipe e mantêm um padrão comum.
+
+No XP, a integração contínua também depende de build e testes automatizados. Enquanto essas etapas permanecem **A definir**, o Fibrosync aplica a integração frequente, mas a validação depende da revisão e das evidências de cada PR.
 
 Referências:
 
 - [Trunk-based development — Atlassian](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development)
 - [Gitflow — Atlassian](https://www.atlassian.com/en/git/tutorials/comparing-workflows/gitflow-workflow)
+- [Guia do Scrum](https://scrumguides.org/scrum-guide.html)
+- [Extreme Programming — Martin Fowler](https://martinfowler.com/bliki/ExtremeProgramming.html)
+- [Continuous Integration — Martin Fowler](https://martinfowler.com/articles/continuousIntegration.html)
 
 ### Passo a passo
 
