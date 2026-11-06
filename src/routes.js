@@ -1,2 +1,1 @@
-// ainda a ser decidido
-// sem codigo aqui por hora
+// esqueleto implementação do router
