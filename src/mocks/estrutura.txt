@@ -1,0 +1,38 @@
+src/mocks/  -> dados mockados que fazem o papel do banco de dados
+
+fica em src/ (e não em public/) porque só o servidor pode ler esses arquivos:
+nenhuma URL chega aqui, então o navegador nunca baixa a lista inteira de pacientes
+
+um arquivo por assunto (não por tela), compartilhado entre todas as telas
+
+src/
+├── mocks/
+│   ├── pacientes.json              # pacientes cadastrados
+│   └── registros.json              # registros de dor/sintomas dos pacientes
+├── repositories/
+│   └── pacientes.repository.js     # único lugar que lê/grava os mocks
+├── services/
+│   └── pacientes.service.js        # regras de negócio (validar, buscar, criar)
+├── controllers/
+│   └── pacientes.controller.js     # lê a requisição e monta a resposta
+└── routes/
+    └── pacientes.routes.js         # GET/POST /api/pacientes
+
+fluxo
+
+tela (script.js)
+  ↓  fetch('/api/pacientes')
+routes -> controllers -> services -> repositories
+  ↓
+mocks/pacientes.json
+
+regras
+
+- as telas nunca leem os .json direto: sempre via fetch('/api/...')
+- só os repositories importam arquivos desta pasta
+- gravações (POST) ficam em memória e somem ao reiniciar o servidor
+- nada de dados reais: nomes, e-mails e senhas devem ser fictícios
+- quando a API real existir, só os repositories mudam; as telas continuam iguais
+
+
+ja deve entrar nessa sprint!

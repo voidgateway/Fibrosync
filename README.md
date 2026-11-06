@@ -13,8 +13,18 @@
 
 ## Tecnologias
 
-- html, css e js puro
-- node (talvez)
+- HTML, CSS e JavaScript puro
+- Node.js 22.9+ com Express
+- pnpm ([por quê](docs/decisions/0002-pnpm-como-gerenciador-de-pacotes.md))
+
+## Como rodar
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Acesse `http://localhost:3000`. Detalhes em [Configuração do ambiente](docs/development/setup.md).
 
 ## Documentação
 
@@ -23,6 +33,7 @@
 - [Design](docs/design/overview.md)
 - [Decisões de arquitetura](docs/decisions/overview.md)
 - [Configuração do ambiente](docs/development/setup.md)
+- [Fluxo de desenvolvimento](docs/workflows/desenvolvimento.md)
 - [Git workflow](docs/workflows/git.flow.md)
 - [Estratégia de testes](docs/testing/strategy.md)
 
@@ -33,6 +44,10 @@ D Fibrosync/
 ├── D .github/                             # configurações do GitHub
 │   ├── F CODEOWNERS                       # responsáveis pela revisão de cada área
 │   └── F pull_request_template.md         # modelo de descrição dos Pull Requests
+├── D .gitlab/                             # espelho das configurações para o GitLab
+│   ├── F CODEOWNERS
+│   └── D merge_request_templates/
+│       └── F Default.md
 ├── D docs/                                # documentação técnica do projeto
 │   ├── D accessibility/
 │   │   └── F overview.md                  # diretrizes de acessibilidade
@@ -41,6 +56,8 @@ D Fibrosync/
 │   ├── D architecture/
 │   │   └── F overview.md                  # visão geral da arquitetura e componentes
 │   ├── D decisions/
+│   │   ├── F 0001-trunk-based-development.md
+│   │   ├── F 0002-pnpm-como-gerenciador-de-pacotes.md
 │   │   ├── F overview.md                  # mapa das decisões de arquitetura (ADRs)
 │   │   └── F template.md                  # modelo para novos ADRs
 │   ├── D design/
@@ -57,6 +74,7 @@ D Fibrosync/
 │   ├── D testing/
 │   │   └── F strategy.md                  # estratégia de testes
 │   ├── D workflows/
+│   │   ├── F desenvolvimento.md           # dia a dia: páginas, caminhos, rotas e validação
 │   │   └── F git.flow.md                  # fluxo de branches, commits e PRs
 │   └── F README.md                        # índice da documentação
 ├── D public/                              # arquivos estáticos servidos ao navegador
@@ -71,7 +89,10 @@ D Fibrosync/
 │   │       ├── P logo_icone.png
 │   │       ├── P logo_texto.png
 │   │       └── P logo-removebg-preview.png
-│   └── D pages/                           # uma pasta por tela
+│   └── D views/                           # uma pasta por tela (cada pasta vira uma URL)
+│       ├── D 404/                         # página de erro para URLs inexistentes
+│       │   ├── F index.html
+│       │   └── F style.css
 │       ├── D cadastro/
 │       │   ├── F index.html
 │       │   ├── F script.js
@@ -84,20 +105,32 @@ D Fibrosync/
 │       │   ├── F index.html
 │       │   └── F style.css
 │       └── D login-paciente/
-│           ├── F index.html 
+│           ├── F index.html
 │           ├── F script.js
 │           └── F style.css
-├── D src/                                 # servidor (caso seja possivel ) :(
-│   ├── F estrutura.txt                    # anotações sobre a estrutura do projeto
-│   ├── F routes.js                        # definição das rotas
-│   └── F server.js                        # codigo do servidor
+├── D src/                                 # servidor Node.js + Express
+│   ├── D config/
+│   │   ├── F env.js                       # variáveis de ambiente
+│   │   └── F paths.js                     # caminhos das pastas public/
+│   ├── D middlewares/
+│   │   ├── F error.middleware.js          # tratamento de erros (500)
+│   │   └── F not-found.middleware.js      # resposta 404 (página ou JSON)
+│   ├── D routes/
+│   │   ├── F index.js                     # junta os routers (API e páginas)
+│   │   └── F pages.routes.js              # serve public/views como páginas
+│   ├── F app.js                           # configuração do Express
+│   └── F server.js                        # inicia o servidor
+├── F .env.example                         # modelo das variáveis de ambiente
 ├── F .gitignore                           # arquivos ignorados pelo Git
 ├── F CHANGELOG.md                         # histórico de mudanças do projeto
 ├── F CONTRIBUTING.md                      # guia de contribuição
+├── F LICENSE                              # licença proprietária
+├── F package.json                         # scripts e dependências
+├── F pnpm-lock.yaml                       # versões exatas das dependências
 ├── F README.md                            # apresentação do projeto
 └── F todo.md                              # tarefas pendentes (não versionado)
 ```
-_gerado por [edr](https://github.com/solidiquis/erdtree)_
+_gerado por [erdtree](https://github.com/solidiquis/erdtree) e atualizado à mão_
 
 
 ## Gestão do projeto
