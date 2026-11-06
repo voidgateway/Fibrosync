@@ -94,12 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // vou incluir o envio do formulario em outra entrega, 
             // preciso definir como funcionara o mokeup dos dados, 
-            // como não ha back apenas mando direto para a procimapagina, 
+            // como não ha back apenas mando direto para a proxima pagina, 
             // não quero usar o sessionStorage ou localStorage
             // isso vale para as duas paginas (cadastro e dados-complementares)
 //fui eu que escrevi, viu vanessa
 
-        window.location.href = "/public/pages/home/index.html";
+        window.location.href = "../home/index.html";
     });
 
     atualizarCampoData();
