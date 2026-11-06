@@ -1,7 +1,7 @@
 <!-- esqueleto de arquivo, ainda tem que definir com o a prof como será a entrega de dados -->
 # Decisões de arquitetura
 
-Este diretório centraliza as decisões técnicas relevantes para a arquitetura do frontend do Fibrosync e mantém sua relação com as tarefas do projeto no Jira, documentação no Confluence e prototipos no Figma.
+Este diretório centraliza as decisões técnicas relevantes para a arquitetura do Fibrosync (front-end, servidor e ferramentas) e mantém sua relação com as tarefas do projeto no Jira, documentação no Confluence e prototipos no Figma.
 
 ## Fontes relacionadas
 
@@ -17,12 +17,14 @@ Este diretório centraliza as decisões técnicas relevantes para a arquitetura 
 | ADR | Decisão | Status | Jira | Confluence | Figma | Pull Request |
 |---|---|---|---|---|---|---|
 | [0001](0001-trunk-based-development.md) | Adoção de trunk-based development | `Accepted` | [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74) | Não aplicável | Não aplicável | [#17](https://github.com/voidgateway/Fibrosync/pull/17) |
+| [0002](0002-pnpm-como-gerenciador-de-pacotes.md) | pnpm como gerenciador de pacotes | `Accepted` | [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74) | Não aplicável | Não aplicável | A definir |
 
 ## Estrutura dos registros
 
 ```text
 docs/decisions/
 ├── overview.md
+├── template.md
 └── NNNN-descricao-da-decisao.md
 ```
 

@@ -16,6 +16,7 @@ Este diretório reúne a documentação técnica versionada junto ao código do 
 ## Desenvolvimento
 
 - [Configuração do ambiente](development/setup.md)
+- [Fluxo de desenvolvimento](workflows/desenvolvimento.md)
 - [Git workflow](workflows/git.flow.md)
 
 ## Qualidade

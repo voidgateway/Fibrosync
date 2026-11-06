@@ -28,4 +28,6 @@
 
 ## Integração contínua
 
-Os testes automatizados farão parte do workflow de CI quando _(se)_ a stack e os comandos do projeto estiverem definidos.
+A stack já está definida (Node.js + Express, pnpm). Os testes automatizados farão parte do workflow de CI quando _(se)_ as ferramentas e os comandos de teste forem escolhidos. O `src/app.js` exporta o app sem abrir porta, o que permite testá-lo diretamente quando houver uma ferramenta de testes.
+
+Até lá, a validação é manual: ver [Fluxo de desenvolvimento](../workflows/desenvolvimento.md#10-validação-antes-do-pull-request).

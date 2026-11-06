@@ -2,6 +2,8 @@
 
 Este documento define o padrão de branches, commits e Pull Requests do Fibrosync. A chave do item no Jira conecta essas atividades ao painel de desenvolvimento e permite rastrear o trabalho até builds e deployments.
 
+O trabalho no código entre a criação da branch e o Pull Request (rodar o projeto, criar páginas, dependências e validação) está em [Fluxo de desenvolvimento](desenvolvimento.md).
+
 ## CHAVE EPICO
 **TECNICO**
 ```text
@@ -116,6 +118,13 @@ Crie uma branch para o item:
 
 ```bash
 git checkout -b FIB-123-feat/tela-login
+```
+
+Suba o servidor para desenvolver e validar (ver [Fluxo de desenvolvimento](desenvolvimento.md)):
+
+```bash
+pnpm install   # se o package.json mudou
+pnpm dev
 ```
 
 Após cada alteração lógica:
@@ -244,6 +253,12 @@ FIB-123 fix: tratar credenciais de login inválidas
 
 Evite colocar alterações não relacionadas no mesmo commit.
 
+Ao adicionar, remover ou atualizar dependências, commite o `package.json` e o `pnpm-lock.yaml` juntos, no mesmo commit:
+
+```text
+FIB-530 chore: adicionar dependência express
+```
+
 ## 5. Pull Requests
 
 O título do Pull Request segue o formato:
@@ -264,7 +279,7 @@ O Pull Request deve ter `main` como destino, permanecer focado em um único item
 
 Quando for aplicada a exceção de vínculo direto ao épico técnico, o Pull Request deve permanecer focado em uma única alteração e registrar por que ela não justifica um item próprio.
 
-A usar o epico `TECNICO` é possivel modificar/remover os itens presentes no checklist do template do pr
+Ao usar o épico `TECNICO`, é possível modificar ou remover itens do checklist do template do PR.
 
 ### Template do Pull Request
 
@@ -281,7 +296,7 @@ Preencha:
 - o checklist de validação;
 - a atualização do changelog, quando aplicável.
 
-Não remova os campos de Confluence e Figma. Quando um deles não se aplicar, registre `Não aplicável`, salvo uso do epico `TECNICO`.
+Não remova os campos de Confluence e Figma. Quando um deles não se aplicar, registre `Não aplicável`, salvo uso do épico `TECNICO`.
 
 ## 6. Evidências
 
@@ -296,8 +311,9 @@ As etapas de automação e entrega ainda não estão implementadas por este flux
 | Etapa | Status | Definições pendentes |
 |---|---|---|
 | Integração contínua (CI) | A definir | Ferramentas, gatilhos e verificações obrigatórias |
+| Lint | A definir | Ferramenta e regras |
 | Testes | A definir | Ferramentas, comandos e critérios de execução |
-| Build | A definir | Necessidade, comandos e artefatos |
+| Build | Não necessário | As páginas são servidas pelo Express sem etapa de build |
 | Deploy | A definir | Ambientes, gatilhos, aprovações e rollback |
 
 Consulte a [estratégia de testes](../testing/strategy.md) e o [processo de deploy](../operations/deployment.md) para acompanhar essas definições. O merge em `main` não estabelece um deploy automático.
@@ -318,9 +334,11 @@ git checkout FIB-123-feat/tela-login
 git merge main
 ```
 
-Resolva eventuais conflitos, revise o diff e registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Execute somente verificações que estiverem configuradas no projeto e informe as limitações da validação.
+Se o merge trouxe mudanças no `package.json`, rode `pnpm install` antes de testar.
 
-Os comandos de CI, testes e build permanecem **A definir**, conforme a seção anterior.
+Resolva eventuais conflitos, revise o diff e registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Enquanto lint, testes e CI permanecem **A definir**, siga a [validação manual](desenvolvimento.md#10-validação-antes-do-pull-request) e informe as limitações da validação.
+
+Em conflitos no `pnpm-lock.yaml`, não edite o arquivo à mão: resolva o `package.json` e rode `pnpm install` para regenerar o lockfile.
 
 ## 9. Revisão
 
