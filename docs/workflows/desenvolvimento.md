@@ -17,7 +17,11 @@ editar public/views/... ou src/...
   ↓
 validar no navegador
   ↓
+pnpm test                                 (smoke test, o mesmo do CI)
+  ↓
 commit + Pull Request                     (Git Workflow)
+  ↓
+check do CI verde no PR
 ```
 
 ## 2. Rodando o projeto
@@ -50,7 +54,14 @@ src/                             # servidor
 ├── routes/
 │   ├── index.js                 # junta todos os routers
 │   └── pages.routes.js          # serve as páginas de public/views
-└── middlewares/                 # 404 e tratamento de erros
+├── middlewares/                 # 404 e tratamento de erros
+└── mocks/                       # dados mockados (ver src/mocks/estrutura.txt)
+
+tests/
+└── smoke.test.js                # smoke test rodado por `pnpm test` e pelo CI
+
+.github/workflows/
+└── ci.yml                       # CI: roda em todo PR para a main
 ```
 
 ### Como o servidor responde
@@ -68,7 +79,7 @@ src/                             # servidor
 
 1. Crie a pasta em `public/views/` com nome em português, minúsculas e separado por `-`, como nas branches: `public/views/recuperar-senha/`.
 2. Adicione `index.html` e `style.css` (e `script.js`, se precisar).
-3. Pronto: a página já está disponível em `http://localhost:3000/recuperar-senha/`. Não é preciso registrar rota no servidor.
+3. Pronto: a página já está disponível em `http://localhost:3000/recuperar-senha/`. Não é preciso registrar rota no servidor, e ela também entra no smoke test sozinha.
 4. Adicione o responsável pela pasta no [`CODEOWNERS`](../../.github/CODEOWNERS).
 
 Modelo mínimo:
@@ -181,7 +192,15 @@ Não commite `package-lock.json` nem `yarn.lock` (eles já estão no `.gitignore
 
 ## 10. Validação antes do Pull Request
 
-Enquanto lint, testes e CI permanecem **A definir** ([Estratégia de testes](../testing/strategy.md)), a validação é manual:
+Rode o smoke test, que é o mesmo que o CI roda em cada PR:
+
+```bash
+pnpm test
+```
+
+Ele confere automaticamente que cada página de `public/views` abre, que seus CSS, scripts e imagens carregam, que nenhum caminho começa com `/public/` e que a página 404 funciona. Se um teste falhar, a mensagem mostra qual arquivo e qual página.
+
+O smoke test não vê a tela. Para mudanças de interface, valide também manualmente ([Estratégia de testes](../testing/strategy.md)):
 
 - [ ] `pnpm dev` sobe sem erros no terminal;
 - [ ] as páginas alteradas abrem pelo servidor (`http://localhost:3000/<pagina>/`);
@@ -190,4 +209,4 @@ Enquanto lint, testes e CI permanecem **A definir** ([Estratégia de testes](../
 - [ ] o console do navegador não mostra erros;
 - [ ] nenhum caminho começa com `/public/`.
 
-Registre essas verificações na seção **Como testar** do Pull Request.
+Registre essas verificações na seção **Como testar** do Pull Request. Depois do `push`, confira se o check **CI / Instala e testa** ficou verde no PR ([Git Workflow](git.flow.md#ci)).

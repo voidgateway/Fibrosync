@@ -22,6 +22,7 @@
 ```bash
 pnpm install
 pnpm dev
+pnpm test   # smoke test, o mesmo que o CI roda em cada PR
 ```
 
 Acesse `http://localhost:3000`. Detalhes em [Configuração do ambiente](docs/development/setup.md).
@@ -42,6 +43,8 @@ Acesse `http://localhost:3000`. Detalhes em [Configuração do ambiente](docs/de
 ```text
 D Fibrosync/
 ├── D .github/                             # configurações do GitHub
+│   ├── D workflows/
+│   │   └── F ci.yml                       # CI: instala e roda o smoke test em cada PR
 │   ├── F CODEOWNERS                       # responsáveis pela revisão de cada área
 │   └── F pull_request_template.md         # modelo de descrição dos Pull Requests
 ├── D .gitlab/                             # espelho das configurações para o GitLab
@@ -58,6 +61,7 @@ D Fibrosync/
 │   ├── D decisions/
 │   │   ├── F 0001-trunk-based-development.md
 │   │   ├── F 0002-pnpm-como-gerenciador-de-pacotes.md
+│   │   ├── F 0003-ci-com-github-actions.md
 │   │   ├── F overview.md                  # mapa das decisões de arquitetura (ADRs)
 │   │   └── F template.md                  # modelo para novos ADRs
 │   ├── D design/
@@ -115,11 +119,15 @@ D Fibrosync/
 │   ├── D middlewares/
 │   │   ├── F error.middleware.js          # tratamento de erros (500)
 │   │   └── F not-found.middleware.js      # resposta 404 (página ou JSON)
+│   ├── D mocks/
+│   │   └── F estrutura.txt                # organização prevista dos dados mockados
 │   ├── D routes/
 │   │   ├── F index.js                     # junta os routers (API e páginas)
 │   │   └── F pages.routes.js              # serve public/views como páginas
 │   ├── F app.js                           # configuração do Express
 │   └── F server.js                        # inicia o servidor
+├── D tests/
+│   └── F smoke.test.js                    # smoke test (pnpm test e CI)
 ├── F .env.example                         # modelo das variáveis de ambiente
 ├── F .gitignore                           # arquivos ignorados pelo Git
 ├── F CHANGELOG.md                         # histórico de mudanças do projeto

@@ -18,6 +18,7 @@ Este diretório centraliza as decisões técnicas relevantes para a arquitetura 
 |---|---|---|---|---|---|---|
 | [0001](0001-trunk-based-development.md) | Adoção de trunk-based development | `Accepted` | [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74) | Não aplicável | Não aplicável | [#17](https://github.com/voidgateway/Fibrosync/pull/17) |
 | [0002](0002-pnpm-como-gerenciador-de-pacotes.md) | pnpm como gerenciador de pacotes | `Accepted` | [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74) | Não aplicável | Não aplicável | A definir |
+| [0003](0003-ci-com-github-actions.md) | CI com GitHub Actions | `Proposed` | [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74) | Não aplicável | Não aplicável | A definir |
 
 ## Estrutura dos registros
 

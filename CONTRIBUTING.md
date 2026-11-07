@@ -68,7 +68,7 @@ git checkout FIB-123-feat/tela-login
 git merge main
 ```
 
-Revise o diff, faça a [validação manual](docs/workflows/desenvolvimento.md#10-validação-antes-do-pull-request) com `pnpm dev` e registre no PR as evidências e limitações da validação. Lint, testes, CI e deploy permanecem **A definir**. O merge em `main` não implica publicação automática.
+Revise o diff, rode `pnpm test` (o mesmo smoke test do CI), faça a [validação manual](docs/workflows/desenvolvimento.md#10-validação-antes-do-pull-request) com `pnpm dev` quando houver mudança de interface e registre no PR as evidências e limitações da validação. Depois do `push`, confira se o check do CI ficou verde. Lint e deploy permanecem **A definir**. O merge em `main` não implica publicação automática.
 
 Preencha o template do Pull Request, incluindo:
 

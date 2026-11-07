@@ -1,4 +1,4 @@
-<!-- a entrega de dados (back-end/API) ainda tem que ser definida com a prof; esta página registra o que já está implementado -->
+<!-- esqueleto de arquivo, ainda tem que definir com o a prof como será a entrega de dados -->
 # Arquitetura
 
 O Fibrosync é um site em HTML, CSS e JavaScript puro servido por um servidor Node.js com Express. Hoje o servidor entrega apenas as páginas e seus arquivos; a camada de dados (API, persistência e integrações) ainda está **A definir**.
@@ -11,6 +11,8 @@ O Fibrosync é um site em HTML, CSS e JavaScript puro servido por um servidor No
 - [Fluxo de desenvolvimento](../workflows/desenvolvimento.md)
 
 ## Contexto do sistema
+
+<!-- Descrever os usuários, sistemas externos e responsabilidades do Fibrosync. -->
 
 | Ator | Papel |
 |---|---|
@@ -29,6 +31,8 @@ flowchart LR
     rotas --> paginas["Páginas<br/>public/views"]
     rotas --> nf["404<br/>public/views/404"]
 ```
+
+<!-- Atualizar o diagrama quando os componentes e integrações forem definidos. -->
 
 Ordem em que o servidor tenta atender uma requisição:
 
@@ -54,6 +58,8 @@ Ordem em que o servidor tenta atender uma requisição:
 Camadas previstas para a API, criadas conforme a necessidade: `controllers/`, `services/` e `repositories/` (ver [Fluxo de desenvolvimento](../workflows/desenvolvimento.md#7-adicionando-rotas-de-api)).
 
 ## Fluxo de dados
+
+<!-- Registrar apenas os fluxos relevantes para compreender a arquitetura. -->
 
 Ainda não há troca de dados com o servidor: os formulários de cadastro e login apenas navegam para a próxima página. O formato de envio e armazenamento será registrado aqui quando a API for definida.
 

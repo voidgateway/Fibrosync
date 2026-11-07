@@ -44,8 +44,8 @@ Justificativa da exceção: Não aplicável.
 - [ ] Todos os commits começam com a mesma chave do Jira (`FIB-XXX tipo: descrição`)
 - [ ] O Merge Request usa um item próprio ou atende aos critérios de vínculo direto ao épico técnico
 - [ ] Os critérios de aceite foram validados
-- [ ] Os testes aplicáveis foram executados
-- [ ] O servidor sobe com `pnpm dev` e as páginas alteradas carregam sem respostas 404 (lint e build: a definir)
+- [ ] Os testes aplicáveis foram executados (`pnpm test`)
+- [ ] O servidor sobe com `pnpm dev` e as páginas alteradas carregam sem respostas 404 (lint: a definir)
 - [ ] Os caminhos nas páginas são relativos (nenhum começa com `/public/`)
 - [ ] Se as dependências mudaram, o `pnpm-lock.yaml` foi commitado junto com o `package.json`
 - [ ] A documentação foi atualizada, quando necessário

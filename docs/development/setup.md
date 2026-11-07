@@ -1,3 +1,4 @@
+<!-- esqueleto de arquivo, ainda tem que definir com o a prof como será a entrega de dados -->
 # Configuração do ambiente
 
 Como preparar a máquina para rodar o Fibrosync localmente. O dia a dia do desenvolvimento (criar páginas, caminhos, rotas, validação) está em [Fluxo de desenvolvimento](../workflows/desenvolvimento.md).
@@ -74,10 +75,11 @@ Cada pasta em `public/views/` vira uma página automaticamente. URLs que não ex
 | Verificação | Comando | Status |
 |---|---|---|
 | Lint | — | A definir |
-| Testes | — | A definir ([Estratégia de testes](../testing/strategy.md)) |
+| Smoke test | `pnpm test` | Implementado ([Estratégia de testes](../testing/strategy.md)) |
+| CI | Automático em cada PR | GitHub Actions ([ADR 0003](../decisions/0003-ci-com-github-actions.md)) |
 | Build | — | Não necessário: as páginas são servidas sem etapa de build |
 
-Até lá, siga a [validação manual](../workflows/desenvolvimento.md#10-validação-antes-do-pull-request) antes de abrir um Pull Request.
+Antes de abrir um Pull Request, rode `pnpm test` e, para mudanças de interface, siga a [validação manual](../workflows/desenvolvimento.md#10-validação-antes-do-pull-request).
 
 ## Problemas conhecidos
 
@@ -86,4 +88,5 @@ Até lá, siga a [validação manual](../workflows/desenvolvimento.md#10-valida�
 | `EADDRINUSE: address already in use :::3000` | Outro processo já usa a porta 3000 | Feche o outro processo ou defina outra `PORT` no `.env` |
 | `.env not found. Continuing without it.` no terminal | Não existe `.env` | Apenas aviso; o servidor usa os valores padrão |
 | `pnpm` não é reconhecido | pnpm não instalado | Veja [Pré-requisitos](#pré-requisitos) |
+| `ERR_PNPM_OUTDATED_LOCKFILE` no CI | O `package.json` mudou e o `pnpm-lock.yaml` não foi commitado | Rode `pnpm install` e commite o `pnpm-lock.yaml` |
 | Links levam à página 404 | `recuperar-senha.html`, `dashboard.html` (login) e `../home/index.html` (dados complementares) apontam para páginas ainda não criadas | Criar as páginas correspondentes |
