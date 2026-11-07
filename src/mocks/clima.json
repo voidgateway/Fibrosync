@@ -1,0 +1,11 @@
+{
+  "cidade": "São Paulo",
+  "temperatura": 14,
+  "condicao": "Céu limpo",
+  "umidade": 62,
+  "pressao": {
+    "atual": 1009,
+    "variacao": -4
+  },
+  "atualizadoEm": "2026-11-10T08:00:00-03:00"
+}

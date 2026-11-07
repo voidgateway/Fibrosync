@@ -1,1 +1,1235 @@
-[]
+[
+  {
+    "id": 1,
+    "pacienteId": 1,
+    "data": "2026-08-12",
+    "dor": 6,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Lombar",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 7,
+      "rigidez": 6,
+      "nevoaMental": 5,
+      "ansiedade": 4
+    },
+    "observacao": ""
+  },
+  {
+    "id": 2,
+    "pacienteId": 1,
+    "data": "2026-08-14",
+    "dor": 7,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 8
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 8
+      }
+    ],
+    "sintomas": {
+      "fadiga": 7,
+      "sono": 7,
+      "rigidez": 4,
+      "nevoaMental": 5,
+      "ansiedade": 6
+    },
+    "observacao": ""
+  },
+  {
+    "id": 3,
+    "pacienteId": 1,
+    "data": "2026-08-16",
+    "dor": 7,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 7,
+      "rigidez": 7,
+      "nevoaMental": 5,
+      "ansiedade": 7
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 4,
+    "pacienteId": 1,
+    "data": "2026-08-17",
+    "dor": 4,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 1,
+      "sono": 2,
+      "rigidez": 5,
+      "nevoaMental": 2,
+      "ansiedade": 3
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 5,
+    "pacienteId": 1,
+    "data": "2026-08-18",
+    "dor": 6,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Joelhos",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 7,
+      "rigidez": 4,
+      "nevoaMental": 6,
+      "ansiedade": 4
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 6,
+    "pacienteId": 1,
+    "data": "2026-08-23",
+    "dor": 7,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 7,
+      "sono": 5,
+      "rigidez": 7,
+      "nevoaMental": 4,
+      "ansiedade": 6
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 7,
+    "pacienteId": 1,
+    "data": "2026-08-24",
+    "dor": 6,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 7,
+      "sono": 6,
+      "rigidez": 5,
+      "nevoaMental": 3,
+      "ansiedade": 7
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 8,
+    "pacienteId": 1,
+    "data": "2026-08-25",
+    "dor": 4,
+    "disposicao": 3,
+    "areas": [
+      {
+        "regiao": "Joelhos",
+        "intensidade": 4
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 4
+      },
+      {
+        "regiao": "Pescoço",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 3,
+      "rigidez": 1,
+      "nevoaMental": 5,
+      "ansiedade": 3
+    },
+    "observacao": "Caminhada leve ajudou."
+  },
+  {
+    "id": 9,
+    "pacienteId": 1,
+    "data": "2026-08-26",
+    "dor": 4,
+    "disposicao": 3,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 4,
+      "rigidez": 4,
+      "nevoaMental": 3,
+      "ansiedade": 3
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 10,
+    "pacienteId": 1,
+    "data": "2026-08-31",
+    "dor": 6,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Pescoço",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 5,
+      "rigidez": 4,
+      "nevoaMental": 6,
+      "ansiedade": 7
+    },
+    "observacao": ""
+  },
+  {
+    "id": 11,
+    "pacienteId": 1,
+    "data": "2026-09-04",
+    "dor": 4,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 3
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 1,
+      "rigidez": 4,
+      "nevoaMental": 1,
+      "ansiedade": 5
+    },
+    "observacao": ""
+  },
+  {
+    "id": 12,
+    "pacienteId": 1,
+    "data": "2026-09-05",
+    "dor": 4,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 4,
+      "rigidez": 4,
+      "nevoaMental": 4,
+      "ansiedade": 3
+    },
+    "observacao": ""
+  },
+  {
+    "id": 13,
+    "pacienteId": 1,
+    "data": "2026-09-06",
+    "dor": 7,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Pescoço",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 7,
+      "rigidez": 7,
+      "nevoaMental": 7,
+      "ansiedade": 7
+    },
+    "observacao": ""
+  },
+  {
+    "id": 14,
+    "pacienteId": 1,
+    "data": "2026-09-10",
+    "dor": 6,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Joelhos",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 3,
+      "rigidez": 3,
+      "nevoaMental": 4,
+      "ansiedade": 6
+    },
+    "observacao": ""
+  },
+  {
+    "id": 15,
+    "pacienteId": 1,
+    "data": "2026-09-12",
+    "dor": 4,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 3,
+      "rigidez": 3,
+      "nevoaMental": 4,
+      "ansiedade": 3
+    },
+    "observacao": "Caminhada leve ajudou."
+  },
+  {
+    "id": 16,
+    "pacienteId": 1,
+    "data": "2026-09-13",
+    "dor": 6,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 5,
+      "rigidez": 4,
+      "nevoaMental": 6,
+      "ansiedade": 6
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 17,
+    "pacienteId": 1,
+    "data": "2026-09-17",
+    "dor": 4,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Ombros",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 2,
+      "rigidez": 4,
+      "nevoaMental": 4,
+      "ansiedade": 5
+    },
+    "observacao": ""
+  },
+  {
+    "id": 18,
+    "pacienteId": 1,
+    "data": "2026-09-19",
+    "dor": 5,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Joelhos",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 4,
+      "rigidez": 4,
+      "nevoaMental": 3,
+      "ansiedade": 4
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 19,
+    "pacienteId": 1,
+    "data": "2026-09-21",
+    "dor": 6,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Pescoço",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 5,
+      "rigidez": 4,
+      "nevoaMental": 3,
+      "ansiedade": 6
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 20,
+    "pacienteId": 1,
+    "data": "2026-09-22",
+    "dor": 5,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Ombros",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 6,
+      "rigidez": 2,
+      "nevoaMental": 3,
+      "ansiedade": 5
+    },
+    "observacao": ""
+  },
+  {
+    "id": 21,
+    "pacienteId": 1,
+    "data": "2026-09-23",
+    "dor": 5,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Joelhos",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 4,
+      "rigidez": 4,
+      "nevoaMental": 5,
+      "ansiedade": 5
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 22,
+    "pacienteId": 1,
+    "data": "2026-09-24",
+    "dor": 4,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Ombros",
+        "intensidade": 3
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 3,
+      "rigidez": 2,
+      "nevoaMental": 1,
+      "ansiedade": 2
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 23,
+    "pacienteId": 1,
+    "data": "2026-09-25",
+    "dor": 5,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 4,
+      "rigidez": 3,
+      "nevoaMental": 5,
+      "ansiedade": 5
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 24,
+    "pacienteId": 1,
+    "data": "2026-09-30",
+    "dor": 4,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 4
+      },
+      {
+        "regiao": "Pescoço",
+        "intensidade": 4
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 4,
+      "rigidez": 2,
+      "nevoaMental": 4,
+      "ansiedade": 4
+    },
+    "observacao": ""
+  },
+  {
+    "id": 25,
+    "pacienteId": 1,
+    "data": "2026-10-01",
+    "dor": 4,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Pescoço",
+        "intensidade": 3
+      },
+      {
+        "regiao": "Ombros",
+        "intensidade": 4
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 3,
+      "rigidez": 3,
+      "nevoaMental": 2,
+      "ansiedade": 5
+    },
+    "observacao": "Semana corrida no trabalho."
+  },
+  {
+    "id": 26,
+    "pacienteId": 1,
+    "data": "2026-10-03",
+    "dor": 5,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 4,
+      "rigidez": 6,
+      "nevoaMental": 3,
+      "ansiedade": 2
+    },
+    "observacao": ""
+  },
+  {
+    "id": 27,
+    "pacienteId": 1,
+    "data": "2026-10-07",
+    "dor": 5,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Lombar",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Ombros",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 6,
+      "rigidez": 4,
+      "nevoaMental": 4,
+      "ansiedade": 4
+    },
+    "observacao": ""
+  },
+  {
+    "id": 28,
+    "pacienteId": 1,
+    "data": "2026-10-08",
+    "dor": 6,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Lombar",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 3,
+      "rigidez": 6,
+      "nevoaMental": 7,
+      "ansiedade": 6
+    },
+    "observacao": "Caminhada leve ajudou."
+  },
+  {
+    "id": 29,
+    "pacienteId": 1,
+    "data": "2026-10-12",
+    "dor": 7,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 8
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 4,
+      "rigidez": 7,
+      "nevoaMental": 7,
+      "ansiedade": 5
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 30,
+    "pacienteId": 1,
+    "data": "2026-10-13",
+    "dor": 6,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Ombros",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 4,
+      "rigidez": 7,
+      "nevoaMental": 7,
+      "ansiedade": 6
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 31,
+    "pacienteId": 1,
+    "data": "2026-10-15",
+    "dor": 7,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 5,
+      "rigidez": 4,
+      "nevoaMental": 4,
+      "ansiedade": 5
+    },
+    "observacao": ""
+  },
+  {
+    "id": 32,
+    "pacienteId": 1,
+    "data": "2026-10-19",
+    "dor": 4,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 4,
+      "rigidez": 3,
+      "nevoaMental": 4,
+      "ansiedade": 3
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 33,
+    "pacienteId": 1,
+    "data": "2026-10-20",
+    "dor": 7,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 7,
+      "rigidez": 7,
+      "nevoaMental": 4,
+      "ansiedade": 6
+    },
+    "observacao": ""
+  },
+  {
+    "id": 34,
+    "pacienteId": 1,
+    "data": "2026-10-21",
+    "dor": 4,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Lombar",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 3
+      },
+      {
+        "regiao": "Pescoço",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 5,
+      "rigidez": 5,
+      "nevoaMental": 3,
+      "ansiedade": 3
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 35,
+    "pacienteId": 1,
+    "data": "2026-10-23",
+    "dor": 7,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 8
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 8
+      }
+    ],
+    "sintomas": {
+      "fadiga": 7,
+      "sono": 7,
+      "rigidez": 7,
+      "nevoaMental": 7,
+      "ansiedade": 4
+    },
+    "observacao": "Caminhada leve ajudou."
+  },
+  {
+    "id": 36,
+    "pacienteId": 1,
+    "data": "2026-10-25",
+    "dor": 6,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 5,
+      "rigidez": 3,
+      "nevoaMental": 4,
+      "ansiedade": 6
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 37,
+    "pacienteId": 1,
+    "data": "2026-10-26",
+    "dor": 6,
+    "disposicao": 4,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 5,
+      "sono": 4,
+      "rigidez": 3,
+      "nevoaMental": 6,
+      "ansiedade": 5
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 38,
+    "pacienteId": 1,
+    "data": "2026-10-27",
+    "dor": 6,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 6,
+      "rigidez": 5,
+      "nevoaMental": 5,
+      "ansiedade": 5
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 39,
+    "pacienteId": 1,
+    "data": "2026-10-28",
+    "dor": 5,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 4,
+      "rigidez": 2,
+      "nevoaMental": 3,
+      "ansiedade": 5
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 40,
+    "pacienteId": 1,
+    "data": "2026-10-29",
+    "dor": 7,
+    "disposicao": 3,
+    "areas": [
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Pescoço",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 6,
+      "rigidez": 6,
+      "nevoaMental": 7,
+      "ansiedade": 6
+    },
+    "observacao": ""
+  },
+  {
+    "id": 41,
+    "pacienteId": 1,
+    "data": "2026-10-31",
+    "dor": 4,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Lombar",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 3,
+      "rigidez": 3,
+      "nevoaMental": 5,
+      "ansiedade": 3
+    },
+    "observacao": ""
+  },
+  {
+    "id": 42,
+    "pacienteId": 1,
+    "data": "2026-11-01",
+    "dor": 4,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Lombar",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 5
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 1,
+      "rigidez": 4,
+      "nevoaMental": 1,
+      "ansiedade": 1
+    },
+    "observacao": "Caminhada leve ajudou."
+  },
+  {
+    "id": 43,
+    "pacienteId": 1,
+    "data": "2026-11-03",
+    "dor": 3,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 3
+      }
+    ],
+    "sintomas": {
+      "fadiga": 4,
+      "sono": 3,
+      "rigidez": 2,
+      "nevoaMental": 4,
+      "ansiedade": 4
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 44,
+    "pacienteId": 1,
+    "data": "2026-11-04",
+    "dor": 4,
+    "disposicao": 7,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 5
+      },
+      {
+        "regiao": "Joelhos",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 5,
+      "rigidez": 3,
+      "nevoaMental": 3,
+      "ansiedade": 5
+    },
+    "observacao": "Fiz alongamento pela manhã."
+  },
+  {
+    "id": 45,
+    "pacienteId": 1,
+    "data": "2026-11-05",
+    "dor": 6,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 6
+      },
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 7
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 4,
+      "rigidez": 5,
+      "nevoaMental": 5,
+      "ansiedade": 6
+    },
+    "observacao": "Dormi mal à noite."
+  },
+  {
+    "id": 46,
+    "pacienteId": 1,
+    "data": "2026-11-06",
+    "dor": 3,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Pescoço",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 2,
+      "sono": 4,
+      "rigidez": 2,
+      "nevoaMental": 4,
+      "ansiedade": 1
+    },
+    "observacao": ""
+  },
+  {
+    "id": 47,
+    "pacienteId": 1,
+    "data": "2026-11-07",
+    "dor": 6,
+    "disposicao": 5,
+    "areas": [
+      {
+        "regiao": "Braço inferior direito",
+        "intensidade": 7
+      },
+      {
+        "regiao": "Coxa esquerda",
+        "intensidade": 6
+      }
+    ],
+    "sintomas": {
+      "fadiga": 6,
+      "sono": 3,
+      "rigidez": 6,
+      "nevoaMental": 6,
+      "ansiedade": 3
+    },
+    "observacao": ""
+  },
+  {
+    "id": 48,
+    "pacienteId": 1,
+    "data": "2026-11-08",
+    "dor": 3,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Joelhos",
+        "intensidade": 4
+      },
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 4
+      }
+    ],
+    "sintomas": {
+      "fadiga": 1,
+      "sono": 1,
+      "rigidez": 1,
+      "nevoaMental": 2,
+      "ansiedade": 2
+    },
+    "observacao": "Dia frio, mais rigidez ao acordar."
+  },
+  {
+    "id": 49,
+    "pacienteId": 1,
+    "data": "2026-11-09",
+    "dor": 3,
+    "disposicao": 6,
+    "areas": [
+      {
+        "regiao": "Braço superior esquerdo",
+        "intensidade": 3
+      }
+    ],
+    "sintomas": {
+      "fadiga": 3,
+      "sono": 2,
+      "rigidez": 4,
+      "nevoaMental": 2,
+      "ansiedade": 3
+    },
+    "observacao": ""
+  }
+]
