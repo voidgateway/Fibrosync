@@ -1,7 +1,7 @@
 <!-- esqueleto de arquivo, ainda tem que definir com o a prof como será a entrega de dados -->
 # Arquitetura
 
-O Fibrosync é um site em HTML, CSS e JavaScript puro servido por um servidor Node.js com Express. Hoje o servidor entrega apenas as páginas e seus arquivos; a camada de dados (API, persistência e integrações) ainda está **A definir**.
+O Fibrosync é um site em HTML, CSS e JavaScript puro servido por um servidor Node.js com Express. a camada de dados (API, persistência e integrações) ainda está **A definir**.
 
 ## Fontes relacionadas
 

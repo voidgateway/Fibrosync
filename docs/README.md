@@ -35,5 +35,3 @@ Este diretório reúne a documentação técnica versionada junto ao código do 
 - [Projeto FIB no Jira](https://aluno-team-zylgcwkh.atlassian.net/jira/software/projects/FIB/summary)
 - [Espaço do Fibrosync no Confluence](https://aluno-team-zylgcwkh.atlassian.net/wiki/spaces/F/overview)
 - [Time do Fibrosync no Figma](https://www.figma.com/files/team/1635721117049360128/all-folders?fuid=1635749553250315535)
-
- _eu que escrevi professora :)_

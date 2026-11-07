@@ -2,7 +2,7 @@
 
 ## Status
 
-`Proposed`
+`Accepted`
 
 ## Contexto
 
@@ -62,4 +62,4 @@ Fontes:
 - Jira: [FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74)
 - Confluence: (não aplicável)
 - Figma: (não aplicável)
-- Pull Request: (a definir)
+- Pull Request: [#21](https://github.com/voidgateway/Fibrosync/pull/21)

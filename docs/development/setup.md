@@ -1,7 +1,7 @@
 <!-- esqueleto de arquivo, ainda tem que definir com o a prof como será a entrega de dados -->
 # Configuração do ambiente
 
-Como preparar a máquina para rodar o Fibrosync localmente. O dia a dia do desenvolvimento (criar páginas, caminhos, rotas, validação) está em [Fluxo de desenvolvimento](../workflows/desenvolvimento.md).
+Como preparar a máquina (seu pc) para rodar o Fibrosync localmente. O dia a dia do desenvolvimento (criar páginas, caminhos, rotas, validação) está em [Fluxo de desenvolvimento](../workflows/desenvolvimento.md).
 
 ## Pré-requisitos
 
@@ -67,6 +67,7 @@ Páginas disponíveis em `http://localhost:3000`:
 | `/cadastro/` | Cadastro |
 | `/login-paciente/` | Login do paciente |
 | `/dados-complementares/` | Dados complementares |
+<!--Adicionar aqui a medida que novas páginas forem implementadas-->
 
 Cada pasta em `public/views/` vira uma página automaticamente. URLs que não existem mostram a página de erro com status `404`.
 

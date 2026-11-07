@@ -1,7 +1,6 @@
-<!-- esqueleto de arquivo, ainda tem que definir com o a prof como será a entrega de dados -->
 # Estratégia de testes
 
-// A definir
+Este documento descreve a estratégia de testes adotadas no projeto
 
 ## Níveis de teste
 
