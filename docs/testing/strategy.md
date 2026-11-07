@@ -7,6 +7,7 @@
 
 | Nível | Objetivo | Ferramenta | Status |
 |---|---|---|---|
+| Smoke | Servidor sobe; páginas, arquivos e 404 respondem; caminhos relativos | `node:test` (nativo do Node.js) | Implementado em `tests/smoke.test.js` |
 | Unitário | Validar unidades isoladas | A definir | Planejado |
 | Integração | Validar a colaboração entre componentes | A definir | Planejado |
 | Ponta a ponta | Validar fluxos principais do usuário | A definir | Planejado |
@@ -23,11 +24,14 @@
 ## Execução
 
 ```bash
+pnpm test   # smoke test (tests/smoke.test.js)
 # Comandos a definir após a escolha das ferramentas de teste.
 ```
 
+`pnpm test` roda `node --test`, que encontra sozinho os arquivos `*.test.js` do projeto. Testes novos com esse sufixo entram no mesmo comando e no CI sem configuração extra.
+
 ## Integração contínua
 
-A stack já está definida (Node.js + Express, pnpm). Os testes automatizados farão parte do workflow de CI quando _(se)_ as ferramentas e os comandos de teste forem escolhidos. O `src/app.js` exporta o app sem abrir porta, o que permite testá-lo diretamente quando houver uma ferramenta de testes.
+O smoke test já roda no CI com GitHub Actions em todo Pull Request para a `main` ([ADR 0003](../decisions/0003-ci-com-github-actions.md)). Os testes unitários e de integração entrarão no mesmo workflow quando _(se)_ as ferramentas forem escolhidas. O `src/app.js` exporta o app sem abrir porta, o que permite testá-lo diretamente, como o smoke test já faz.
 
-Até lá, a validação é manual: ver [Fluxo de desenvolvimento](../workflows/desenvolvimento.md#10-validação-antes-do-pull-request).
+O smoke test não verifica aparência, responsividade nem formulários. Para mudanças de interface, a validação continua manual: ver [Fluxo de desenvolvimento](../workflows/desenvolvimento.md#10-validação-antes-do-pull-request).

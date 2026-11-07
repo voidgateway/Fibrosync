@@ -13,6 +13,7 @@ O formato é baseado no [Keep a Changelog](https://keepachangelog.com/en/2.0.0/)
 - Base de roteamento e html da tela de cadastro de paciente.
 - Servidor Node.js com Express servindo as páginas de `public/views` ([FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74)).
 - Página de erro 404 para endereços inexistentes ([FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74)).
+- CI com GitHub Actions: cada Pull Request instala as dependências e roda um smoke test das páginas ([FIB-74](https://aluno-team-zylgcwkh.atlassian.net/browse/FIB-74)).
 
 ### Alterado
 

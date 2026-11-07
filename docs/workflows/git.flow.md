@@ -77,7 +77,7 @@ O Fibrosync adota **trunk-based development com branches curtas e Pull Requests*
 - Após o merge, remova a branch de trabalho e crie a próxima a partir da `main` atualizada.
 - Se uma alteração quebrar a `main`, priorize a correção ou a reversão por PR.
 
-Integrar código não significa publicar em produção. A adoção deste fluxo mantém a revisão por PR; ferramentas de testes, CI, regras automatizadas de proteção e deploy permanecem **A definir**.
+Integrar código não significa publicar em produção. A adoção deste fluxo mantém a revisão por PR; o CI roda o smoke test em cada PR (ver [seção 7](#7-ci-testes-builds-e-deploy)), enquanto as regras automatizadas de proteção e o deploy permanecem **A definir**.
 
 ### Por que adotar o trunk-based development?
 
@@ -95,7 +95,7 @@ Os três atuam em níveis diferentes e se complementam: o Scrum organiza o traba
 - **Pequenas entregas:** incrementos pequenos facilitam a revisão e a reversão, embora o merge em `main` não signifique publicação.
 - **Propriedade coletiva e padrões de código:** a `main` compartilhada e a revisão por PR expõem o código a toda a equipe e mantêm um padrão comum.
 
-No XP, a integração contínua também depende de build e testes automatizados. Enquanto essas etapas permanecem **A definir**, o Fibrosync aplica a integração frequente, mas a validação depende da revisão e das evidências de cada PR.
+No XP, a integração contínua também depende de build e testes automatizados. O Fibrosync já roda um smoke test automatizado em cada PR; enquanto testes unitários e de integração permanecem **A definir**, a validação também depende da revisão e das evidências de cada PR.
 
 Referências:
 
@@ -306,21 +306,32 @@ Screenshots normalmente não são necessárias para alterações exclusivamente 
 
 ## 7. CI, testes, builds e deploy
 
-As etapas de automação e entrega ainda não estão implementadas por este fluxo:
+Situação das etapas de automação e entrega:
 
 | Etapa | Status | Definições pendentes |
 |---|---|---|
-| Integração contínua (CI) | A definir | Ferramentas, gatilhos e verificações obrigatórias |
+| Integração contínua (CI) | GitHub Actions ([ADR 0003](../decisions/0003-ci-com-github-actions.md)) | Exigir o check na proteção da `main` |
 | Lint | A definir | Ferramenta e regras |
-| Testes | A definir | Ferramentas, comandos e critérios de execução |
+| Testes | Smoke test (`pnpm test`) | Testes unitários e de integração |
 | Build | Não necessário | As páginas são servidas pelo Express sem etapa de build |
 | Deploy | A definir | Ambientes, gatilhos, aprovações e rollback |
 
+### CI
+
+O workflow [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) roda em todo Pull Request para a `main` e em todo push na `main`. Ele instala as dependências com `pnpm install --frozen-lockfile` e roda o smoke test (`pnpm test`).
+
+O resultado aparece no Pull Request como o check **CI / Instala e testa**:
+
+- **verde:** o projeto instala e as páginas, seus arquivos e a página 404 funcionam;
+- **vermelho:** abra o check, veja qual teste falhou e corrija na mesma branch. Um novo `push` roda o CI de novo.
+
+Rode `pnpm test` localmente antes do `push` para não depender do CI para descobrir o erro. O CI não substitui a revisão nem a [validação manual](desenvolvimento.md#10-validação-antes-do-pull-request) de mudanças de interface.
+
 Consulte a [estratégia de testes](../testing/strategy.md) e o [processo de deploy](../operations/deployment.md) para acompanhar essas definições. O merge em `main` não estabelece um deploy automático.
 
-Quando builds e deployments forem configurados, a associação ao Jira deverá preservar a chave do item nos commits incluídos na entrega. Por isso, todos os commits devem seguir o padrão definido neste documento.
+Pela integração do GitHub com o Jira, as execuções do CI aparecem como builds no item (se a integração tiver permissão para ler o GitHub Actions) e, quando houver deploy, os deployments também deverão aparecer. A associação ao Jira depende da chave do item nos commits incluídos na entrega. Por isso, todos os commits devem seguir o padrão definido neste documento.
 
-Depois do `push`, consulte a área **Desenvolvimento** do item no Jira para confirmar a associação da branch, dos commits e do Pull Request.
+Depois do `push`, consulte a área **Desenvolvimento** do item no Jira para confirmar a associação da branch, dos commits, do Pull Request e dos builds.
 
 ## 8. Antes de abrir um Pull Request
 
@@ -336,7 +347,7 @@ git merge main
 
 Se o merge trouxe mudanças no `package.json`, rode `pnpm install` antes de testar.
 
-Resolva eventuais conflitos, revise o diff e registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Enquanto lint, testes e CI permanecem **A definir**, siga a [validação manual](desenvolvimento.md#10-validação-antes-do-pull-request) e informe as limitações da validação.
+Resolva eventuais conflitos, revise o diff e rode `pnpm test`. Registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Para mudanças de interface, siga também a [validação manual](desenvolvimento.md#10-validação-antes-do-pull-request), que cobre o que o smoke test não verifica, e informe as limitações da validação.
 
 Em conflitos no `pnpm-lock.yaml`, não edite o arquivo à mão: resolva o `package.json` e rode `pnpm install` para regenerar o lockfile.
 

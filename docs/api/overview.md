@@ -23,6 +23,8 @@
 
 ## Tratamento de erros
 
+<!-- Registrar o formato dos erros e o comportamento esperado da aplicação. -->
+
 O servidor já diferencia navegador e chamadas de API pelo cabeçalho `Accept`:
 
 | Situação | Navegador (`Accept: text/html`) | API (`Accept: application/json`) |
