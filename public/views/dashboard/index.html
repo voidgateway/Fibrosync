@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Acompanhe sua dor, disposição e sintomas no Fibrosync.">
+    <title>Dashboard | Fibrosync</title>
+    <link rel="icon" type="image/png" href="../../assets/img/logo_icone.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/tokens.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="pagina-dashboard">
+        <aside class="menu-lateral" aria-label="Menu principal">
+            <a href="./" class="marca" aria-label="FibroSync, dashboard">
+                <img src="../../assets/img/logo_icone.png" alt="" class="marca-icone">
+                <span class="marca-texto">FibroSync</span>
+            </a>
+
+            <nav class="navegacao" aria-label="Seções">
+                <ul class="menu">
+                    <li>
+                        <a href="./" class="menu-item ativo" aria-current="page">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9 2H15C15.5523 2 16 2.44772 16 3V4H18C19.1046 4 20 4.89543 20 6V20C20 21.1046 19.1046 22 18 22H6C4.89543 22 4 21.1046 4 20V6C4 4.89543 4.89543 4 6 4H8V3C8 2.44772 8.44772 2 9 2ZM8 11C7.44772 11 7 11.4477 7 12C7 12.5523 7.44772 13 8 13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H8ZM8 15C7.44772 15 7 15.4477 7 16C7 16.5523 7.44772 17 8 17H13C13.5523 17 14 16.5523 14 16C14 15.4477 13.5523 15 13 15H8Z"
+                                    fill="currentColor" />
+                            </svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../registro-diario/index.html" class="menu-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M11 4H6C4.89543 4 4 4.89543 4 6V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V13"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M18.5 2.5C19.3284 1.67157 20.6716 1.67157 21.5 2.5C22.3284 3.32843 22.3284 4.67157 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                            </svg>
+                            <span>Registro Diário</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../calendario/index.html" class="menu-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M11 21H6C4.34315 21 3 19.6569 3 18V7C3 5.89543 3.89543 5 5 5H19C20.1046 5 21 5.89543 21 7V11"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                                <path d="M8 3V7M16 3V7M3 10H21" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <circle cx="17" cy="17" r="4" stroke="currentColor" stroke-width="2" />
+                                <path d="M17 15.5V17L18 18" stroke="currentColor" stroke-width="1.6"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>Calendário</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../relatorio/index.html" class="menu-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M14 2H7C5.89543 2 5 2.89543 5 4V20C5 21.1046 5.89543 22 7 22H17C18.1046 22 19 21.1046 19 20V7L14 2Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                                <path d="M9 12H15M9 16H13" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                            <span>Relatório</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../configuracao/index.html" class="menu-item">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" />
+                                <path d="M4 21C4 17.134 7.58172 14 12 14C16.4183 14 20 17.134 20 21"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                            </svg>
+                            <span>Configuração</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="usuario">
+                <span class="usuario-avatar" id="usuario-inicial" aria-hidden="true"></span>
+                <div class="usuario-dados">
+                    <p class="usuario-nome" id="usuario-nome">Carregando...</p>
+                    <p class="usuario-papel">Paciente</p>
+                </div>
+                <a href="../login-paciente/index.html" class="sair" aria-label="Sair da conta">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path d="M9 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3H9" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" />
+                        <path d="M16 17L21 12L16 7M21 12H9" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </div>
+        </aside>
+
+        <main class="conteudo">
+            <header class="cabecalho card">
+                <div>
+                    <h1>Dashboard Inteligente</h1>
+                    <p>Registre como está se sentindo hoje</p>
+                </div>
+                <button type="button" class="notificacoes" aria-label="Notificações">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 2C8.68629 2 6 4.68629 6 8V11.6L4.3 15.0C3.97 15.66 4.45 16.45 5.19 16.45H18.81C19.55 16.45 20.03 15.66 19.7 15.0L18 11.6V8C18 4.68629 15.3137 2 12 2ZM9 18C9 19.6569 10.3431 21 12 21C13.6569 21 15 19.6569 15 18H9Z"
+                            fill="currentColor" />
+                    </svg>
+                </button>
+            </header>
+
+            <div class="filtros">
+                <div class="periodos" role="group" aria-label="Período exibido">
+                    <button type="button" class="filtro ativo" data-dias="7" aria-pressed="true">7 dias</button>
+                    <button type="button" class="filtro" data-dias="30" aria-pressed="false">30 dias</button>
+                    <button type="button" class="filtro" data-dias="90" aria-pressed="false">90 dias</button>
+                </div>
+                <a href="../registro-diario/index.html" class="filtro novo-registro">Novo registro</a>
+            </div>
+
+            <p class="mensagem-status" id="mensagem-status" role="status" aria-live="polite"></p>
+
+            <div class="painel" id="painel" aria-busy="true">
+                <section class="metricas" aria-label="Resumo da dor">
+                    <article class="card card-metrica">
+                        <h2>Dor mais recente</h2>
+                        <span class="card-icone" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 14C20.5 12.5 22 10.7 22 8.5C22 5.46 19.54 3 16.5 3C14.7 3 13.5 3.5 12 5C10.5 3.5 9.3 3 7.5 3C4.46 3 2 5.46 2 8.5C2 10.8 3.5 12.5 5 14L12 21L19 14Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                                <path d="M3.5 11.5H8.5L10 9L12.5 14L14 11.5H20.5" stroke="currentColor"
+                                    stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p class="valor" id="dor-recente">-</p>
+                        <p class="legenda" id="dor-recente-legenda"></p>
+                    </article>
+
+                    <article class="card card-metrica">
+                        <h2>Média recente</h2>
+                        <span class="card-icone" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20V12M12 20V5M19 20V14M3 20H21" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <p class="valor" id="dor-media">-</p>
+                        <p class="legenda" id="dor-media-legenda"></p>
+                    </article>
+
+                    <article class="card card-metrica">
+                        <h2>Pico recente</h2>
+                        <span class="card-icone" aria-hidden="true">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 12H18L15 20L9 4L6 12H2" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <p class="valor" id="dor-pico">-</p>
+                        <p class="legenda" id="dor-pico-legenda"></p>
+                    </article>
+                </section>
+
+                <section class="card card-contexto" aria-labelledby="titulo-contexto">
+                    <header class="contexto">
+                        <span class="indicador" id="contexto-indicador" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="titulo-contexto">Contexto atual</h2>
+                            <p class="legenda">Último registro real que alimenta risco e relatórios.</p>
+                            <p class="contexto-detalhe" id="contexto-detalhe"></p>
+                        </div>
+                    </header>
+
+                    <h3 id="titulo-areas">Áreas mais citadas</h3>
+                    <p class="legenda">Frequência considerando todos os registros do período.</p>
+                    <ul class="lista-areas" id="lista-areas" aria-labelledby="titulo-areas"></ul>
+                </section>
+
+                <section class="card card-carga" aria-labelledby="titulo-carga">
+                    <h2 id="titulo-carga">Carga de sintomas recente</h2>
+                    <p class="legenda">Média diária baseada em sinais independentes registrados.</p>
+                    <div class="linha-valor">
+                        <p class="valor" id="carga-valor">-</p>
+                        <p class="legenda" id="carga-legenda"></p>
+                    </div>
+                </section>
+
+                <section class="card card-clima" aria-labelledby="titulo-clima">
+                    <h2 id="titulo-clima">Como o tempo pode afetar hoje</h2>
+                    <p class="legenda">Leitura do clima atual separada do motor clínico.</p>
+                    <p class="valor" id="clima-temperatura">-</p>
+                    <p class="legenda" id="clima-condicao"></p>
+                    <p class="legenda clima-alerta" id="clima-alerta"></p>
+                </section>
+            </div>
+
+            <aside class="insights" aria-label="Insights">
+                <article class="card card-insight" id="insight-disposicao" data-tendencia="sem-dados">
+                    <h2 id="insight-disposicao-titulo">Sua disposição</h2>
+                    <svg class="insight-ilustracao" width="130" height="190" viewBox="0 0 13 19" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path
+                            d="M7.4 0.6C7.9 0.1 8.8 0.5 8.7 1.2L7.8 7.2H11.6C12.3 7.2 12.7 8 12.2 8.6L5.6 18.4C5.1 18.9 4.2 18.5 4.3 17.8L5.2 11.8H1.4C0.7 11.8 0.3 11 0.8 10.4L7.4 0.6Z"
+                            fill="currentColor" />
+                    </svg>
+                    <p class="insight-texto">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M12 2C15 4.5 16.5 8 16.5 12.5L15 17H9L7.5 12.5C7.5 8 9 4.5 12 2Z"
+                                fill="currentColor" />
+                            <path d="M7.5 12.5L4.5 15.5L6 19L9 17M16.5 12.5L19.5 15.5L18 19L15 17"
+                                fill="currentColor" />
+                            <path d="M10.5 19.5L12 22L13.5 19.5" stroke="currentColor" stroke-width="1.6"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <circle cx="12" cy="9.5" r="1.6" fill="#fff" />
+                        </svg>
+                        <span id="insight-disposicao-texto"></span>
+                    </p>
+                    <div class="feedback" role="group" aria-label="Este insight foi útil?">
+                        <button type="button" class="feedback-btn" data-voto="util" aria-pressed="false"
+                            aria-label="Foi útil">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M2 10H6V21H2V10Z" fill="currentColor" />
+                                <path d="M8 21H17.3C18.25 21 19.07 20.33 19.26 19.4L20.66 12.4C20.91 11.16 19.96 10 18.7 10H14L14.9 5.6C15.15 4.36 14.2 3.2 12.94 3.2H12.9L8 10V21Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </button>
+                        <span aria-hidden="true">/</span>
+                        <button type="button" class="feedback-btn" data-voto="nao-util" aria-pressed="false"
+                            aria-label="Não foi útil">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22 14H18V3H22V14Z" fill="currentColor" />
+                                <path d="M16 3H6.7C5.75 3 4.93 3.67 4.74 4.6L3.34 11.6C3.09 12.84 4.04 14 5.3 14H10L9.1 18.4C8.85 19.64 9.8 20.8 11.06 20.8H11.1L16 14V3Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+
+                <article class="card card-insight" id="insight-dor" data-tipo="neutro">
+                    <h2>Entenda a dor</h2>
+                    <span class="insight-ilustracao" aria-hidden="true">
+                        <svg class="icone-frio" width="130" height="190" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2V22M3.3 7L20.7 17M3.3 17L20.7 7" stroke="currentColor" stroke-width="2.4"
+                                stroke-linecap="round" />
+                            <path d="M9 3.5L12 6.5L15 3.5M9 20.5L12 17.5L15 20.5M2.6 10.6L6.7 9.5L5.6 5.4M18.4 18.6L17.3 14.5L21.4 13.4M5.6 18.6L6.7 14.5L2.6 13.4M21.4 10.6L17.3 9.5L18.4 5.4"
+                                stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg class="icone-pressao" width="130" height="190" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.5 19C19.9853 19 22 16.9853 22 14.5C22 12.0147 19.9853 10 17.5 10H16.7C15.9 6.5 12.8 4 9 4C4.58 4 1 7.58 1 12C1 15.87 4.13 19 8 19H17.5Z"
+                                fill="currentColor" />
+                        </svg>
+                        <svg class="icone-sol" width="130" height="190" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="4.5" fill="currentColor" />
+                            <path d="M12 2V4M12 20V22M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M2 12H4M20 12H22M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    <p class="insight-texto">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M14 14.76V4.5C14 3.39543 13.1046 2.5 12 2.5C10.8954 2.5 10 3.39543 10 4.5V14.76C8.79 15.47 8 16.79 8 18.3C8 20.51 9.79 22.3 12 22.3C14.21 22.3 16 20.51 16 18.3C16 16.79 15.21 15.47 14 14.76Z"
+                                stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                            <path d="M12 11V18.3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <span id="insight-dor-texto"></span>
+                    </p>
+                    <div class="feedback" role="group" aria-label="Este insight foi útil?">
+                        <button type="button" class="feedback-btn" data-voto="util" aria-pressed="false"
+                            aria-label="Foi útil">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M2 10H6V21H2V10Z" fill="currentColor" />
+                                <path d="M8 21H17.3C18.25 21 19.07 20.33 19.26 19.4L20.66 12.4C20.91 11.16 19.96 10 18.7 10H14L14.9 5.6C15.15 4.36 14.2 3.2 12.94 3.2H12.9L8 10V21Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </button>
+                        <span aria-hidden="true">/</span>
+                        <button type="button" class="feedback-btn" data-voto="nao-util" aria-pressed="false"
+                            aria-label="Não foi útil">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M22 14H18V3H22V14Z" fill="currentColor" />
+                                <path d="M16 3H6.7C5.75 3 4.93 3.67 4.74 4.6L3.34 11.6C3.09 12.84 4.04 14 5.3 14H10L9.1 18.4C8.85 19.64 9.8 20.8 11.06 20.8H11.1L16 14V3Z"
+                                    fill="currentColor" />
+                            </svg>
+                        </button>
+                    </div>
+                </article>
+            </aside>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
