@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
 //   /cadastro/              -> public/views/cadastro/index.html
 //   /login-paciente/        -> public/views/login-paciente/index.html
 //   /dados-complementares/  -> public/views/dados-complementares/index.html
+//   /dashboard/             -> public/views/dashboard/index.html
 // Os style.css e script.js de cada pasta são servidos junto.
 router.use(express.static(VIEWS_DIR));
 
