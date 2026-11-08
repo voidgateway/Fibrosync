@@ -6,9 +6,10 @@
     --texto: #171417;
     --texto-suave: #8a8590;
     --texto-insight: #99a1af;
-    --verde-insight: #7cbf6a;
+    --verde-insight: #7fbf72;
     --laranja-insight: #f2a65a;
-    --azul-insight: #6fa3c4;
+    --azul-insight: #72a3bf;
+    --icone-escuro: #35383f;
     --sombra-card: 0 6px 18px rgb(73 39 73 / 7%);
     --espaco: clamp(16px, 1.6vw, 24px);
 }
@@ -252,7 +253,7 @@ ul {
     background: transparent;
     border: 0;
     border-radius: 50%;
-    color: #2a2a2e;
+    color: var(--icone-escuro);
     cursor: pointer;
     transition: background-color 160ms ease;
 }
@@ -284,7 +285,7 @@ ul {
     padding: 0 18px;
     background: var(--white, #fff);
     border: var(--border-subtle, 0.8px solid rgb(220 227 234 / 60%));
-    border-radius: 14px;
+    border-radius: var(--radius-box, 33px);
     box-shadow: var(--sombra-card);
     font-size: 0.82rem;
     cursor: pointer;
@@ -412,25 +413,35 @@ ul {
 }
 
 .indicador {
+    display: flex;
     flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
     width: 46px;
     height: 46px;
-    border: var(--border-subtle, 0.8px solid rgb(220 227 234 / 60%));
+    background: var(--white, #fff);
+    border: 2px solid rgb(220 227 234 / 60%);
     border-radius: 50%;
     box-shadow: var(--shadow-box);
+    color: var(--roxo-fibro);
 }
 
-/* cor do indicador conforme o nível da última dor registrada */
+.indicador svg {
+    width: 26px;
+    height: 26px;
+}
+
+/* borda do indicador conforme o nível da última dor registrada */
 .indicador[data-nivel="leve"] {
-    background: var(--trendy-turquoise);
+    border-color: var(--trendy-turquoise);
 }
 
 .indicador[data-nivel="moderada"] {
-    background: var(--rich-brilliant-lavender);
+    border-color: var(--rich-brilliant-lavender);
 }
 
 .indicador[data-nivel="forte"] {
-    background: var(--hot-magenta);
+    border-color: var(--hot-magenta);
 }
 
 .contexto-detalhe {
@@ -541,19 +552,31 @@ ul {
     text-align: center;
 }
 
-/* a ilustração "vaza" pela borda esquerda do card, como no layout */
+/* a ilustração "vaza" pela borda esquerda do card, como no layout.
+   os desenhos de 208x208 têm folga à esquerda no viewBox, por isso o
+   translate puxa o desenho até encostar (raio) ou cortar (floco) na borda */
 .insight-ilustracao {
     grid-area: ilustracao;
     align-self: start;
-    width: 100%;
+    width: 150%;
     height: auto;
-    margin: -8px 0 0 -12%;
+    margin-top: -12px;
+}
+
+#insight-disposicao .insight-ilustracao,
+.icone-frio {
+    transform: translateX(-37%);
 }
 
 .insight-ilustracao svg {
     display: none;
     width: 100%;
     height: auto;
+}
+
+.insight-ilustracao .icone-pressao,
+.insight-ilustracao .icone-sol {
+    width: 66%;
 }
 
 .insight-texto {
@@ -579,7 +602,7 @@ ul {
     align-items: center;
     justify-content: flex-end;
     gap: 10px;
-    color: #3a3a3e;
+    color: var(--grey);
     font-size: 1.6rem;
 }
 
@@ -589,7 +612,7 @@ ul {
     background: transparent;
     border: 0;
     border-radius: 8px;
-    color: #3a3a3e;
+    color: var(--grey);
     cursor: pointer;
     transition: color 160ms ease, transform 160ms ease;
 }
