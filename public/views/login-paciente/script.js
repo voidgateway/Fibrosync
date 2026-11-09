@@ -203,8 +203,20 @@ loginDialog.addEventListener("cancel", () => {
 // ==============================
 // REALIZAR LOGIN
 // ==============================
+// As credenciais ficam no servidor (src/mocks/pacientes.json);
+// a tela só pergunta para a API se elas batem.
+async function autenticar(email, senha) {
+    const resposta = await fetch("/api/pacientes/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha })
+    });
+
+    return resposta.ok;
+}
+
 //Impede o envio do formulário quando há erros
-loginForm.addEventListener("submit", (event) => {
+loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     // Impede o login se houver campos inválidos
@@ -217,38 +229,31 @@ loginForm.addEventListener("submit", (event) => {
     const email = emailInput.value.trim();
     const senha = senhaInput.value;
 
-    /*
-      CREDENCIAIS PARA TESTE ACADÊMICO.
-
-      Em uma aplicação real, a autenticação deverá
-      ser realizada por um backend/API.
-    */
-
-    const usuarioTeste = {
-        email: "vivi@gmail.com",
-        senha: "Vivi1234"
-    };
-
     definirCarregando(true);
 
-    // Simula o tempo de resposta do servidor
-    setTimeout(() => {
-        // Verifica as credenciais
-        if (
-            email === usuarioTeste.email &&
-            senha === usuarioTeste.senha
-        ) {
-            loginDialog.showModal();
-            salvarLogin.focus();
+    let autenticado;
 
-        } else {
-            definirCarregando(false);
+    try {
+        autenticado = await autenticar(email, senha);
+    } catch {
+        // servidor fora do ar ou sem conexão
+        definirCarregando(false);
+        loginMessage.textContent =
+            "Não foi possível conectar. Tente novamente em instantes.";
+        return;
+    }
 
-            loginMessage.textContent =
-                "E-mail ou senha inválidos. Verifique suas credenciais.";
+    if (autenticado) {
+        loginDialog.showModal();
+        salvarLogin.focus();
 
-            senhaInput.setAttribute("aria-invalid", "true");
-            senhaInput.focus();
-        }
-    }, 800);
+    } else {
+        definirCarregando(false);
+
+        loginMessage.textContent =
+            "E-mail ou senha inválidos. Verifique suas credenciais.";
+
+        senhaInput.setAttribute("aria-invalid", "true");
+        senhaInput.focus();
+    }
 });
