@@ -10,6 +10,18 @@ const senhaError = document.getElementById("senhaError");
 const loginMessage = document.getElementById("loginMessage");
 const toggleSenha = document.getElementById("toggleSenha");
 const iconeSenha = document.getElementById("iconeSenha");
+const loginButton = document.getElementById("loginButton");
+const loginButtonText = loginButton.querySelector(".login-button-text");
+const loginDialog = document.getElementById("loginDialog");
+const salvarLogin = document.getElementById("salvarLogin");
+const naoSalvarLogin = document.getElementById("naoSalvarLogin");
+
+// Próxima tela após o login (ainda não criada em public/views)
+const PROXIMA_TELA = "../dashboard/index.html";
+
+// Chave usada para lembrar o e-mail neste dispositivo.
+// A senha nunca é salva no navegador.
+const CHAVE_EMAIL_SALVO = "fibrosync:login-email";
 
 // ==============================
 // MOSTRAR OU OCULTAR SENHA
@@ -42,6 +54,7 @@ function limparMensagens() {
     emailError.textContent = "";
     senhaError.textContent = "";
     loginMessage.textContent = "";
+    loginMessage.classList.remove("sucesso");
 
     emailInput.removeAttribute("aria-invalid");
     senhaInput.removeAttribute("aria-invalid");
@@ -110,6 +123,84 @@ function validarCampos() {
 }
 
 // ==============================
+// LEMBRAR E-MAIL
+// ==============================
+
+// localStorage pode falhar (aba anônima, armazenamento bloqueado);
+// nesse caso o login continua funcionando, só não lembra o e-mail.
+function lerEmailSalvo() {
+    try {
+        return localStorage.getItem(CHAVE_EMAIL_SALVO) || "";
+    } catch {
+        return "";
+    }
+}
+
+function salvarEmail(email) {
+    try {
+        localStorage.setItem(CHAVE_EMAIL_SALVO, email);
+    } catch {
+        // sem armazenamento disponível
+    }
+}
+
+function esquecerEmail() {
+    try {
+        localStorage.removeItem(CHAVE_EMAIL_SALVO);
+    } catch {
+        // sem armazenamento disponível
+    }
+}
+
+// Preenche o e-mail salvo em um login anterior
+const emailSalvo = lerEmailSalvo();
+
+if (emailSalvo) {
+    emailInput.value = emailSalvo;
+}
+
+// ==============================
+// FEEDBACK DE CARREGAMENTO
+// ==============================
+
+function definirCarregando(carregando) {
+    loginButton.disabled = carregando;
+    loginButton.classList.toggle("carregando", carregando);
+    loginButton.setAttribute("aria-busy", String(carregando));
+    loginButtonText.textContent = carregando ? "Validando..." : "Entrar";
+}
+
+// ==============================
+// CONFIRMAÇÃO E PRÓXIMA TELA
+// ==============================
+
+function seguirParaProximaTela(salvar) {
+    if (salvar) {
+        salvarEmail(emailInput.value.trim());
+    } else {
+        esquecerEmail();
+    }
+
+    loginDialog.close();
+
+    loginMessage.classList.add("sucesso");
+    loginMessage.textContent = "Login realizado com sucesso! Redirecionando...";
+
+    definirCarregando(true);
+    loginButtonText.textContent = "Entrando...";
+
+    window.location.href = PROXIMA_TELA;
+}
+
+salvarLogin.addEventListener("click", () => seguirParaProximaTela(true));
+naoSalvarLogin.addEventListener("click", () => seguirParaProximaTela(false));
+
+// Fechar com Esc cancela a confirmação e volta para o formulário
+loginDialog.addEventListener("cancel", () => {
+    definirCarregando(false);
+});
+
+// ==============================
 // REALIZAR LOGIN
 // ==============================
 //Impede o envio do formulário quando há erros
@@ -118,6 +209,8 @@ loginForm.addEventListener("submit", (event) => {
 
     // Impede o login se houver campos inválidos
     if (!validarCampos()) {
+        // Leva o foco ao primeiro campo com erro
+        loginForm.querySelector('[aria-invalid="true"]')?.focus();
         return;
     }
 
@@ -136,26 +229,26 @@ loginForm.addEventListener("submit", (event) => {
         senha: "Vivi1234"
     };
 
-    // Verifica as credenciais
-    if (
-        email === usuarioTeste.email &&
-        senha === usuarioTeste.senha
-    ) {
-        loginMessage.style.color = "#168653";
+    definirCarregando(true);
 
-        loginMessage.textContent =
-            "Login realizado com sucesso!";
+    // Simula o tempo de resposta do servidor
+    setTimeout(() => {
+        // Verifica as credenciais
+        if (
+            email === usuarioTeste.email &&
+            senha === usuarioTeste.senha
+        ) {
+            loginDialog.showModal();
+            salvarLogin.focus();
 
-        // Redireciona para o painel
-        window.location.href = "dashboard.html";
+        } else {
+            definirCarregando(false);
 
-    } else {
-        loginMessage.style.color = "#d62965";
+            loginMessage.textContent =
+                "E-mail ou senha inválidos. Verifique suas credenciais.";
 
-        loginMessage.textContent =
-            "E-mail ou senha inválidos. Verifique suas credenciais.";
-
-        senhaInput.setAttribute("aria-invalid", "true");
-    }
-    //commit 1
+            senhaInput.setAttribute("aria-invalid", "true");
+            senhaInput.focus();
+        }
+    }, 800);
 });
