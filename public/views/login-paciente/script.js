@@ -10,6 +10,18 @@ const senhaError = document.getElementById("senhaError");
 const loginMessage = document.getElementById("loginMessage");
 const toggleSenha = document.getElementById("toggleSenha");
 const iconeSenha = document.getElementById("iconeSenha");
+const loginButton = document.getElementById("loginButton");
+const loginButtonText = loginButton.querySelector(".login-button-text");
+const loginDialog = document.getElementById("loginDialog");
+const salvarLogin = document.getElementById("salvarLogin");
+const naoSalvarLogin = document.getElementById("naoSalvarLogin");
+
+// Próxima tela após o login (ainda não criada em public/views)
+const PROXIMA_TELA = "../dashboard/index.html";
+
+// Chave usada para lembrar o e-mail neste dispositivo.
+// A senha nunca é salva no navegador.
+const CHAVE_EMAIL_SALVO = "fibrosync:login-email";
 
 // ==============================
 // MOSTRAR OU OCULTAR SENHA
@@ -42,6 +54,7 @@ function limparMensagens() {
     emailError.textContent = "";
     senhaError.textContent = "";
     loginMessage.textContent = "";
+    loginMessage.classList.remove("sucesso");
 
     emailInput.removeAttribute("aria-invalid");
     senhaInput.removeAttribute("aria-invalid");
@@ -110,52 +123,137 @@ function validarCampos() {
 }
 
 // ==============================
+// LEMBRAR E-MAIL
+// ==============================
+
+// localStorage pode falhar (aba anônima, armazenamento bloqueado);
+// nesse caso o login continua funcionando, só não lembra o e-mail.
+function lerEmailSalvo() {
+    try {
+        return localStorage.getItem(CHAVE_EMAIL_SALVO) || "";
+    } catch {
+        return "";
+    }
+}
+
+function salvarEmail(email) {
+    try {
+        localStorage.setItem(CHAVE_EMAIL_SALVO, email);
+    } catch {
+        // sem armazenamento disponível
+    }
+}
+
+function esquecerEmail() {
+    try {
+        localStorage.removeItem(CHAVE_EMAIL_SALVO);
+    } catch {
+        // sem armazenamento disponível
+    }
+}
+
+// Preenche o e-mail salvo em um login anterior
+const emailSalvo = lerEmailSalvo();
+
+if (emailSalvo) {
+    emailInput.value = emailSalvo;
+}
+
+// ==============================
+// FEEDBACK DE CARREGAMENTO
+// ==============================
+
+function definirCarregando(carregando) {
+    loginButton.disabled = carregando;
+    loginButton.classList.toggle("carregando", carregando);
+    loginButton.setAttribute("aria-busy", String(carregando));
+    loginButtonText.textContent = carregando ? "Validando..." : "Entrar";
+}
+
+// ==============================
+// CONFIRMAÇÃO E PRÓXIMA TELA
+// ==============================
+
+function seguirParaProximaTela(salvar) {
+    if (salvar) {
+        salvarEmail(emailInput.value.trim());
+    } else {
+        esquecerEmail();
+    }
+
+    loginDialog.close();
+
+    loginMessage.classList.add("sucesso");
+    loginMessage.textContent = "Login realizado com sucesso! Redirecionando...";
+
+    definirCarregando(true);
+    loginButtonText.textContent = "Entrando...";
+
+    window.location.href = PROXIMA_TELA;
+}
+
+salvarLogin.addEventListener("click", () => seguirParaProximaTela(true));
+naoSalvarLogin.addEventListener("click", () => seguirParaProximaTela(false));
+
+// Fechar com Esc cancela a confirmação e volta para o formulário
+loginDialog.addEventListener("cancel", () => {
+    definirCarregando(false);
+});
+
+// ==============================
 // REALIZAR LOGIN
 // ==============================
+// As credenciais ficam no servidor (src/mocks/pacientes.json);
+// a tela só pergunta para a API se elas batem.
+async function autenticar(email, senha) {
+    const resposta = await fetch("/api/pacientes/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, senha })
+    });
+
+    return resposta.ok;
+}
+
 //Impede o envio do formulário quando há erros
-loginForm.addEventListener("submit", (event) => {
+loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     // Impede o login se houver campos inválidos
     if (!validarCampos()) {
+        // Leva o foco ao primeiro campo com erro
+        loginForm.querySelector('[aria-invalid="true"]')?.focus();
         return;
     }
 
     const email = emailInput.value.trim();
     const senha = senhaInput.value;
 
-    /*
-      CREDENCIAIS PARA TESTE ACADÊMICO.
+    definirCarregando(true);
 
-      Em uma aplicação real, a autenticação deverá
-      ser realizada por um backend/API.
-    */
+    let autenticado;
 
-    const usuarioTeste = {
-        email: "vivi@gmail.com",
-        senha: "Vivi1234"
-    };
-
-    // Verifica as credenciais
-    if (
-        email === usuarioTeste.email &&
-        senha === usuarioTeste.senha
-    ) {
-        loginMessage.style.color = "#168653";
-
+    try {
+        autenticado = await autenticar(email, senha);
+    } catch {
+        // servidor fora do ar ou sem conexão
+        definirCarregando(false);
         loginMessage.textContent =
-            "Login realizado com sucesso!";
+            "Não foi possível conectar. Tente novamente em instantes.";
+        return;
+    }
 
-        // Redireciona para o painel
-        window.location.href = "dashboard.html";
+    if (autenticado) {
+        loginDialog.showModal();
+        salvarLogin.focus();
 
     } else {
-        loginMessage.style.color = "#d62965";
+        definirCarregando(false);
 
         loginMessage.textContent =
             "E-mail ou senha inválidos. Verifique suas credenciais.";
 
         senhaInput.setAttribute("aria-invalid", "true");
+        senhaInput.focus();
     }
-    //commit 1
 });
