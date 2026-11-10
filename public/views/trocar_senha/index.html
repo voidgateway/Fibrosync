@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FibroSync | Recuperar senha</title>
+      <!--Link css-->
+    <link rel="stylesheet" href="style.css">
+    <!--Link imagens do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+</head>
+
+<body>
+
+    <main class="recovery-container">
+        <section class="recovery-card">
+            <!-- VOLTAR PARA LOGIN -->
+            <a href="../login-paciente/index.html" class="back-link">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Voltar para login
+            </a>
+            
+            <!-- LOGOTIPO -->
+            <div class="brand">
+                <img src="../../assets/img/logo-removebg-preview.png" alt="Logo FibroSync" class="brand-logo">
+            </div>
+
+            <!-- ETAPA 1: INFORMAR E-MAIL -->
+            <section id="emailStep" class="recovery-step">
+                
+                <h1>Confirme que é você</h1>
+                <p class="description">
+                    Insira o e-mail cadastrado, se esse e-mail existir
+                    você receberá um link de confirmação.
+                </p>
+                
+                <form id="emailForm">
+                    <div class="form-group">
+                        
+                        <label for="email">E-mail</label>
+                        <div class="input-wrapper">
+                            <span class="material-symbols-outlined">mail</span>
+
+                            <input type="email" id="email" placeholder="seu@email.com" required>
+                        </div>
+
+                        <small class="error-message" id="emailError"></small>
+
+                    </div>
+
+                    <button type="submit" class="primary-button"> Enviar link de redefinição </button>
+
+                </form>
+
+            </section>
+
+            <!-- ETAPA 2: CONFIRMAR E-MAIL -->
+            <section id="confirmationStep"
+                     class="recovery-step hidden">
+
+                <div class="confirmation-icon">
+                    <span class="material-symbols-outlined">mark_email_read</span>
+                </div>
+
+                <h2>Verifique sua caixa de entrada</h2>
+
+                <p class="description">
+                    Se o e-mail informado estiver em nossa base de dados,
+                    você receberá um link para redefinir sua senha.
+                </p>
+
+                <p class="email-destination" id="displayEmail"></p>
+
+                <div class="confirmation-info">Confira também sua caixa de spam.</div>
+
+                <button type="button"id="continueButton"class="primary-button">Confirmar e continuar</button>
+
+                <button type="button"id="resendButton"class="secondary-button">Enviar novamente</button>
+
+                <p class="success-message" id="resendMessage"></p>
+            </section>
+
+
+            <!-- ETAPA 3: NOVA SENHA -->
+            <section id="passwordStep"class="recovery-step hidden">
+
+                <h1>Crie uma nova senha</h1>
+
+                <p class="description">Escolha uma senha segura para proteger sua conta.</p>
+
+                <form id="passwordForm">
+
+                    <div class="form-group">
+
+                        <label for="newPassword">Nova senha</label>
+
+                        <div class="input-wrapper">
+
+                            <span class="material-symbols-outlined">lock</span>
+
+                            <input type="password" id="newPassword" placeholder="Digite sua nova senha" required>
+
+                            <button type="button"class="toggle-password"data-target="newPassword" aria-label="Mostrar senha">
+
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+                        <small class="error-message"id="passwordError"></small>
+                    </div>
+                    
+                    <div class="password-rules">
+
+                        <p>A senha deve conter:</p>
+
+                        <ul>
+                            <li id="ruleLength">Pelo menos 8 caracteres</li>
+                            <li id="ruleUpper">Uma letra maiúscula</li>
+                            <li id="ruleLower">Uma letra minúscula</li>
+                            <li id="ruleNumber">Um número</li>
+                            <li id="ruleSpecial">Um caractere especial</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">Confirmar nova senha</label>
+
+                        <div class="input-wrapper">
+                            <span class="material-symbols-outlined">lock</span>
+
+                            <input type="password" id="confirmPassword"placeholder="Digite novamente sua senha" required>
+
+                            <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Mostrar senha">
+
+                                <span class="material-symbols-outlined">visibility</span>
+                            </button>
+                        </div>
+
+                        <small class="error-message" id="confirmError"></small>
+                    </div>
+
+                    <button type="submit" class="primary-button">Salvar nova senha</button>
+                </form>
+            </section>
+
+
+            <!-- ETAPA 4: SUCESSO -->
+            <section id="successStep"class="recovery-step hidden">
+
+                <div class="success-icon">
+                    <span class="material-symbols-outlined">check_circle</span>
+                </div>
+
+                <h2>Senha alterada com sucesso!</h2>
+
+                <p class="description">
+                    Sua nova senha foi cadastrada.
+                    Agora você já pode acessar sua conta FibroSync.
+                </p>
+
+                <a href="../login-paciente/index.html" class="primary-button login-button">
+                    Voltar para login
+                </a>
+            </section>
+        </section>
+    </main>
+
+    <!-- MENSAGEM JAVASCRIPT -->
+    <div id="messageBox" class="message-overlay hidden">
+
+        <div class="message-card">
+
+            <div class="message-icon">
+                <span class="material-symbols-outlined"> mark_email_read</span>
+            </div>
+
+            <h2 id="messageTitle">Verifique seu e-mail</h2>
+
+            <p id="messageText"></p>
+
+            <button id="messageConfirm" class="primary-button">Entendi</button>
+
+        </div>
+
+    </div>
+<!--Link JavaScript-->
+    <script src="script.js" defer></script>
+</body>
+</html>
