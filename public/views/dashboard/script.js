@@ -30,9 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const insightDor = document.getElementById("insight-dor");
     const insightDorTexto = document.getElementById("insight-dor-texto");
 
-    // o login ainda não repassa o paciente para cá (e o time decidiu não usar
-    // sessionStorage/localStorage), então o id vem da URL (?paciente=1)
-    // e, sem ele, usamos o paciente do mock (src/mocks/pacientes.json).
+    // o login ainda não repassa o paciente para cá
+    // então o id vem da URL (?paciente=1)
+    // usamos o paciente do mock (src/mocks/pacientes.json).
     //
     // TODO(sessão): quando existir sessão, o servidor descobre o paciente pelo
     // cookie; aí este id da URL sai daqui e do fetch, e uma resposta 401 deve
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pacienteId = parametros.get("paciente") || "1";
 
     // evita que uma resposta antiga sobrescreva a do último período clicado
-    let requisicaoAtual = 0;
+    let requisicaoAtual = 0; //foi de genio fala ai
 
     function formatarNota(valor, casas = 0) {
         const numero = valor.toLocaleString("pt-BR", {
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return `${numero}/10`;
     }
 
-    // "2026-11-09" -> "9 de novembro"
+    // autoexplicativo
     function formatarData(data) {
         const [ano, mes, dia] = data.split("-").map(Number);
 
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         insightDor.dataset.tipo = insights.dor.tipo;
         insightDorTexto.textContent = insights.dor.mensagem;
 
-        // insight novo: o voto anterior não vale mais
+        // insight novo descarta o anterior
         document.querySelectorAll(".feedback-btn").forEach((botao) => {
             botao.setAttribute("aria-pressed", "false");
         });
@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // os dados ficam no servidor (src/mocks); a tela só pede o resumo pronto
+    // os dados ficam no servidor (src/mocks)
     async function carregarDashboard(dias) {
         const requisicao = ++requisicaoAtual;
 
@@ -222,8 +222,7 @@ document.addEventListener("DOMContentLoaded", () => {
         botao.addEventListener("click", () => carregarDashboard(Number(botao.dataset.dias)));
     });
 
-    // útil / não útil: só um voto por card. o envio do feedback para a API
-    // entra em outra entrega; por enquanto fica só na tela.
+// so requisição
     document.querySelectorAll(".feedback").forEach((grupo) => {
         const botoes = [...grupo.querySelectorAll(".feedback-btn")];
 
