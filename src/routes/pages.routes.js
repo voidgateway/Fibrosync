@@ -20,7 +20,19 @@ router.get('/', (req, res) => {
 //   /cadastro/              -> public/views/cadastro/index.html
 //   /login-paciente/        -> public/views/login-paciente/index.html
 //   /dados-complementares/  -> public/views/dados-complementares/index.html
+//   /dashboard/             -> public/views/dashboard/index.html
+//   /alerta/                -> public/views/alerta/index.html (prévia do componente de alertas)
 // Os style.css e script.js de cada pasta são servidos junto.
+//
+// TODO(sessão): todas as páginas são públicas, inclusive o /dashboard/.
+// por isso, depois de clicar em "Sair", o botão voltar do navegador mostra o
+// dashboard de novo (e digitar /dashboard/ direto também funciona).
+// quando existir sessão, antes do express.static:
+//   router.get(['/dashboard/', '/dashboard/index.html'], exigirSessao, ...)
+//   - sem sessão válida: redirecionar para /login-paciente/;
+//   - com sessão: responder com Cache-Control: no-store, para o navegador não
+//     guardar a página (nem no cache de voltar/avançar).
+// o tests/smoke.test.js vai precisar fazer login antes de abrir páginas protegidas.
 router.use(express.static(VIEWS_DIR));
 
 module.exports = router;

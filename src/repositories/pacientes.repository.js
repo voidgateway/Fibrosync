@@ -13,4 +13,8 @@ function buscarPorEmail(email) {
   return pacientes.find((paciente) => paciente.email.toLowerCase() === procurado) || null;
 }
 
-module.exports = { buscarPorEmail };
+function buscarPorId(id) {
+  return pacientes.find((paciente) => paciente.id === id) || null;
+}
+
+module.exports = { buscarPorEmail, buscarPorId };
