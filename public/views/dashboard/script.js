@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // o login ainda não repassa o paciente para cá (e o time decidiu não usar
     // sessionStorage/localStorage), então o id vem da URL (?paciente=1)
     // e, sem ele, usamos o paciente do mock (src/mocks/pacientes.json).
+    //
+    // TODO(sessão): quando existir sessão, o servidor descobre o paciente pelo
+    // cookie; aí este id da URL sai daqui e do fetch, e uma resposta 401 deve
+    // mandar para o login com window.location.replace("../login-paciente/index.html").
+    // também tratar o voltar do navegador: no evento "pageshow" com
+    // event.persisted, recarregar a página para o servidor conferir a sessão.
     const parametros = new URLSearchParams(window.location.search);
     const pacienteId = parametros.get("paciente") || "1";
 

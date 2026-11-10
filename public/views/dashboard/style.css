@@ -530,8 +530,9 @@ ul {
 .card-insight {
     position: relative;
     display: grid;
-    flex: 1 1 0;
-    grid-template-columns: clamp(90px, 7vw, 130px) minmax(0, 1fr);
+    /* cresce para dividir a coluna, mas nunca encolhe abaixo do texto */
+    flex: 1 0 auto;
+    grid-template-columns: clamp(72px, 5.5vw, 120px) minmax(0, 1fr);
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "titulo titulo"
@@ -586,7 +587,7 @@ ul {
     gap: 10px;
     margin-top: 16px;
     color: var(--texto-insight);
-    font-size: clamp(1.15rem, 1.5vw, 1.55rem);
+    font-size: clamp(1.05rem, 1.25vw, 1.5rem);
     font-weight: 600;
     line-height: 1.3;
 }
