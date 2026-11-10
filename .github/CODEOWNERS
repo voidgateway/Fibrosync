@@ -5,7 +5,6 @@
 
 # Revisão de pr
 * @voidgateway
-* @Laissafr
 
 # Documentação técnica e decisões de arquitetura
 /docs/architecture/ @voidgateway
@@ -14,10 +13,10 @@
 /docs @voidgateway
 
 # Páginas
-/public/pages/landing-page @Laissafr
-/public/pages/login-paciente @ViviannySantos-droid
-/public/pages/cadastro @eujalves
-/public/pages/dados-complementares @eujalves
+/public/views/landing-page @Laissafr
+/public/views/login-paciente @ViviannySantos-droid
+/public/views/cadastro @eujalves
+/public/views/dados-complementares @eujalves
 
 # Stack e questões técnicas
 /src @voidgateway

@@ -2,6 +2,8 @@
 
 Este documento define o padrão de branches, commits e Pull Requests do Fibrosync. A chave do item no Jira conecta essas atividades ao painel de desenvolvimento e permite rastrear o trabalho até builds e deployments.
 
+O trabalho no código entre a criação da branch e o Pull Request (rodar o projeto, criar páginas, dependências e validação) está em [Fluxo de desenvolvimento](desenvolvimento.md).
+
 ## CHAVE EPICO
 **TECNICO**
 ```text
@@ -75,16 +77,33 @@ O Fibrosync adota **trunk-based development com branches curtas e Pull Requests*
 - Após o merge, remova a branch de trabalho e crie a próxima a partir da `main` atualizada.
 - Se uma alteração quebrar a `main`, priorize a correção ou a reversão por PR.
 
-Integrar código não significa publicar em produção. A adoção deste fluxo mantém a revisão por PR; ferramentas de testes, CI, regras automatizadas de proteção e deploy permanecem **A definir**.
+Integrar código não significa publicar em produção. A adoção deste fluxo mantém a revisão por PR; o CI roda o smoke test em cada PR (ver [seção 7](#7-ci-testes-builds-e-deploy)), enquanto as regras automatizadas de proteção e o deploy permanecem **A definir**.
 
 ### Por que adotar o trunk-based development?
 
 O objetivo é reduzir conflitos acumulados, facilitar revisões e descobrir incompatibilidades mais cedo. Isso exige mudanças pequenas e disponibilidade para revisar com frequência.
 
+#### Relação com o Scrum e o XP
+
+Os três atuam em níveis diferentes e se complementam: o Scrum organiza o trabalho, o XP orienta as práticas de engenharia e o trunk-based development define como o código é integrado.
+
+**Scrum:** o framework não prescreve um fluxo de branches, mas espera um Incremento utilizável a cada Sprint. Integrar partes pequenas à `main` ao longo da Sprint evita que o trabalho fique isolado até o final dela e torna o progresso real visível para a equipe. Um item do Sprint Backlog pode gerar vários PRs, e integrar um deles não significa que o item esteja concluído.
+
+**XP:** o fluxo apoia diretamente algumas práticas do XP:
+
+- **Integração contínua:** branches curtas e integração diária mantêm a divergência pequena.
+- **Pequenas entregas:** incrementos pequenos facilitam a revisão e a reversão, embora o merge em `main` não signifique publicação.
+- **Propriedade coletiva e padrões de código:** a `main` compartilhada e a revisão por PR expõem o código a toda a equipe e mantêm um padrão comum.
+
+No XP, a integração contínua também depende de build e testes automatizados. O Fibrosync já roda um smoke test automatizado em cada PR; enquanto testes unitários e de integração permanecem **A definir**, a validação também depende da revisão e das evidências de cada PR.
+
 Referências:
 
 - [Trunk-based development — Atlassian](https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development)
 - [Gitflow — Atlassian](https://www.atlassian.com/en/git/tutorials/comparing-workflows/gitflow-workflow)
+- [Guia do Scrum](https://scrumguides.org/scrum-guide.html)
+- [Extreme Programming — Martin Fowler](https://martinfowler.com/bliki/ExtremeProgramming.html)
+- [Continuous Integration — Martin Fowler](https://martinfowler.com/articles/continuousIntegration.html)
 
 ### Passo a passo
 
@@ -99,6 +118,13 @@ Crie uma branch para o item:
 
 ```bash
 git checkout -b FIB-123-feat/tela-login
+```
+
+Suba o servidor para desenvolver e validar (ver [Fluxo de desenvolvimento](desenvolvimento.md)):
+
+```bash
+pnpm install   # se o package.json mudou
+pnpm dev
 ```
 
 Após cada alteração lógica:
@@ -227,6 +253,12 @@ FIB-123 fix: tratar credenciais de login inválidas
 
 Evite colocar alterações não relacionadas no mesmo commit.
 
+Ao adicionar, remover ou atualizar dependências, commite o `package.json` e o `pnpm-lock.yaml` juntos, no mesmo commit:
+
+```text
+FIB-530 chore: adicionar dependência express
+```
+
 ## 5. Pull Requests
 
 O título do Pull Request segue o formato:
@@ -247,7 +279,7 @@ O Pull Request deve ter `main` como destino, permanecer focado em um único item
 
 Quando for aplicada a exceção de vínculo direto ao épico técnico, o Pull Request deve permanecer focado em uma única alteração e registrar por que ela não justifica um item próprio.
 
-A usar o epico `TECNICO` é possivel modificar/remover os itens presentes no checklist do template do pr
+Ao usar o épico `TECNICO`, é possível modificar ou remover itens do checklist do template do PR.
 
 ### Template do Pull Request
 
@@ -264,7 +296,7 @@ Preencha:
 - o checklist de validação;
 - a atualização do changelog, quando aplicável.
 
-Não remova os campos de Confluence e Figma. Quando um deles não se aplicar, registre `Não aplicável`, salvo uso do epico `TECNICO`.
+Não remova os campos de Confluence e Figma. Quando um deles não se aplicar, registre `Não aplicável`, salvo uso do épico `TECNICO`.
 
 ## 6. Evidências
 
@@ -274,20 +306,32 @@ Screenshots normalmente não são necessárias para alterações exclusivamente 
 
 ## 7. CI, testes, builds e deploy
 
-As etapas de automação e entrega ainda não estão implementadas por este fluxo:
+Situação das etapas de automação e entrega:
 
 | Etapa | Status | Definições pendentes |
 |---|---|---|
-| Integração contínua (CI) | A definir | Ferramentas, gatilhos e verificações obrigatórias |
-| Testes | A definir | Ferramentas, comandos e critérios de execução |
-| Build | A definir | Necessidade, comandos e artefatos |
+| Integração contínua (CI) | GitHub Actions ([ADR 0003](../decisions/0003-ci-com-github-actions.md)) | Exigir o check na proteção da `main` |
+| Lint | A definir | Ferramenta e regras |
+| Testes | Smoke test (`pnpm test`) | Testes unitários e de integração |
+| Build | Não necessário | As páginas são servidas pelo Express sem etapa de build |
 | Deploy | A definir | Ambientes, gatilhos, aprovações e rollback |
+
+### CI
+
+O workflow [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) roda em todo Pull Request para a `main` e em todo push na `main`. Ele instala as dependências com `pnpm install --frozen-lockfile` e roda o smoke test (`pnpm test`).
+
+O resultado aparece no Pull Request como o check **CI / Instala e testa**:
+
+- **verde:** o projeto instala e as páginas, seus arquivos e a página 404 funcionam;
+- **vermelho:** abra o check, veja qual teste falhou e corrija na mesma branch. Um novo `push` roda o CI de novo.
+
+Rode `pnpm test` localmente antes do `push` para não depender do CI para descobrir o erro. O CI não substitui a revisão nem a [validação manual](desenvolvimento.md#10-validação-antes-do-pull-request) de mudanças de interface.
 
 Consulte a [estratégia de testes](../testing/strategy.md) e o [processo de deploy](../operations/deployment.md) para acompanhar essas definições. O merge em `main` não estabelece um deploy automático.
 
-Quando builds e deployments forem configurados, a associação ao Jira deverá preservar a chave do item nos commits incluídos na entrega. Por isso, todos os commits devem seguir o padrão definido neste documento.
+Pela integração do GitHub com o Jira, as execuções do CI aparecem como builds no item (se a integração tiver permissão para ler o GitHub Actions) e, quando houver deploy, os deployments também deverão aparecer. A associação ao Jira depende da chave do item nos commits incluídos na entrega. Por isso, todos os commits devem seguir o padrão definido neste documento.
 
-Depois do `push`, consulte a área **Desenvolvimento** do item no Jira para confirmar a associação da branch, dos commits e do Pull Request.
+Depois do `push`, consulte a área **Desenvolvimento** do item no Jira para confirmar a associação da branch, dos commits, do Pull Request e dos builds.
 
 ## 8. Antes de abrir um Pull Request
 
@@ -301,9 +345,11 @@ git checkout FIB-123-feat/tela-login
 git merge main
 ```
 
-Resolva eventuais conflitos, revise o diff e registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Execute somente verificações que estiverem configuradas no projeto e informe as limitações da validação.
+Se o merge trouxe mudanças no `package.json`, rode `pnpm install` antes de testar.
 
-Os comandos de CI, testes e build permanecem **A definir**, conforme a seção anterior.
+Resolva eventuais conflitos, revise o diff e rode `pnpm test`. Registre no PR como a alteração foi validada, incluindo evidências quando aplicável. Para mudanças de interface, siga também a [validação manual](desenvolvimento.md#10-validação-antes-do-pull-request), que cobre o que o smoke test não verifica, e informe as limitações da validação.
+
+Em conflitos no `pnpm-lock.yaml`, não edite o arquivo à mão: resolva o `package.json` e rode `pnpm install` para regenerar o lockfile.
 
 ## 9. Revisão
 

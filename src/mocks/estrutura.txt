@@ -1,0 +1,57 @@
+src/mocks/  -> dados mockados que fazem o papel do banco de dados
+
+fica em src/ (e não em public/) porque só o servidor pode ler esses arquivos:
+nenhuma URL chega aqui, então o navegador nunca baixa a lista inteira de pacientes
+
+um arquivo por assunto (não por tela), compartilhado entre todas as telas
+
+src/
+├── mocks/
+│   ├── pacientes.json              # pacientes cadastrados
+│   ├── registros.json              # registros de dor/sintomas dos pacientes
+│   └── clima.json                  # leitura do clima atual
+├── repositories/
+│   ├── pacientes.repository.js     # único lugar que lê/grava os mocks
+│   ├── registros.repository.js
+│   └── clima.repository.js
+├── services/
+│   ├── pacientes.service.js        # regras de negócio (validar, buscar, criar)
+│   └── dashboard.service.js        # resumo do dashboard (médias, picos, insights)
+├── controllers/
+│   ├── pacientes.controller.js     # lê a requisição e monta a resposta
+│   └── dashboard.controller.js
+└── routes/
+    ├── pacientes.routes.js         # GET/POST /api/pacientes
+    └── dashboard.routes.js         # GET /api/dashboard?pacienteId=1&dias=7
+
+formato de um registro (registros.json)
+
+{
+  "id": 1,
+  "pacienteId": 1,
+  "data": "2026-11-09",                 # AAAA-MM-DD
+  "dor": 6,                             # 0 a 10
+  "disposicao": 5,                      # 0 a 10
+  "areas": [{ "regiao": "Joelhos", "intensidade": 7 }],
+  "sintomas": { "fadiga": 5, "sono": 4, "rigidez": 6, "nevoaMental": 3, "ansiedade": 4 },
+  "observacao": "Dia frio, mais rigidez ao acordar."
+}
+
+fluxo
+
+tela (script.js)
+  ↓  fetch('/api/pacientes')
+routes -> controllers -> services -> repositories
+  ↓
+mocks/pacientes.json
+
+regras
+
+- as telas nunca leem os .json direto: sempre via fetch('/api/...')
+- só os repositories importam arquivos desta pasta
+- gravações (POST) ficam em memória e somem ao reiniciar o servidor
+- nada de dados reais: nomes, e-mails e senhas devem ser fictícios
+- quando a API real existir, só os repositories mudam; as telas continuam iguais
+
+
+ja deve entrar nessa sprint!

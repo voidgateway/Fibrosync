@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Componente de alertas do Fibrosync.">
+    <title>Alertas | Fibrosync</title>
+    <link rel="icon" type="image/png" href="../../assets/img/logo_icone.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/tokens.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<!--
+    componente reutilizável. para usar em outra tela:
+      <link rel="stylesheet" href="../alerta/style.css">
+      <script src="../alerta/script.js"></script>
+      <button type="button" data-alerta-abrir>...</button>
+
+    o script busca este arquivo e copia só o <dialog id="alerta"> para a tela.
+    aberta direto (/alerta/), esta página serve de prévia do componente.
+-->
+
+<body class="alerta-previa">
+    <button type="button" class="alerta-previa-btn" data-alerta-abrir>Abrir alertas</button>
+
+    <dialog id="alerta" class="alerta" aria-labelledby="alerta-titulo">
+        <header class="alerta-cabecalho">
+            <button type="button" class="alerta-icone-btn" data-alerta-fechar aria-label="Fechar alertas">
+                <svg width="32" height="30" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M14.5941 31.2115C13.927 30.5769 13.927 29.5481 14.5941 28.9135L24.4903 19.5L14.5941 10.0865C13.927 9.45195 13.927 8.42305 14.5941 7.78845C15.2613 7.15385 16.3429 7.15385 17.0101 7.78845L26.9062 17.2019C28.2405 18.4711 28.2405 20.5289 26.9062 21.7981L17.0101 31.2115C16.3429 31.8462 15.2613 31.8462 14.5941 31.2115Z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+
+            <h2 id="alerta-titulo">Alertas</h2>
+
+            <button type="button" class="alerta-icone-btn" aria-label="Filtrar alertas">
+                <svg width="32" height="32" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M6 14C6 12.8954 6.89543 12 8 12L40 12C41.1046 12 42 12.8954 42 14C42 15.1046 41.1046 16 40 16L8 16C6.89543 16 6 15.1046 6 14Z"
+                        fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M6 34C6 32.8954 6.89543 32 8 32L40 32C41.1046 32 42 32.8954 42 34C42 35.1046 41.1046 36 40 36L8 36C6.89543 36 6 35.1046 6 34Z"
+                        fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M20 40C23.3137 40 26 37.3137 26 34C26 30.6863 23.3137 28 20 28C16.6863 28 14 30.6863 14 34C14 37.3137 16.6863 40 20 40Z"
+                        fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M28 20C31.3137 20 34 17.3137 34 14C34 10.6863 31.3137 8 28 8C24.6863 8 22 10.6863 22 14C22 17.3137 24.6863 20 28 20Z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+        </header>
+
+        <!-- os itens de alerta entram aqui quando a lógica existir -->
+        <ul class="alerta-lista" id="alerta-lista" aria-labelledby="alerta-titulo"></ul>
+        <p class="alerta-vazio">Sem alertas</p>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

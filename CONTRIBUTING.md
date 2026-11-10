@@ -1,6 +1,8 @@
 # Contributing
 
-Este documento resume os padrões de contribuição do Fibrosync. O fluxo completo está em [Git Workflow](docs/workflows/git.flow.md) e a política de releases está em [Política do changelog](docs/releases/changelog.md).
+Este documento resume os padrões de contribuição do Fibrosync. O fluxo completo de branches, commits e PRs está em [Git Workflow](docs/workflows/git.flow.md), o trabalho no código (páginas, caminhos, rotas e validação) em [Fluxo de desenvolvimento](docs/workflows/desenvolvimento.md) e a política de releases em [Política do changelog](docs/releases/changelog.md).
+
+Para preparar o ambiente (Node.js e pnpm), siga [Configuração do ambiente](docs/development/setup.md).
 
 Antes de contribuir, consulte também:
 
@@ -31,6 +33,13 @@ Crie a branch no formato `FIB-XXX-tipo/descricao-curta`:
 git checkout -b FIB-123-feat/tela-login
 ```
 
+Instale as dependências (se o `package.json` mudou) e suba o servidor:
+
+```bash
+pnpm install
+pnpm dev
+```
+
 Após realizar uma alteração lógica:
 
 ```bash
@@ -59,7 +68,7 @@ git checkout FIB-123-feat/tela-login
 git merge main
 ```
 
-Revise o diff, execute as verificações que estiverem disponíveis no projeto e registre no PR as evidências e limitações da validação. CI, testes, build e deploy permanecem **A definir**. O merge em `main` não implica publicação automática.
+Revise o diff, rode `pnpm test` (o mesmo smoke test do CI), faça a [validação manual](docs/workflows/desenvolvimento.md#10-validação-antes-do-pull-request) com `pnpm dev` quando houver mudança de interface e registre no PR as evidências e limitações da validação. Depois do `push`, confira se o check do CI ficou verde. Lint e deploy permanecem **A definir**. O merge em `main` não implica publicação automática.
 
 Preencha o template do Pull Request, incluindo:
 
