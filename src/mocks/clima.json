@@ -1,6 +1,8 @@
 {
   "cidade": "São Paulo",
   "temperatura": 14,
+  "minima": 11,
+  "maxima": 19,
   "condicao": "Céu limpo",
   "umidade": 62,
   "pressao": {

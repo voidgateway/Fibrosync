@@ -7,6 +7,7 @@ const router = express.Router();
 // router.use('/api/auth', require('./auth.routes'));
 router.use('/api/pacientes', require('./pacientes.routes'));
 router.use('/api/dashboard', require('./dashboard.routes'));
+router.use('/api/clima', require('./clima.routes'));
 
 router.use(pagesRoutes);
 
