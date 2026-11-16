@@ -5,5 +5,6 @@ const pacientesController = require('../controllers/pacientes.controller');
 const router = express.Router();
 
 router.post('/login', pacientesController.login);
+router.get('/:id', pacientesController.buscar);
 
 module.exports = router;

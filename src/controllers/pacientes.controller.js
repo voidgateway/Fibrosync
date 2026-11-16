@@ -26,4 +26,24 @@ function login(req, res) {
   return res.json({ paciente });
 }
 
-module.exports = { login };
+// GET /api/pacientes/:id
+//
+// TODO(sessão): mesma falha conhecida do /api/dashboard: confia no id da URL.
+// quando existir sessão, pegar o paciente da sessão e ignorar o :id.
+function buscar(req, res) {
+  const id = Number(req.params.id);
+
+  if (!Number.isInteger(id) || id <= 0) {
+    return res.status(400).json({ error: 'Informe um paciente válido.' });
+  }
+
+  const paciente = pacientesService.buscarPorId(id);
+
+  if (!paciente) {
+    return res.status(404).json({ error: 'Paciente não encontrado.' });
+  }
+
+  return res.json({ paciente });
+}
+
+module.exports = { login, buscar };
