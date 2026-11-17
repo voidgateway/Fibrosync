@@ -1,0 +1,53 @@
+{
+  "automatica": "Floriano",
+  "cidades": [
+    {
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "temperatura": 14,
+      "minima": 11,
+      "maxima": 19,
+      "condicao": "Céu limpo"
+    },
+    {
+      "cidade": "Floriano",
+      "uf": "PI",
+      "temperatura": 32,
+      "minima": 29,
+      "maxima": 34,
+      "condicao": "Majoritariamente nublado"
+    },
+    {
+      "cidade": "Teresina",
+      "uf": "PI",
+      "temperatura": 35,
+      "minima": 26,
+      "maxima": 37,
+      "condicao": "Ensolarado"
+    },
+    {
+      "cidade": "Rio de Janeiro",
+      "uf": "RJ",
+      "temperatura": 24,
+      "minima": 21,
+      "maxima": 28,
+      "condicao": "Chuva fraca"
+    },
+    {
+      "cidade": "Curitiba",
+      "uf": "PR",
+      "temperatura": 12,
+      "minima": 8,
+      "maxima": 17,
+      "condicao": "Nublado"
+    },
+    {
+      "cidade": "Salvador",
+      "uf": "BA",
+      "temperatura": 28,
+      "minima": 24,
+      "maxima": 30,
+      "condicao": "Parcialmente nublado"
+    }
+  ]
+}
