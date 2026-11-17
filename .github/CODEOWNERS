@@ -17,6 +17,7 @@
 /public/views/login-paciente @ViviannySantos-droid
 /public/views/cadastro @eujalves
 /public/views/dados-complementares @eujalves
+/public/views/configuracao @Laissafr
 
 # Stack e questões técnicas
 /src @voidgateway
