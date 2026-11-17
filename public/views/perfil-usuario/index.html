@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FibroSync | Meu Perfil</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+    <link rel="stylesheet" href="/public/views/perfil-usuario/style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <a class="brand" href="#">
+                <span class="brand-name">
+                    <img src="/public/assets/img/logo-removebg-preview.png" alt="FibroSync">
+                </span>
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <nav class="menu">
+                <a href="#">
+                    <span class="material-symbols-rounded">assignment</span>
+                    Dashboard
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-rounded">edit_square</span>
+                    Registro Diário
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-rounded">event</span>
+                    Calendário
+                </a>
+
+                <a href="#">
+                    <span class="material-symbols-rounded">description</span>
+                    Relatório
+                </a>
+
+                <a class="active" href="#">
+                    <span class="material-symbols-rounded">person</span>
+                    Configuração
+                </a>
+            </nav>
+
+            <!-- USUÁRIO DO MENU -->
+            <div class="user-mini">
+                <span class="mini-avatar" id="sidebarAvatar">?</span>
+
+                <span class="mini-user-text">
+                    <strong id="sidebarName">Usuário</strong>
+                    <small>Paciente</small>
+                </span>
+                <button class="logout-button" type="button">
+                <a class="active" href="/public/views/login-paciente/index.html">
+                <span class="material-symbols-rounded logout-small">
+                    logout
+                </span>
+                </a>
+                </button>
+            </div>
+
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <section class="main-area">
+
+            <header class="topbar">
+
+                <h1>Seu perfil em uma visão mais clara</h1>
+
+                <button class="notification" type="button">
+                    <span class="material-symbols-rounded">
+                        notifications
+                    </span>
+                </button>
+
+            </header>
+
+            <div class="content-grid">
+
+                <!-- CARTÃO DO PERFIL -->
+                <section class="profile-card">
+
+                    <div class="profile-heading">
+
+                        <div class="avatar" id="profileAvatar">?</div>
+
+                        <div class="profile-identity">
+                            <strong id="profileShortName">Usuário</strong>
+                            <small>Membro desde <span id="memberSince">--/--/----</span></small>
+                        </div>
+
+                        <button class="logout-button" type="button">
+                            <a class="active" href="/public/views/login-paciente/index.html">
+                            <span class="material-symbols-rounded">
+                                logout
+                            </span>
+                            </a>
+                        </button>
+
+                    </div>
+
+                    <div class="profile-divider"></div>
+
+                    <div class="profile-fields">
+
+                        <!-- NOME -->
+                        <div class="field-row editable-row">
+
+                            <div class="field-content">
+                                <h2>Nome completo</h2>
+                                <p id="fullName">Não informado</p>
+
+                                <div class="edit-control">
+                                    <input id="nameInput" type="text"
+                                        placeholder="Digite seu nome completo">
+                                    <button type="button" data-save="name">Salvar</button>
+                                </div>
+                            </div>
+
+                            <button class="edit-button" type="button" data-edit="name">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+
+                        </div>
+
+                        <!-- DATA DE NASCIMENTO -->
+                        <div class="field-row editable-row">
+
+                            <div class="field-content">
+                                <h2>Data de Nascimento</h2>
+                                <p id="birthDate">Não informado</p>
+
+                                <div class="edit-control">
+                                    <input id="birthDateInput" type="date">
+                                    <button type="button" data-save="birthDate">Salvar</button>
+                                </div>
+                            </div>
+
+                            <button class="edit-button" type="button" data-edit="birthDate">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+
+                        </div>
+
+                        <!-- EMAIL -->
+                        <div class="field-row editable-row">
+
+                            <div class="field-content">
+                                <h2>
+                                    E-mail
+                                    <span class="material-symbols-rounded edit-symbol">edit</span>
+                                </h2>
+
+                                <p id="emailValue">Não informado</p>
+
+                                <div class="edit-control">
+                                    <input id="emailInput" type="email"
+                                        placeholder="Digite seu e-mail">
+                                    <button type="button" data-save="email">Salvar</button>
+                                </div>
+                            </div>
+
+                            <button class="edit-button" type="button" data-edit="email">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+
+                        </div>
+
+                        <div class="profile-divider inner-divider"></div>
+
+                        <!-- PESO -->
+                        <div class="field-row editable-row">
+
+                            <div class="field-content">
+                                <h2>
+                                    Peso
+                                    <span class="material-symbols-rounded edit-symbol">edit</span>
+                                </h2>
+
+                                <p id="weightValue">Não informado</p>
+
+                                <div class="edit-control">
+                                    <input id="weightInput" type="number"
+                                        min="1" max="500" step="0.1"
+                                        placeholder="Peso em kg">
+                                    <button type="button" data-save="weight">Salvar</button>
+                                </div>
+                            </div>
+
+                            <button class="edit-button" type="button" data-edit="weight">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+
+                        </div>
+
+                        <!-- ALTURA -->
+                        <div class="field-row editable-row">
+
+                            <div class="field-content">
+                                <h2>
+                                    Altura
+                                    <span class="material-symbols-rounded edit-symbol">edit</span>
+                                </h2>
+
+                                <p id="heightValue">Não informado</p>
+
+                                <div class="edit-control">
+                                    <input id="heightInput" type="number"
+                                        min="1" max="250" step="0.1"
+                                        placeholder="Altura em cm">
+                                    <button type="button" data-save="height">Salvar</button>
+                                </div>
+                            </div>
+
+                            <button class="edit-button" type="button" data-edit="height">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+
+                        </div>
+
+                        <!-- GÊNERO -->
+                        <div class="field-row editable-row">
+
+                            <div class="field-content">
+                                <h2>
+                                    Gênero
+                                    <span class="material-symbols-rounded edit-symbol">edit</span>
+                                </h2>
+
+                                <p id="genderValue">Não informado</p>
+
+                                <div class="edit-control">
+                                    <select id="genderInput">
+                                        <option value="">Selecione seu gênero</option>
+                                        <option value="Feminino">Feminino</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Outro">Outro</option>
+                                        <option value="Prefiro não informar">Prefiro não informar</option>
+                                    </select>
+
+                                    <button type="button" data-save="gender">Salvar</button>
+                                </div>
+                            </div>
+
+                            <button class="edit-button" type="button" data-edit="gender">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- INDICADORES -->
+                <aside class="stats-column">
+
+                    <article class="stat-card">
+                        <h2>Registros salvos</h2>
+
+                        <div class="stat-bottom">
+                            <span class="material-symbols-rounded stat-icon">article</span>
+                            <strong>0</strong>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <h2>Áreas monitoradas</h2>
+
+                        <div class="stat-bottom">
+                            <span class="material-symbols-rounded stat-icon">pie_chart</span>
+                            <strong>0</strong>
+                        </div>
+                    </article>
+
+                    <article class="stat-card">
+                        <h2>Gatilhos distintos</h2>
+
+                        <div class="stat-bottom">
+                            <span class="material-symbols-rounded stat-icon">warning</span>
+                            <strong>0</strong>
+                        </div>
+                    </article>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="/public/views/perfil-usuario/script.js"></script>
+
+</body>
+</html>
