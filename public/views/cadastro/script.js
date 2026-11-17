@@ -45,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // não quero usar o sessionStorage ou localStorage
             // isso vale para as duas paginas (cadastro e dados-complementares)
 
-            window.location.href = "/public/pages/dados-complementares/index.html";
+            window.location.href = "../dados-complementares/index.html";
         });
     }
 
     if (entrarBtn) {
         entrarBtn.addEventListener("click", () => {
-            window.location.href = "/public/pages/login-paciente/index.html";
+            window.location.href = "../login-paciente/index.html";
         });
     }
 });

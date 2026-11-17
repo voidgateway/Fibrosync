@@ -1,2 +1,9 @@
 .more/
 todo.md
+.idea/
+node_modules/
+.env
+
+# o projeto usa pnpm (ver docs/decisions/0002)
+package-lock.json
+yarn.lock

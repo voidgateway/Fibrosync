@@ -19,10 +19,12 @@ Documentos e tarefas relacionados a uma interface devem apontar para o arquivo, 
 
 | Elemento | Fonte | Implementação |
 |---|---|---|
-| Cores | A definir | A definir |
-| Tipografia | A definir | A definir |
+| Cores e gradientes | Figma | [`public/assets/css/tokens.css`](../../public/assets/css/tokens.css) |
+| Tipografia | Figma | [`tokens.css`](../../public/assets/css/tokens.css): Outfit, Urbanist e Inter |
 | Espaçamento | A definir | A definir |
 | Componentes | A definir | A definir |
+
+As páginas existentes ainda definem cores próprias em seus `style.css`; a substituição pelas variáveis de `tokens.css` está pendente. Páginas novas devem importar `../../assets/css/tokens.css`.
 
 ## Responsividade
 
