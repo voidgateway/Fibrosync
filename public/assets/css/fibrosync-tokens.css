@@ -1,0 +1,322 @@
+/* CÓPIA GERADA. NÃO EDITE ESTE ARQUIVO À MÃO.
+   Origem: redesign/revisao/tokens/fibrosync-tokens.css (pasta local de design).
+   Mude a origem e copie de novo. Decisão 2.2 de redesign/transicao-para-o-codigo.md.
+   Páginas no design novo carregam este arquivo e depois base.css, nunca o tokens.css antigo. */
+
+/* =====================================================================
+   Tokens do projeto · v1.1 (2026-11-08)
+   Paleta "Pele e ameixa" · Outfit (títulos/dados) + Urbanist (texto)
+   Camadas: primitivos → semânticos (claro / escuro). Componentes usam
+   SÓ os semânticos. Valores de contraste em revisao/03-tokens-fibrosync.html
+   ===================================================================== */
+
+:root {
+  /* ---------- Primitivos: pele (neutros quentes) ---------- */
+  --pele-0:   #FFFCF9;
+  --pele-50:  #FFF8F2;
+  --pele-100: #F3E5DA;
+  --pele-150: #E9D7C9;
+  --pele-200: #E2CDBE;
+  --pele-300: #C8B0A1;
+  --pele-400: #A68E81;
+  --pele-500: #8C7264;
+  --pele-600: #6E5A5B;
+  --pele-700: #5B4849;
+  --pele-800: #3E3033;
+  --pele-850: #382D31;
+  --pele-900: #2A1E21;
+  --pele-925: #241D20;
+  --pele-950: #1A1517;
+  --pele-975: #130F11;
+
+  /* ---------- Primitivos: ameixa (marca) ---------- */
+  --ameixa-50:  #FAF1F8;
+  --ameixa-100: #F2E2F1;
+  --ameixa-200: #E4C5E4;
+  --ameixa-300: #CE9AD2;
+  --ameixa-400: #AD68B6;
+  --ameixa-500: #8A4396;
+  --ameixa-600: #6A2C7C;
+  --ameixa-700: #59226A;
+  --ameixa-800: #481C55;
+  --ameixa-900: #33133D;
+  --ameixa-escuro: #3A2341;
+
+  /* ---------- Primitivos: métricas (um matiz por dado) ---------- */
+  --terracota-100: #F5DDD1; --terracota-300: #EF9878; --terracota-600: #A9482A; --terracota-escuro: #3D2620; /* dor */
+  --indigo-100:    #E2E3F3; --indigo-300:    #A0ADF1; --indigo-600:    #3B4C9E; --indigo-escuro:    #232842; /* sono */
+  --baga-100:      #F4DCE7; --baga-300:      #F2A0BE; --baga-600:      #9A3366; --baga-escuro:      #3D2231; /* humor */
+  --lagoa-100:     #D5ECE9; --lagoa-300:     #6FCDC4; --lagoa-600:     #1D6B66; --lagoa-escuro:     #17302E; /* energia */
+
+  /* ---------- Primitivos: estados ---------- */
+  --folha-100:  #E1EDD3; --folha-300:  #A9D27E; --folha-600:  #4A7420; --folha-escuro:  #22301A; /* sucesso */
+  --ambar-100:  #F6E6C6; --ambar-300:  #E9B24D; --ambar-600:  #865400; --ambar-escuro:  #362811; /* atenção */
+  --carmim-100: #F8DCE2; --carmim-300: #FF6F86; --carmim-600: #B3123E; --carmim-escuro: #3F1A22; /* perigo */
+
+  /* ---------- Tipografia ---------- */
+  --font-display: "Outfit", system-ui, sans-serif;   /* títulos e números de dado */
+  --font-text:    "Urbanist", system-ui, sans-serif; /* texto, rótulos, controles */
+  --weight-regular: 400;
+  --weight-strong:  600;
+
+  --text-display-size: 42px; --text-display-line: 1.12; --text-display-track: -0.01em;
+  --text-h1-size:      34px; --text-h1-line:      1.18;
+  --text-h2-size:      28px; --text-h2-line:      1.25;
+  --text-h3-size:      24px; --text-h3-line:      1.3;
+  --text-body-lg-size: 20px; --text-body-lg-line: 1.5;
+  --text-body-size:    17px; --text-body-line:    1.6;
+  --text-caption-size: 14px; --text-caption-line: 1.45;
+  --text-data-l-size:  34px; --text-data-xl-size: 60px; --text-data-line: 1; --text-data-track: -0.02em;
+
+  /* ---------- Espaço, raio, movimento ---------- */
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 64px;
+  --radius-inner: 8px; --radius-control: 12px; --radius-tile: 14px; --radius-card: 20px; --radius-pill: 999px;
+  /* movimento (v1.2, 2026-11-19): detalhe em revisao/movimento/02-sistema.md */
+  --motion-instant: 120ms;   /* fade do reduzir movimento */
+  --motion-fast:    180ms;   /* cor, borda, hover */
+  --motion-move:    180ms;   /* deslocamento de estado: polegar do toggle, chevron (0 ao reduzir) */
+  --motion-base:    240ms;   /* entrada de conteúdo e de camada (diálogo, aviso, painel) */
+  --motion-exit:    160ms;   /* saída de camada: mais curta que a entrada */
+  --motion-page:    200ms;   /* troca de página (dissolve do conteúdo) */
+  --motion-spring:  420ms;   /* resposta ao escolher (@keyframes fs-mola) */
+  --motion-wait:    400ms;   /* espera antes de mostrar que algo demora */
+  --motion-narrative: 800ms; /* peças da landing */
+  --motion-stagger:  90ms;   /* intervalo entre itens de uma peça */
+  --motion-ease:      cubic-bezier(.2, .7, .2, 1); /* chega desacelerando */
+  --motion-ease-exit: cubic-bezier(.4, 0, 1, 1);   /* sai acelerando */
+  --motion-shift:     4px;   /* conteúdo novo sobe */
+  --motion-scale-in:  .96;   /* camada cresce ao entrar */
+  --motion-scale-out: .98;   /* camada encolhe ao sair */
+  --motion-spring-scale: .08; /* pico da mola: +8% */
+  --motion-spring-tilt:  0deg; /* o rosto do humor usa -3deg */
+  --focus-width: 2px; --focus-offset: 3px;
+  /* tamanhos e espessuras (v1.1, 2026-11-08) */
+  --size-control: 48px; /* altura mínima de controle no desktop */
+  --size-icon-sm: 16px; --size-icon-md: 20px; --size-icon-lg: 24px;
+  --border-width-thin: 1px; --border-width-strong: 1.5px; --border-width-icon: 1.75px; /* icon = traço dos ícones (grade de 24) */
+  --texture-dot-size: 8px; --texture-dot-radius: 1.4px; --texture-max-opacity: .40;
+}
+
+/* =================== Semânticos · CLARO (padrão) =================== */
+:root, [data-theme="light"] {
+  color-scheme: light;
+  --bg-canvas:  var(--pele-100);
+  --bg-surface: var(--pele-50);
+  --bg-raised:  var(--pele-0);     /* modal, popover */
+  --bg-sunken:  var(--pele-150);   /* tile em repouso, poço */
+  --border-subtle: var(--pele-200);
+  --border-strong: var(--pele-500); /* borda de campo e controle: ≥3:1 */
+
+  --text-primary:   var(--pele-900);
+  --text-secondary: var(--pele-700);
+  --text-tertiary:  var(--pele-600); /* metadado; ainda ≥4,5:1 */
+  --text-on-accent: var(--pele-0);
+
+  --accent:         var(--ameixa-600);
+  --accent-hover:   var(--ameixa-700);
+  --accent-pressed: var(--ameixa-800);
+  --accent-subtle:  var(--ameixa-100);
+  --focus-ring:     var(--ameixa-600);
+
+  --metric-pain:   var(--terracota-600); --metric-pain-subtle:   var(--terracota-100);
+  --metric-sleep:  var(--indigo-600);    --metric-sleep-subtle:  var(--indigo-100);
+  --metric-mood:   var(--baga-600);      --metric-mood-subtle:   var(--baga-100);
+  --metric-energy: var(--lagoa-600);      --metric-energy-subtle: var(--lagoa-100);
+  /* tom de preenchimento da métrica (o valor escolhido numa régua): 300 nos dois temas */
+  --metric-pain-fill: var(--terracota-300); --metric-sleep-fill: var(--indigo-300); --metric-mood-fill: var(--baga-300); --metric-energy-fill: var(--lagoa-300);
+  --text-on-metric: var(--pele-900);
+
+  --status-success: var(--folha-600); --status-success-subtle: var(--folha-100);
+  --status-warning: var(--ambar-600);  --status-warning-subtle: var(--ambar-100);
+  --status-danger:  var(--carmim-600); --status-danger-subtle:  var(--carmim-100);
+  --text-on-danger: var(--pele-0);
+
+  /* desabilitado: fora da exigência de contraste (WCAG 1.4.3), mas ainda legível */
+  --state-disabled-bg:     var(--pele-150);
+  --state-disabled-border: var(--pele-200);
+  --state-disabled-text:   var(--pele-500);
+
+  /* marca: símbolo e nome acompanham o tema */
+  --brand-symbol:   var(--ameixa-600);
+  --brand-wordmark: var(--pele-900);
+
+  --shadow-rest:  0 1px 2px rgb(80 45 35 / .06);
+  --shadow-float: 0 2px 6px rgb(80 45 35 / .08), 0 16px 36px -10px rgb(80 45 35 / .22);
+  --scrim: rgb(42 30 33 / .40);
+
+  /* vidro: SÓ camada flutuante com conteúdo atrás (modal, barra fixa) */
+  --glass-bg:     rgb(255 248 242 / .72);
+  --glass-border: rgb(255 255 255 / .60);
+  --glass-light:  inset 0 1px 0 rgb(255 255 255 / .70);
+  --glass-blur:   16px;
+  --glass-fallback: rgb(255 248 242 / .97);
+}
+
+/* =================== Semânticos · ESCURO =================== */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-canvas:  var(--pele-950);
+  --bg-surface: var(--pele-925);
+  --bg-raised:  var(--pele-900);
+  --bg-sunken:  var(--pele-975);
+  --border-subtle: var(--pele-850);
+  --border-strong: var(--pele-500);
+
+  --text-primary:   var(--pele-100);
+  --text-secondary: var(--pele-300);
+  --text-tertiary:  var(--pele-400);
+  --text-on-accent: var(--ameixa-900);
+
+  --accent:         var(--ameixa-300);
+  --accent-hover:   var(--ameixa-200);
+  --accent-pressed: var(--ameixa-100);
+  --accent-subtle:  var(--ameixa-escuro);
+  --focus-ring:     var(--ameixa-200);
+
+  --metric-pain:   var(--terracota-300); --metric-pain-subtle:   var(--terracota-escuro);
+  --metric-sleep:  var(--indigo-300);    --metric-sleep-subtle:  var(--indigo-escuro);
+  --metric-mood:   var(--baga-300);      --metric-mood-subtle:   var(--baga-escuro);
+  --metric-energy: var(--lagoa-300);      --metric-energy-subtle: var(--lagoa-escuro);
+  --metric-pain-fill: var(--terracota-300); --metric-sleep-fill: var(--indigo-300); --metric-mood-fill: var(--baga-300); --metric-energy-fill: var(--lagoa-300);
+  --text-on-metric: var(--pele-925);
+
+  --status-success: var(--folha-300); --status-success-subtle: var(--folha-escuro);
+  --status-warning: var(--ambar-300);  --status-warning-subtle: var(--ambar-escuro);
+  --status-danger:  var(--carmim-300); --status-danger-subtle:  var(--carmim-escuro);
+  --text-on-danger: var(--pele-975);
+
+  --state-disabled-bg:     var(--pele-900);
+  --state-disabled-border: var(--pele-850);
+  --state-disabled-text:   var(--pele-500);
+
+  --brand-symbol:   var(--ameixa-300);
+  --brand-wordmark: var(--pele-100);
+
+  --shadow-rest:  0 1px 2px rgb(0 0 0 / .30);
+  --shadow-float: 0 2px 6px rgb(0 0 0 / .35), 0 18px 40px -10px rgb(0 0 0 / .55);
+  --scrim: rgb(0 0 0 / .55);
+
+  --glass-bg:     rgb(36 29 32 / .72);
+  --glass-border: rgb(255 255 255 / .08);
+  --glass-light:  inset 0 1px 0 rgb(255 255 255 / .10);
+  --glass-blur:   16px;
+  --glass-fallback: rgb(36 29 32 / .97);
+}
+
+/* Segue o sistema quando a pessoa não escolheu um tema */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg-canvas: var(--pele-950); --bg-surface: var(--pele-925); --bg-raised: var(--pele-900); --bg-sunken: var(--pele-975);
+    --border-subtle: var(--pele-850); --border-strong: var(--pele-500);
+    --text-primary: var(--pele-100); --text-secondary: var(--pele-300); --text-tertiary: var(--pele-400); --text-on-accent: var(--ameixa-900);
+    --accent: var(--ameixa-300); --accent-hover: var(--ameixa-200); --accent-pressed: var(--ameixa-100); --accent-subtle: var(--ameixa-escuro); --focus-ring: var(--ameixa-200);
+    --metric-pain: var(--terracota-300); --metric-pain-subtle: var(--terracota-escuro);
+    --metric-sleep: var(--indigo-300); --metric-sleep-subtle: var(--indigo-escuro);
+    --metric-mood: var(--baga-300); --metric-mood-subtle: var(--baga-escuro);
+    --metric-energy: var(--lagoa-300); --metric-energy-subtle: var(--lagoa-escuro);
+    --metric-pain-fill: var(--terracota-300); --metric-sleep-fill: var(--indigo-300); --metric-mood-fill: var(--baga-300); --metric-energy-fill: var(--lagoa-300); --text-on-metric: var(--pele-925);
+    --status-success: var(--folha-300); --status-success-subtle: var(--folha-escuro);
+    --status-warning: var(--ambar-300); --status-warning-subtle: var(--ambar-escuro);
+    --status-danger: var(--carmim-300); --status-danger-subtle: var(--carmim-escuro); --text-on-danger: var(--pele-975);
+    --state-disabled-bg: var(--pele-900); --state-disabled-border: var(--pele-850); --state-disabled-text: var(--pele-500);
+    --brand-symbol: var(--ameixa-300); --brand-wordmark: var(--pele-100);
+    --shadow-rest: 0 1px 2px rgb(0 0 0 / .30); --shadow-float: 0 2px 6px rgb(0 0 0 / .35), 0 18px 40px -10px rgb(0 0 0 / .55);
+    --scrim: rgb(0 0 0 / .55);
+    --glass-bg: rgb(36 29 32 / .72); --glass-border: rgb(255 255 255 / .08); --glass-light: inset 0 1px 0 rgb(255 255 255 / .10); --glass-fallback: rgb(36 29 32 / .97);
+  }
+}
+
+/* ---------- Estilos de texto prontos ---------- */
+.fs-display { font: var(--weight-strong) var(--text-display-size)/var(--text-display-line) var(--font-display); letter-spacing: var(--text-display-track); }
+.fs-h1      { font: var(--weight-strong) var(--text-h1-size)/var(--text-h1-line) var(--font-display); }
+.fs-h2      { font: var(--weight-strong) var(--text-h2-size)/var(--text-h2-line) var(--font-display); }
+.fs-h3      { font: var(--weight-strong) var(--text-h3-size)/var(--text-h3-line) var(--font-display); }
+.fs-body-lg { font: var(--weight-regular) var(--text-body-lg-size)/var(--text-body-lg-line) var(--font-text); }
+.fs-body    { font: var(--weight-regular) var(--text-body-size)/var(--text-body-line) var(--font-text); }
+.fs-label   { font: var(--weight-strong) var(--text-body-size)/var(--text-body-line) var(--font-text); }
+.fs-caption { font: var(--weight-regular) var(--text-caption-size)/var(--text-caption-line) var(--font-text); }
+.fs-caption-strong { font: var(--weight-strong) var(--text-caption-size)/var(--text-caption-line) var(--font-text); }
+.fs-data-l  { font: var(--weight-regular) var(--text-data-l-size)/var(--text-data-line) var(--font-display); letter-spacing: var(--text-data-track); font-variant-numeric: tabular-nums; }
+.fs-data-xl { font: var(--weight-regular) var(--text-data-xl-size)/var(--text-data-line) var(--font-display); letter-spacing: var(--text-data-track); font-variant-numeric: tabular-nums; }
+
+/* ---------- Receitas de superfície ---------- */
+.focus-ring:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.glass {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+          backdrop-filter: blur(var(--glass-blur)) saturate(140%);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-light), var(--shadow-float);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass { background: var(--glass-fallback); }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .glass { background: var(--glass-fallback); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+/* retícula da asa: uma área por tela, NUNCA sob texto.
+   --texture-mask define onde os pontos aparecem; o padrão sobe do canto
+   inferior direito. Componentes com dado central usam o anel (ver .sleep). */
+.texture-halftone { position: relative; isolation: isolate; }
+.texture-halftone::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; border-radius: inherit;
+  background-image: radial-gradient(circle at center, var(--texture-color, var(--accent)) var(--texture-dot-radius), transparent calc(var(--texture-dot-radius) + .3px));
+  background-size: var(--texture-dot-size) var(--texture-dot-size);
+  -webkit-mask-image: var(--texture-mask, linear-gradient(330deg, rgb(0 0 0 / var(--texture-max-opacity)) 0%, transparent 45%));
+          mask-image: var(--texture-mask, linear-gradient(330deg, rgb(0 0 0 / var(--texture-max-opacity)) 0%, transparent 45%));
+}
+/* ---------- Receitas de movimento ---------- */
+/* Mola contida (amortecimento .5): sobe, passa e assenta. k = deslocamento normalizado. */
+@keyframes fs-mola {
+  0%   { transform: scale(1) rotate(0deg); }
+  8%   { transform: scale(calc(1 + var(--motion-spring-scale) *  .87)) rotate(calc(var(--motion-spring-tilt) *  .87)); }
+  16%  { transform: scale(calc(1 + var(--motion-spring-scale)))        rotate(var(--motion-spring-tilt)); }
+  24%  { transform: scale(calc(1 + var(--motion-spring-scale) *  .66)) rotate(calc(var(--motion-spring-tilt) *  .66)); }
+  32%  { transform: scale(calc(1 + var(--motion-spring-scale) *  .27)) rotate(calc(var(--motion-spring-tilt) *  .27)); }
+  50%  { transform: scale(calc(1 - var(--motion-spring-scale) *  .16)) rotate(calc(var(--motion-spring-tilt) * -.16)); }
+  70%  { transform: scale(calc(1 - var(--motion-spring-scale) *  .05)) rotate(calc(var(--motion-spring-tilt) * -.05)); }
+  85%  { transform: scale(calc(1 + var(--motion-spring-scale) *  .02)) rotate(calc(var(--motion-spring-tilt) *  .02)); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.fs-mola { animation: fs-mola var(--motion-spring) linear; }
+
+/* Conteúdo novo (painel do dia, resultado, achado) */
+@keyframes fs-entra { from { opacity: 0; transform: translateY(var(--motion-shift)); } }
+.fs-entra { animation: fs-entra var(--motion-base) var(--motion-ease) both; }
+
+/* Camada que flutua (diálogo, aviso, balão): entra crescendo, sai encolhendo */
+@keyframes fs-camada-entra { from { opacity: 0; transform: scale(var(--motion-scale-in)); } }
+@keyframes fs-camada-sai   { to   { opacity: 0; transform: scale(var(--motion-scale-out)); } }
+.fs-camada-entra { animation: fs-camada-entra var(--motion-base) var(--motion-ease) both; }
+.fs-camada-sai   { animation: fs-camada-sai var(--motion-exit) var(--motion-ease-exit) both; }
+@keyframes fs-fundo-entra { from { opacity: 0; } }
+@keyframes fs-fundo-sai   { to   { opacity: 0; } }
+
+/* Troca de página entre documentos: a barra lateral fica, o conteúdo se dissolve.
+   Cada página precisa dar view-transition-name: barra à barra lateral. */
+@view-transition { navigation: auto; }
+::view-transition-group(root) { animation-duration: var(--motion-page); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: var(--motion-page); animation-timing-function: linear; }
+::view-transition-group(barra) { animation: none; }
+
+/* Reduzir movimento = trocar por fade curto. Deslocar, crescer e girar zeram;
+   o que sobra das animações é só opacidade em --motion-instant. O JS lê o mesmo
+   matchMedia (ver movimento.js no 02-sistema.md). */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-base: var(--motion-instant);
+    --motion-exit: var(--motion-instant);
+    --motion-page: var(--motion-instant);
+    --motion-move: 0ms;
+    --motion-narrative: 0ms;
+    --motion-stagger: 0ms;
+    --motion-shift: 0px;
+    --motion-scale-in: 1;
+    --motion-scale-out: 1;
+    --motion-spring-scale: 0;
+    --motion-spring-tilt: 0deg;
+  }
+  .fs-mola { animation: none; }
+}
