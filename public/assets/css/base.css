@@ -20,8 +20,9 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-a { color: var(--accent); text-underline-offset: .18em; transition: color var(--motion-fast) var(--motion-ease); }
-a:hover { color: var(--accent-hover); }
+/* links de texto; um <a class="btn"> segue o botão, não esta regra */
+a:not(.btn) { color: var(--accent); text-underline-offset: .18em; transition: color var(--motion-fast) var(--motion-ease); }
+a:not(.btn):hover { color: var(--accent-hover); }
 
 /* Foco sempre visível, em tudo que recebe teclado */
 :focus-visible {
