@@ -42,7 +42,10 @@ a:hover { color: var(--accent-hover); }
 
 /* Ícone do set (public/assets/icones/*.svg) tingido pela cor do texto.
    <span class="icone" style="--icone: url(../../assets/icones/inicio.svg)" aria-hidden="true"></span>
-   Tamanhos: .icone-sm (16) · padrão (20) · .icone-lg (24). */
+   Tamanhos: .icone-sm (16) · padrão (20) · .icone-lg (24).
+   Atenção ao caminho: o url() dentro de --icone é resolvido a partir DESTE arquivo
+   (public/assets/css/), não da página. Em public/views/<pagina>/ o ../../assets/icones/… dá certo
+   porque as duas pastas têm a mesma profundidade. Fora delas, use caminho absoluto (/assets/icones/…). */
 .icone {
   display: inline-block;
   flex: none;

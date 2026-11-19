@@ -1,0 +1,72 @@
+/* Botões (aprovado em 11/11/2026). Um tamanho só: 48.
+   Tipos: .btn-primary (um por tela) · .btn-secondary (contorno) · .btn-quiet (só texto)
+          .btn-danger (perigo discreto) · .btn-danger.outline (contorno carmim, na seção Apagar)
+          .btn-danger.solid (cheio, só dentro da confirmação)
+   Ordem: principal à direita, por último; perigo isolado à esquerda.
+   Ícone opcional à esquerda: <span class="icone" style="--icone:url(…)" aria-hidden="true"></span>
+   Ocupado: aria-busy="true" e o rótulo diz o que está acontecendo ("Salvando…"); sem spinner. */
+
+.btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--size-control);
+  padding: 0 var(--space-5);
+  border-radius: var(--radius-control);
+  border: var(--border-width-strong) solid transparent;
+  background: transparent;
+  color: var(--text-primary);
+  font: var(--weight-strong) var(--text-body-size)/1 var(--font-text);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--motion-ease),
+    border-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease),
+    transform var(--motion-move) var(--motion-ease);
+}
+.btn > .icone { margin-left: calc(var(--space-1) * -1); }
+.btn > .icone:last-child:not(:first-child) { margin-left: 0; margin-right: calc(var(--space-1) * -1); }
+.btn:active:not(:disabled) { transform: translateY(1px); }
+
+/* principal: ameixa chapado no claro; no escuro, luz de cima */
+.btn-primary { background: var(--accent); color: var(--text-on-accent); }
+.btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+.btn-primary:active:not(:disabled) { background: var(--accent-pressed); box-shadow: none; }
+[data-theme="dark"] .btn-primary:not(:disabled) {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent), var(--text-primary) 14%) 0%, var(--accent) 70%);
+  box-shadow: inset 0 1px 0 var(--glass-border);
+}
+[data-theme="dark"] .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+[data-theme="dark"] .btn-primary:active:not(:disabled) { background: var(--accent-pressed); box-shadow: none; }
+
+/* secundário: contorno */
+.btn-secondary { border-color: var(--border-strong); }
+.btn-secondary:hover:not(:disabled) { background: var(--bg-sunken); }
+.btn-secondary:active:not(:disabled) { background: var(--bg-sunken); border-color: var(--text-secondary); }
+
+/* discreto: só texto */
+.btn-quiet { padding: 0 var(--space-3); color: var(--text-secondary); }
+.btn-quiet:hover:not(:disabled),
+.btn-quiet:active:not(:disabled) { background: var(--bg-sunken); color: var(--text-primary); }
+
+/* perigo */
+.btn-danger { padding: 0 var(--space-3); color: var(--status-danger); }
+.btn-danger:hover:not(:disabled),
+.btn-danger:active:not(:disabled) { background: var(--status-danger-subtle); }
+.btn-danger.outline { padding: 0 var(--space-5); border-color: var(--status-danger); }
+.btn-danger.solid { padding: 0 var(--space-5); background: var(--status-danger); color: var(--text-on-danger); }
+.btn-danger.solid:hover:not(:disabled) { background: color-mix(in oklab, var(--status-danger), var(--text-primary) 18%); }
+
+/* desabilitado */
+.btn:disabled { cursor: not-allowed; transform: none; box-shadow: none; color: var(--state-disabled-text); }
+.btn-primary:disabled, .btn-danger.solid:disabled { background: var(--state-disabled-bg); }
+/* no escuro, o fundo desabilitado quase some no card: a borda devolve a forma (Registro, 2ª checagem) */
+[data-theme="dark"] .btn-primary:disabled, [data-theme="dark"] .btn-danger.solid:disabled { border-color: var(--state-disabled-border); }
+.btn-secondary:disabled, .btn-danger.outline:disabled { background: transparent; border-color: var(--state-disabled-border); }
+.btn-quiet:disabled, .btn-danger:not(.solid):disabled { background: transparent; }
+
+.btn[aria-busy="true"] { cursor: progress; }

@@ -2,9 +2,13 @@
 // Carregue no <head>, ANTES dos CSS e sem defer, para a página não piscar no tema errado:
 //   <script src="../../assets/js/tema.js"></script>
 //
-// Sem escolha salva, o <html> fica sem data-theme e os tokens seguem o sistema
-// (@media prefers-color-scheme). A escolha fica no localStorage; se o navegador
-// bloquear o armazenamento, a página continua funcionando e só não lembra.
+// O <html> sempre recebe data-theme="light" ou "dark", já resolvido. Assim o CSS
+// dos componentes só precisa de [data-theme="dark"] para o acabamento do escuro.
+// No modo "sistema", o atributo acompanha o sistema quando ele muda.
+// Sem JS, os tokens seguem o sistema sozinhos (@media prefers-color-scheme).
+//
+// A escolha fica no localStorage; se o navegador bloquear o armazenamento,
+// a página continua funcionando e só não lembra.
 //
 // Uso em Configurações › Aparência:
 //   window.tema.atual()          // 'claro' | 'escuro' | 'sistema'
@@ -12,6 +16,7 @@
 (function () {
   var CHAVE = 'tema';
   var VALORES = { claro: 'light', escuro: 'dark' };
+  var sistemaEscuro = window.matchMedia('(prefers-color-scheme: dark)');
 
   function ler() {
     try {
@@ -23,27 +28,42 @@
   }
 
   function aplicar(escolha) {
-    var raiz = document.documentElement;
-    if (VALORES[escolha]) raiz.setAttribute('data-theme', VALORES[escolha]);
-    else raiz.removeAttribute('data-theme');
+    var tema = VALORES[escolha] || (sistemaEscuro.matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', tema);
   }
 
+  var escolhaAtual = ler();
+
   function escolher(escolha) {
+    escolhaAtual = VALORES[escolha] ? escolha : 'sistema';
     try {
       if (VALORES[escolha]) localStorage.setItem(CHAVE, escolha);
       else localStorage.removeItem(CHAVE);
     } catch (erro) {
       // sem armazenamento: vale só nesta página
     }
-    aplicar(escolha);
+    aplicar(escolhaAtual);
   }
 
-  aplicar(ler());
+  aplicar(escolhaAtual);
+
+  // no modo "sistema", acompanha a troca do sistema
+  sistemaEscuro.addEventListener('change', function () {
+    if (escolhaAtual === 'sistema') aplicar('sistema');
+  });
 
   // a escolha feita em outra aba vale nesta também
   window.addEventListener('storage', function (evento) {
-    if (evento.key === CHAVE) aplicar(ler());
+    if (evento.key === CHAVE) {
+      escolhaAtual = ler();
+      aplicar(escolhaAtual);
+    }
   });
 
-  window.tema = { atual: ler, escolher: escolher };
+  window.tema = {
+    atual: function () {
+      return escolhaAtual;
+    },
+    escolher: escolher,
+  };
 })();
