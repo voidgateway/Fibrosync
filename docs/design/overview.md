@@ -38,6 +38,8 @@ O projeto está trocando para um design novo, uma página por vez. Cada página 
 | [`js/movimento.js`](../../public/assets/js/movimento.js) | Animações em JS que seguem os tokens e o "reduzir movimento" do sistema |
 | [`icones/`](../../public/assets/icones/) | Ícones do produto em SVG (traço de 1,75, grade de 24) |
 | [`marca/`](../../public/assets/marca/) | Símbolo, nome e favicon |
+| [`css/componentes/`](../../public/assets/css/componentes/) | Um arquivo por componente: `botoes`, `campo`, `toggle`, `aviso` e `barra-lateral`. A página importa só os que usa, depois do `base.css`. O HTML de cada um está no comentário do topo do arquivo. |
+| [`js/componentes/`](../../public/assets/js/componentes/) | O comportamento que precisa de JS: `campo.js` (erro ao sair do campo, mostrar a senha) e `aviso.js` (`aviso.mostrar('Registro salvo.')`, com "Desfazer" opcional) |
 
 O `<head>` de uma página no design novo fica assim:
 
