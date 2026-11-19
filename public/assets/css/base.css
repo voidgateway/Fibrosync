@@ -1,0 +1,88 @@
+/* Base das páginas no design novo.
+   Ordem no <head>: fibrosync-tokens.css → base.css → componentes → style.css da página.
+   Só usa tokens. Não carregue junto com o tokens.css antigo (há nomes iguais com valores diferentes). */
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd { margin: 0; }
+ul[role="list"], ol[role="list"] { margin: 0; padding: 0; list-style: none; }
+img, svg, video { display: block; max-width: 100%; }
+button, input, select, textarea { font: inherit; color: inherit; }
+[hidden] { display: none !important; }
+
+body {
+  min-height: 100vh;
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font: var(--weight-regular) var(--text-body-size)/var(--text-body-line) var(--font-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* links de texto; um <a class="btn"> segue o botão, não esta regra */
+a:not(.btn) { color: var(--accent); text-underline-offset: .18em; transition: color var(--motion-fast) var(--motion-ease); }
+a:not(.btn):hover { color: var(--accent-hover); }
+
+/* Foco sempre visível, em tudo que recebe teclado */
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Texto só para leitor de tela */
+.visualmente-oculto {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ícone do set (public/assets/icones/*.svg) tingido pela cor do texto.
+   <span class="icone" style="--icone: url(../../assets/icones/inicio.svg)" aria-hidden="true"></span>
+   Tamanhos: .icone-sm (16) · padrão (20) · .icone-lg (24).
+   Atenção ao caminho: o url() dentro de --icone é resolvido a partir DESTE arquivo
+   (public/assets/css/), não da página. Em public/views/<pagina>/ o ../../assets/icones/… dá certo
+   porque as duas pastas têm a mesma profundidade. Fora delas, use caminho absoluto (/assets/icones/…). */
+.icone {
+  display: inline-block;
+  flex: none;
+  width: var(--size-icon-md);
+  height: var(--size-icon-md);
+  background-color: currentColor;
+  -webkit-mask: var(--icone) center / contain no-repeat;
+          mask: var(--icone) center / contain no-repeat;
+}
+.icone-sm { width: var(--size-icon-sm); height: var(--size-icon-sm); }
+.icone-lg { width: var(--size-icon-lg); height: var(--size-icon-lg); }
+
+/* Marca: símbolo Trama e nome, nas cores do tema.
+   <span class="marca-simbolo" role="img" aria-label="Fibrosync"></span>
+   O tamanho vem de quem usa (largura; a altura segue a proporção). */
+.marca-simbolo, .marca-nome {
+  display: inline-block;
+  flex: none;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.marca-simbolo {
+  width: 36px;
+  aspect-ratio: 1;
+  background-color: var(--brand-symbol);
+  -webkit-mask-image: url(../marca/simbolo.svg); mask-image: url(../marca/simbolo.svg);
+}
+.marca-nome {
+  width: 96px;
+  aspect-ratio: 528.64 / 117.76;
+  background-color: var(--brand-wordmark);
+  -webkit-mask-image: url(../marca/nome.svg); mask-image: url(../marca/nome.svg);
+}
+
+/* Em alto contraste forçado (Windows), máscaras somem: volta para a cor do sistema */
+@media (forced-colors: active) {
+  .icone, .marca-simbolo, .marca-nome { background-color: CanvasText; }
+}

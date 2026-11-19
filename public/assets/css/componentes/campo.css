@@ -1,0 +1,97 @@
+/* Campo de texto (aprovado em 11/11/2026). Caixa com contorno, rótulo sempre visível acima.
+   Marca só o opcional. O erro aparece ao sair do campo e ao enviar, nunca enquanto digita
+   (comportamento em js/componentes/campo.js).
+
+   <div class="campo">
+     <label class="campo-rotulo" for="peso">Peso <span class="campo-opcional">Opcional</span></label>
+     <p class="campo-dica" id="peso-dica">…</p>                                   (opcional)
+     <div class="campo-caixa">
+       <input id="peso" inputmode="decimal" aria-describedby="peso-dica peso-unidade peso-erro">
+       <span class="campo-unidade" id="peso-unidade">kg</span>                    (opcional)
+     </div>
+     <p class="campo-erro" id="peso-erro" aria-live="polite"><span class="icone icone-sm" style="--icone:url(…/atencao.svg)" aria-hidden="true"></span><span></span></p>
+   </div>
+   Área de texto: .campo-caixa.area com <textarea>. Senha: botão .campo-acao com data-mostrar-senha. */
+
+.campo { display: flex; flex-direction: column; min-width: 0; }
+.campo-rotulo {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font: var(--weight-strong) var(--text-body-size)/var(--text-body-line) var(--font-text);
+  color: var(--text-primary);
+}
+.campo-opcional { font: var(--weight-regular) var(--text-caption-size)/1 var(--font-text); color: var(--text-tertiary); }
+.campo-dica { margin: 0 0 var(--space-2); font: var(--weight-regular) var(--text-caption-size)/var(--text-caption-line) var(--font-text); color: var(--text-secondary); }
+.campo-rotulo + .campo-caixa { margin-top: var(--space-2); }
+
+.campo-caixa {
+  --campo-fundo: var(--bg-raised);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--size-control);
+  padding: 0 var(--space-4);
+  background: var(--campo-fundo);
+  border: var(--border-width-thin) solid var(--border-strong);
+  border-radius: var(--radius-control);
+  transition: border-color var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast) var(--motion-ease);
+}
+[data-theme="dark"] .campo-caixa { --campo-fundo: var(--bg-sunken); box-shadow: inset 0 1px 2px rgb(0 0 0 / .35); }
+.campo-caixa input, .campo-caixa textarea {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: var(--weight-regular) var(--text-body-size)/var(--text-body-line) var(--font-text);
+  padding: var(--space-3) 0;
+}
+.campo-caixa.area { align-items: stretch; }
+.campo-caixa textarea { resize: vertical; min-height: 96px; }
+.campo-caixa input::placeholder, .campo-caixa textarea::placeholder { color: var(--text-tertiary); }
+.campo-caixa input[inputmode="decimal"], .campo-caixa input[inputmode="numeric"] { font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+.campo-unidade { color: var(--text-secondary); font: var(--weight-regular) var(--text-body-size)/1 var(--font-text); }
+.campo-caixa:hover { border-color: var(--text-secondary); }
+.campo-caixa:focus-within { border-color: var(--accent); outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+
+/* erro */
+.campo-erro {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font: var(--weight-strong) var(--text-caption-size)/var(--text-caption-line) var(--font-text);
+  color: var(--status-danger);
+}
+.campo.invalido .campo-erro { display: flex; }
+.campo.invalido .campo-caixa {
+  border-color: var(--status-danger);
+  border-width: var(--border-width-strong);
+  padding: 0 calc(var(--space-4) - (var(--border-width-strong) - var(--border-width-thin)));
+}
+
+/* desabilitado */
+.campo-caixa:has(:disabled) { background: var(--state-disabled-bg); border-color: var(--state-disabled-border); box-shadow: none; }
+.campo-caixa :disabled, .campo-caixa :disabled::placeholder,
+.campo:has(:disabled) .campo-rotulo, .campo:has(:disabled) .campo-unidade { color: var(--state-disabled-text); }
+
+/* botão de ícone dentro do campo (mostrar/ocultar senha) */
+.campo-acao {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-right: calc(var(--space-2) * -1);
+  border: 0;
+  border-radius: var(--radius-inner);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.campo-acao:hover { background: var(--bg-sunken); color: var(--text-primary); }
+[data-theme="dark"] .campo-acao:hover { background: var(--bg-surface); }
+.campo-acao:focus-visible { outline-offset: 1px; }
