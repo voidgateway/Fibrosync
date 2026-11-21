@@ -1,175 +1,152 @@
+// Esqueci a senha → Veja o seu e-mail → Criar senha nova. Comportamento comum em assets/js/entrada.js.
+// Os três estados moram nesta rota. O link do e-mail abre trocar_senha/?token=…
+// TODO(e-mail): sem envio de e-mail, o servidor escreve o link no terminal.
+(function () {
+  var INICIO = '../dashboard/';
+  var ESPERA_REENVIO = 45; // segundos até poder reenviar
+  var LINK_VENCIDO = 'Este link venceu ou já foi usado. Peça outro.';
 
-// ELEMENTOS DAS TELAS
-const emailStep = document.getElementById("emailStep");
-const confirmationStep = document.getElementById("confirmationStep");
-const passwordStep = document.getElementById("passwordStep");
-const successStep = document.getElementById("successStep");
-// FORMULÁRIOS
-const emailForm = document.getElementById("emailForm");
-const passwordForm = document.getElementById("passwordForm");
-// ELEMENTOS DO E-MAIL
-const emailInput = document.getElementById("email");
-const emailError = document.getElementById("emailError");
-const displayEmail = document.getElementById("displayEmail");
-// MODAL
-const messageBox = document.getElementById("messageBox");
-const messageTitle = document.getElementById("messageTitle");
-const messageText = document.getElementById("messageText");
-const messageConfirm = document.getElementById("messageConfirm");
-// SENHAS
-const newPassword = document.getElementById("newPassword");
-const confirmPassword = document.getElementById("confirmPassword");
-const passwordError = document.getElementById("passwordError");
-const confirmError = document.getElementById("confirmError");
-// ESTADO
-let emailCadastrado = "";
-// NAVEGAÇÃO ENTRE TELAS
-function mostrarEtapa(etapa) {
-    emailStep.classList.add("hidden");
-    confirmationStep.classList.add("hidden");
-    passwordStep.classList.add("hidden");
-    successStep.classList.add("hidden");
-    etapa.classList.remove("hidden");
-}
-// MODAL DE MENSAGENS
-function mostrarMensagem(titulo, mensagem, callback) {
-    messageTitle.textContent = titulo;
-    messageText.textContent = mensagem;
-    messageBox.classList.remove("hidden");
-    messageConfirm.onclick = function () {
-        messageBox.classList.add("hidden");
-        if (callback) {
-            callback();
-        }
-    };
-}
+  var etapas = {
+    esqueci: document.getElementById('esqueci'),
+    espera: document.getElementById('espera'),
+    nova: document.getElementById('nova'),
+  };
+  var email = document.getElementById('email');
+  var senha = document.getElementById('nova-senha');
+  var botaoLink = document.getElementById('enviar-link');
+  var botaoSalvar = document.getElementById('salvar');
+  var reenviar = document.getElementById('reenviar');
+  var token = new URLSearchParams(window.location.search).get('token');
+  var relogio = null;
 
-// ETAPA 1 — VALIDAR E-MAIL
-/* 
-^	Início do texto
-[^\s@]	Qualquer caractere que não seja espaço ou @
-+	Um ou mais caracteres
-@	Exige o símbolo arroba
-\.	Exige um ponto literal
-$	Final do texto*/
-emailForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const email = emailInput.value.trim();
-    emailError.textContent = "";
-    const emailValido =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if (!email) {
-        emailError.textContent = "Informe seu e-mail.";
-        return;
-    }
-    if (!emailValido) {
-        emailError.textContent = "Digite um e-mail válido.";
-        return;
-    }
-    emailCadastrado = email;
-    displayEmail.textContent = email;
-    mostrarMensagem(
-        "Solicitação recebida!",
-        "Se o endereço informado estiver cadastrado, enviaremos as instruções para redefinir sua senha.",
-        function () {
-            mostrarEtapa(confirmationStep);
-        }
-    );
-});
+  entrada.ligarEmail(email);
+  entrada.ligarSenhaNova(senha);
 
-
-// ETAPA 2 — REENVIAR SOLICITAÇÃO
-const resendButton = document.getElementById("resendButton");
-const resendMessage = document.getElementById("resendMessage");
-resendButton.addEventListener("click", function () {
-    resendMessage.textContent =
-        "Uma nova solicitação foi preparada para " + emailCadastrado + ".";
-});
-
-// ETAPA 2 — CONFIRMAR E CONTINUAR
-const continueButton = document.getElementById("continueButton");
-continueButton.addEventListener("click", function () {
-    mostrarEtapa(passwordStep);
-});
-
-
-// MOSTRAR E OCULTAR SENHA
-const toggleButtons = document.querySelectorAll(".toggle-password");
-toggleButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        const target = document.getElementById(
-            button.dataset.target
-        );
-        const icon = button.querySelector("span");
-        if (target.type === "password") {
-            target.type = "text";
-            icon.textContent = "visibility_off";
-            button.setAttribute("aria-label", "Ocultar senha");
-        } else {
-            target.type = "password";
-            icon.textContent = "visibility";
-            button.setAttribute("aria-label", "Mostrar senha");
-        }
+  // troca de estado: o novo entra subindo de leve e o foco vai para o título
+  function ir(nome, focar) {
+    clearInterval(relogio);
+    Object.keys(etapas).forEach(function (k) {
+      etapas[k].hidden = k !== nome;
     });
-});
+    var etapa = etapas[nome];
+    var titulo = etapa.querySelector('h1');
+    document.title = titulo.textContent;
+    if (focar !== false) {
+      etapa.classList.remove('fs-entra');
+      void etapa.offsetWidth;
+      etapa.classList.add('fs-entra');
+      titulo.focus({ preventScroll: true });
+    }
+  }
 
+  // ---------- Esqueci a senha ----------
+  function pedirLink() {
+    return entrada.enviar('/api/pacientes/senha/link', { email: email.value.trim() });
+  }
 
-// ETAPA 3 — REGRAS DA NOVA SENHA
-const regras = {
-    ruleLength: password => password.length >= 8,
-    ruleUpper: password => /[A-Z]/.test(password),
-    ruleLower: password => /[a-z]/.test(password),
-    ruleNumber: password => /[0-9]/.test(password),
-    ruleSpecial: password => /[^A-Za-z0-9]/.test(password)
-};
-function validarRegrasSenha(password) {
-    let senhaValida = true;
-    for (const id in regras) {
-        const elemento = document.getElementById(id);
-        const regraAtendida = regras[id](password);
-        elemento.classList.toggle("valid", regraAtendida);
-        if (!regraAtendida) {
-            senhaValida = false;
-        }
+  etapas.esqueci.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    if (entrada.ocupadoAgora(botaoLink)) return;
+    if (!entrada.conferirEmail(email)) {
+      email.focus();
+      return;
     }
-    return senhaValida;
-}
-newPassword.addEventListener("input", function () {
-    validarRegrasSenha(newPassword.value);
-    passwordError.textContent = "";
-});
-confirmPassword.addEventListener("input", function () {
-    confirmError.textContent = "";
-});
 
-// ETAPA 3 — SALVAR NOVA SENHA
-passwordForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const senha = newPassword.value;
-    const confirmacao = confirmPassword.value;
-    passwordError.textContent = "";
-    confirmError.textContent = "";
-    const senhaValida = validarRegrasSenha(senha);
-    if (!senhaValida) {
-        passwordError.textContent =
-            "A senha não atende a todos os requisitos.";
+    var pedido = pedirLink();
+    entrada.ocupado(botaoLink, 'Enviando o link…', pedido);
+    pedido.then(function (r) {
+      if (r.status === 202) {
+        document.getElementById('espera-email').textContent = email.value.trim();
+        ir('espera');
+        contarReenvio();
         return;
-    }
-    if (!confirmacao) {
-        confirmError.textContent =
-            "Confirme sua nova senha.";
+      }
+      if (r.status === 400) {
+        entrada.erro(email, entrada.MSG.emailRuim);
+        email.focus();
         return;
+      }
+      aviso.mostrar(entrada.MSG.semConexao);
+    }, function () {
+      aviso.mostrar(entrada.MSG.semConexao);
+    });
+  });
+
+  // ---------- Veja o seu e-mail ----------
+  function contarReenvio() {
+    var inicio = Date.now();
+    function passo() {
+      var resta = Math.max(0, ESPERA_REENVIO - Math.round((Date.now() - inicio) / 1000));
+      reenviar.disabled = resta > 0;
+      reenviar.textContent = resta > 0 ? 'Reenviar em 0:' + String(resta).padStart(2, '0') : 'Reenviar link';
+      if (!resta) clearInterval(relogio);
     }
-    if (senha !== confirmacao) {
-        confirmError.textContent =
-            "As senhas não correspondem.";
+    clearInterval(relogio);
+    passo();
+    relogio = setInterval(passo, 1000);
+  }
+
+  reenviar.addEventListener('click', function () {
+    pedirLink().then(function (r) {
+      if (r.status !== 202) throw new Error();
+      aviso.mostrar('Link enviado de novo.');
+      contarReenvio();
+    }).catch(function () {
+      aviso.mostrar(entrada.MSG.semConexao);
+    });
+  });
+
+  document.getElementById('outro-email').addEventListener('click', function () {
+    ir('esqueci');
+    email.focus();
+  });
+
+  // ---------- Criar senha nova ----------
+  function linkVencido() {
+    window.history.replaceState(null, '', window.location.pathname);
+    token = null;
+    ir('esqueci');
+    aviso.mostrar(LINK_VENCIDO);
+  }
+
+  etapas.nova.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+    if (entrada.ocupadoAgora(botaoSalvar)) return;
+    if (!entrada.conferirSenhaNova(senha)) {
+      senha.focus();
+      return;
+    }
+
+    var pedido = entrada.enviar('/api/pacientes/senha', { token: token, senha: senha.value });
+    entrada.ocupado(botaoSalvar, 'Salvando…', pedido);
+    pedido.then(function (r) {
+      if (r.status === 200) {
+        window.location.href = INICIO;
         return;
-    }
-    mostrarMensagem(
-        "Senha alterada!",
-        "Sua nova senha foi validada com sucesso nesta demonstração.",
-        function () {
-            mostrarEtapa(successStep);
-        }
-    );
-});
+      }
+      if (r.status === 410) {
+        linkVencido();
+        return;
+      }
+      aviso.mostrar(entrada.MSG.semConexao);
+    }, function () {
+      aviso.mostrar(entrada.MSG.semConexao);
+    });
+  });
+
+  // ---------- começo ----------
+  // sem link, a página abre em "Esqueci a senha" (é o que aparece sem JS também)
+  if (token) {
+    ir('nova', false);
+    entrada.enviar('/api/pacientes/senha/' + encodeURIComponent(token), null, 'GET').then(function (r) {
+      if (r.status === 200) {
+        document.getElementById('nova-email').textContent = r.corpo.email;
+        entrada.guardarEmail(r.corpo.email);
+      } else {
+        linkVencido();
+      }
+    }, function () {
+      aviso.mostrar(entrada.MSG.semConexao);
+    });
+  }
+})();

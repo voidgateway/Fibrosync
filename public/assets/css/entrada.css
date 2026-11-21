@@ -1,0 +1,179 @@
+/* Entrada: base das três rotas (login-paciente/, cadastro/, trocar_senha/).
+   Protótipo: redesign/revisao/telas/entrada/02-prototipo.html (aprovado em 18/11/2026).
+   Card central com painel à esquerda (wireframe B), painel em tom C · ameixa suave.
+   Carregar depois de base.css, campo.css e botoes.css.
+
+   Exceções aos tokens, aprovadas no protótipo (gosto.md, 20/11/2026): card 880 com painel 380,
+   trama do painel (pontos 9, raio 1,9, até 70%, mancha 210 × 150), ícones do painel 26 em caixa 32,
+   ícone do erro 18, regras da senha (bolinha 18, check 12) e caixa dos termos (24, raio 6). */
+
+.entrada {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-7) var(--space-5);
+}
+
+.entrada-card {
+  width: min(880px, 100%);
+  display: grid;
+  grid-template-columns: 380px minmax(0, 1fr);
+  background: var(--bg-surface);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-rest);
+}
+/* acabamento leve do escuro: linha clara no topo do card */
+[data-theme="dark"] .entrada-card {
+  box-shadow: inset 0 1px 0 color-mix(in oklab, var(--glass-border), transparent 40%), var(--shadow-rest);
+}
+
+/* ---------- painel de apresentação ---------- */
+/* trama no canto de cima à direita, ao lado da marca, onde não há texto */
+.painel {
+  --texture-color: var(--accent);
+  --texture-max-opacity: .7;
+  --texture-dot-size: 9px;
+  --texture-dot-radius: 1.9px;
+  --texture-mask: radial-gradient(210px 150px at 100% 0%, rgb(0 0 0 / .7) 0%, rgb(0 0 0 / .35) 55%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-7) var(--space-6);
+  background: var(--accent-subtle);
+}
+.painel-marca { display: flex; align-items: center; gap: var(--space-2); }
+.painel-marca .marca-simbolo { width: 40px; }
+.painel-marca .marca-nome { width: auto; height: 23px; }
+.painel-frase { max-width: 18ch; font: var(--weight-strong) var(--text-h3-size)/var(--text-h3-line) var(--font-display); }
+.painel-lista { display: flex; flex-direction: column; gap: var(--space-4); margin: 0; padding: 0; list-style: none; }
+.painel-lista li { display: grid; grid-template-columns: 32px 1fr; gap: var(--space-3); align-items: start; }
+.painel-lista .icone { width: 26px; height: 26px; margin: 3px; color: var(--accent); }
+.painel-lista b { display: block; font-weight: var(--weight-strong); }
+.painel-lista span:not(.icone) { font: var(--weight-regular) var(--text-caption-size)/var(--text-caption-line) var(--font-text); color: var(--text-secondary); }
+
+/* ---------- formulário ---------- */
+.entrada-form { display: flex; flex-direction: column; padding: var(--space-7); }
+.etapa { display: flex; flex-direction: column; gap: var(--space-4); }
+.etapa h1 { font: var(--weight-strong) var(--text-h2-size)/var(--text-h2-line) var(--font-display); outline: 0; }
+.etapa-sub { margin-top: calc(var(--space-3) * -1); color: var(--text-secondary); }
+.etapa-nota { color: var(--text-secondary); }
+.etapa-email b { font-weight: var(--weight-strong); color: var(--text-primary); }
+.etapa-acoes { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-2); }
+
+.voltar {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: calc(var(--space-2) * -1) 0 0;
+  padding: var(--space-2) var(--space-2) var(--space-2) 0;
+  border-radius: var(--radius-inner);
+  font: var(--weight-strong) var(--text-caption-size)/1 var(--font-text);
+  text-decoration: none;
+}
+a.voltar { color: var(--text-secondary); }
+a.voltar:hover { color: var(--text-primary); }
+
+/* rótulo com um link ao lado ("Esqueci a senha") */
+.campo-linha { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.campo-linha + .campo-caixa { margin-top: var(--space-2); }
+
+/* erro: ícone de erro 18 alinhado à primeira linha (a mensagem pode quebrar) */
+.entrada .campo-erro { align-items: flex-start; }
+.entrada .campo-erro a { color: inherit; }
+.icone-erro { width: 18px; height: 18px; margin-top: 1px; }
+/* erro ao entrar: o e-mail também fica marcado, sem mensagem própria */
+.campo.marcado .campo-caixa {
+  border-color: var(--status-danger);
+  border-width: var(--border-width-strong);
+  padding: 0 calc(var(--space-4) - (var(--border-width-strong) - var(--border-width-thin)));
+}
+.campo-caixa .campo-acao .icone { width: 22px; height: 22px; }
+
+/* ---------- regras da senha ---------- */
+.regras {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-1) var(--space-4);
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.regras li { display: flex; align-items: center; gap: var(--space-2); font: var(--weight-regular) var(--text-caption-size)/1.5 var(--font-text); color: var(--text-secondary); }
+.regras i {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 50%;
+  color: transparent;
+  transition: background-color var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease);
+}
+[data-theme="dark"] .regras i { border-color: var(--text-tertiary); }
+.regras svg { width: 12px; height: 12px; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.regras .nao { display: none; }
+.regras li.ok { color: var(--text-primary); }
+.regras li.ok i { background: var(--status-success); border-color: var(--status-success); color: var(--bg-surface); }
+/* depois de enviar, o que falta ganha × em carmim */
+.campo.invalido .regras li:not(.ok) { color: var(--status-danger); }
+.campo.invalido .regras li:not(.ok) i { border-color: var(--status-danger); color: var(--status-danger); }
+.campo.invalido .regras li:not(.ok) .nao { display: block; }
+.campo.invalido .regras li:not(.ok) .sim { display: none; }
+
+/* ---------- caixa dos termos ---------- */
+.termos { display: grid; grid-template-columns: 24px 1fr; gap: var(--space-3); align-items: start; cursor: pointer; }
+.termos input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.termos-caixa {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border: var(--border-width-strong) solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--bg-raised);
+  color: transparent;
+}
+[data-theme="dark"] .termos-caixa { border-color: var(--text-tertiary); background: var(--bg-sunken); }
+.termos-caixa svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.termos input:checked + .termos-caixa { border-color: var(--accent); background: var(--accent); color: var(--text-on-accent); }
+.termos input:focus-visible + .termos-caixa { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.termos.invalido .termos-caixa { border-color: var(--status-danger); }
+.termos-texto { font: var(--weight-regular) var(--text-caption-size)/var(--text-caption-line) var(--font-text); color: var(--text-secondary); }
+.termos-texto a { font-weight: var(--weight-strong); }
+.termos-erro {
+  display: flex;
+  gap: var(--space-2);
+  margin: calc(var(--space-2) * -1) 0 0 calc(24px + var(--space-3));
+  font: var(--weight-strong) var(--text-caption-size)/var(--text-caption-line) var(--font-text);
+  color: var(--status-danger);
+}
+
+/* ---------- botões ---------- */
+.etapa .btn-primary { width: 100%; }
+.ou { display: flex; align-items: center; gap: var(--space-3); font: var(--weight-regular) var(--text-caption-size)/1 var(--font-text); color: var(--text-tertiary); }
+[data-theme="dark"] .ou { color: var(--text-secondary); }
+.ou::before, .ou::after { content: ""; flex: 1; height: 1px; background: var(--border-subtle); }
+.sociais { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.sociais svg { width: 20px; height: 20px; }
+.alternativa { margin-top: var(--space-2); text-align: center; color: var(--text-secondary); }
+
+@media (max-width: 860px) {
+  .entrada-card { grid-template-columns: 1fr; }
+  /* com o painel em cima, a mancha de 210 × 150 cobria o nome: fica menor, só no canto (20/11/2026) */
+  .painel {
+    --texture-mask: radial-gradient(140px 90px at 100% 0%, rgb(0 0 0 / .7) 0%, rgb(0 0 0 / .35) 55%, transparent 100%);
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-5);
+  }
+  .painel-lista { display: none; }
+  .entrada-form { padding: var(--space-6) var(--space-5); }
+}
+/* no celular, as regras em 2 colunas quebravam em duas linhas */
+@media (max-width: 480px) {
+  .regras { grid-template-columns: 1fr; }
+}
