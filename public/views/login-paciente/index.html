@@ -29,7 +29,7 @@
 
             <header class="login-header">
                 <!--Logo Fibrosync-->
-                <img src="/public/assets/img/logo-removebg-preview.png" alt="Logo FibroSync" class="login-logo">
+                <img src="../../assets/img/logo-removebg-preview.png" alt="Logo FibroSync" class="login-logo">
                 
                 <p>Bem-vindo(a) de volta!</p>
 
@@ -79,11 +79,14 @@
 
                 <!-- Recuperação de senha -->
                 <div class="forgot-password">
-                    <a href="/public/views/trocar_senha/index.html"> Esqueci a senha </a>
+                    <a href="../trocar_senha/index.html"> Esqueci a senha </a>
                 </div>
 
                 <!-- Botão de login -->
-                <button type="submit" class="login-button">Entrar</button>
+                <button type="submit" class="login-button" id="loginButton">
+                    <span class="login-spinner" aria-hidden="true"></span>
+                    <span class="login-button-text">Entrar</span>
+                </button>
 
                 <!-- Mensagem de retorno -->
                 <p id="loginMessage" class="login-message" role="alert" aria-live="polite"></p>
@@ -91,17 +94,17 @@
                 <!-- Opções de login social -->
                 <div class="social-login">
                    <button type="button" aria-label="Entrar com Google">
-                     <img src="/public/assets/img/g.png" alt="" class="social-icon">
+                     <img src="../../assets/img/g.png" alt="" class="social-icon">
                      <span>Google</span>
                    </button>
 
                     <button type="button" aria-label="Entrar com Apple">
-                      <img src="/public/assets/img/ap.png" alt="" class="social-icon">
+                      <img src="../../assets/img/ap.png" alt="" class="social-icon">
                       <span>Apple</span>
                     </button>
 
                      <button type="button" aria-label="Entrar com Facebook">
-                         <img src="/public/assets/img/face.png" alt="" class="social-icon">
+                         <img src="../../assets/img/face.png" alt="" class="social-icon">
                          <span>Facebook</span>
                      </button>
                 </div>
@@ -110,12 +113,30 @@
                 <div class="register-section">
                     <p>Ainda não tem uma conta?</p>
                 <!-- -->
-                    <a href="/public/views/cadastro/index.html" class="register-button">
+                    <a href="../cadastro/index.html" class="register-button">
                         Criar uma conta
                     </a>
                 </div>
             </form>
         </section>
+
+        <!-- Confirmação de login e opção de salvar as informações -->
+        <dialog id="loginDialog" class="login-dialog" aria-labelledby="loginDialogTitulo"
+            aria-describedby="loginDialogTexto">
+
+            <span class="material-symbols-outlined login-dialog-icone" aria-hidden="true">check_circle</span>
+
+            <h2 id="loginDialogTitulo">Tudo certo!</h2>
+
+            <p id="loginDialogTexto">
+                Seus dados foram validados. Deseja salvar suas informações de login neste dispositivo?
+            </p>
+
+            <div class="login-dialog-acoes">
+                <button type="button" id="naoSalvarLogin" class="login-dialog-secundario">Agora não</button>
+                <button type="button" id="salvarLogin" class="login-dialog-primario">Salvar e continuar</button>
+            </div>
+        </dialog>
 
         <footer class="login-footer">
             Ao continuar, você concorda com os termos e a Política de Privacidade.

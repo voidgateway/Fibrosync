@@ -1,0 +1,93 @@
+/* Linha com toggle (aprovado em 11/11/2026). Só para liga/desliga com efeito NA HORA.
+   Se depende de Salvar, use caixa de seleção. Rótulo com verbo à esquerda, toggle à direita,
+   linha inteira clicável. Sem escrever "Ligado". Funciona sem JS (checkbox nativo).
+
+   <label class="preferencia">
+     <span class="preferencia-texto">
+       <span class="preferencia-titulo" id="lembrete-t">Lembrar de registrar às 21h</span>
+       <span class="preferencia-descricao" id="lembrete-d">Um aviso por dia, no horário escolhido</span>
+     </span>
+     <input type="checkbox" role="switch" aria-labelledby="lembrete-t" aria-describedby="lembrete-d">
+     <span class="interruptor" aria-hidden="true"><span class="interruptor-polegar">
+       <svg class="liga" viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7"/></svg>
+       <svg class="desliga" viewBox="0 0 16 16"><path d="M4.5 8h7"/></svg>
+     </span></span>
+   </label> */
+
+/* Linha como em Configurações (telas/perfil/02-prototipo.html, .item), escolhida em 19/11/2026:
+   sem margem lateral própria; usa o espaçamento do card (space-6). No hover, o fundo vai até a
+   borda do card. */
+.preferencia {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 64px;
+  padding: var(--space-3) 0;
+  cursor: pointer;
+  border-top: 1px solid var(--border-subtle);
+}
+.preferencia:first-of-type { border-top: 0; }
+.preferencia:hover {
+  background: color-mix(in oklab, var(--bg-sunken), transparent 55%);
+  margin: 0 calc(var(--space-6) * -1);
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+.preferencia-texto { flex: 1; min-width: 0; }
+.preferencia-titulo { display: block; font-weight: var(--weight-strong); color: var(--text-primary); }
+.preferencia-descricao { display: block; margin-top: 2px; font: var(--weight-regular) var(--text-caption-size)/var(--text-caption-line) var(--font-text); color: var(--text-secondary); }
+.preferencia input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+
+.interruptor {
+  --largura: 52px;
+  --altura: 32px;
+  --folga: 3px;
+  --polegar: calc(var(--altura) - var(--folga) * 2 - var(--border-width-strong) * 2);
+  --fundo-desligado: var(--bg-raised);
+  position: relative;
+  flex: none;
+  width: var(--largura);
+  height: var(--altura);
+  border-radius: var(--radius-pill);
+  background: var(--fundo-desligado);
+  border: var(--border-width-strong) solid var(--border-strong);
+  transition: background-color var(--motion-fast) var(--motion-ease), border-color var(--motion-fast) var(--motion-ease);
+}
+[data-theme="dark"] .interruptor { --fundo-desligado: var(--bg-sunken); box-shadow: inset 0 1px 2px rgb(0 0 0 / .35); }
+.interruptor-polegar {
+  position: absolute;
+  top: var(--folga);
+  left: var(--folga);
+  width: var(--polegar);
+  height: var(--polegar);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--text-secondary);
+  color: var(--bg-surface);
+  transition:
+    transform var(--motion-move) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease),
+    color var(--motion-fast) var(--motion-ease);
+}
+.interruptor svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.interruptor .liga { display: none; }
+
+.preferencia input:checked + .interruptor { background: var(--accent); border-color: var(--accent); }
+.preferencia input:checked + .interruptor .interruptor-polegar {
+  transform: translateX(calc(var(--largura) - var(--polegar) - var(--folga) * 2 - var(--border-width-strong) * 2));
+  background: var(--bg-surface);
+  color: var(--accent);
+}
+.preferencia input:checked + .interruptor .liga { display: block; }
+.preferencia input:checked + .interruptor .desliga { display: none; }
+.preferencia input:focus-visible + .interruptor { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+.preferencia:hover input:not(:disabled):not(:checked) + .interruptor { border-color: var(--text-secondary); }
+
+.preferencia:has(input:disabled) { cursor: not-allowed; }
+.preferencia:has(input:disabled):hover { background: transparent; margin: 0; padding-left: 0; padding-right: 0; }
+.preferencia:has(input:disabled) .preferencia-titulo,
+.preferencia:has(input:disabled) .preferencia-descricao { color: var(--state-disabled-text); }
+.preferencia input:disabled + .interruptor { background: var(--state-disabled-bg); border-color: var(--state-disabled-border); box-shadow: none; }
+.preferencia input:disabled + .interruptor .interruptor-polegar { background: var(--state-disabled-border); color: var(--state-disabled-text); }

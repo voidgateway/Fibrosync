@@ -1,0 +1,128 @@
+/* componente de alertas: só estiliza o que está dentro de .alerta,
+   para não interferir no CSS da tela que o usa */
+.alerta {
+    --alerta-duracao: 260ms;
+    --alerta-texto: #171417;
+    --alerta-texto-suave: var(--grey, #99a1af);
+    --alerta-item: var(--detalhe, #f5f7fa);
+
+    position: fixed;
+    inset: clamp(80px, 12vh, 140px) clamp(16px, 2vw, 40px) auto auto;
+    width: min(460px, calc(100vw - 32px));
+    max-height: calc(100vh - clamp(80px, 12vh, 140px) - 24px);
+    margin: 0;
+    padding: 20px 24px 28px;
+    overflow-y: auto;
+    background: var(--white, #fff);
+    border: 0;
+    border-radius: var(--radius-box, 33px);
+    box-shadow: 0 16px 40px rgb(40 30 60 / 18%);
+    color: var(--alerta-texto);
+    font-family: var(--font-primary, "Outfit"), Arial, Helvetica, sans-serif;
+
+    /* fechado: deslocado para a direita e transparente */
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity var(--alerta-duracao) ease, transform var(--alerta-duracao) ease;
+}
+
+.alerta.aberto {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.alerta::backdrop {
+    background: rgb(60 50 80 / 28%);
+    opacity: 0;
+    transition: opacity var(--alerta-duracao) ease;
+}
+
+.alerta.aberto::backdrop {
+    opacity: 1;
+}
+
+.alerta-cabecalho {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 12px;
+}
+
+.alerta-cabecalho h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.alerta-icone-btn {
+    display: flex;
+    padding: 6px;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    color: var(--alerta-texto);
+    cursor: pointer;
+    transition: background-color 160ms ease;
+}
+
+.alerta-icone-btn:hover {
+    background: var(--alerta-item);
+}
+
+.alerta-icone-btn:focus-visible {
+    outline: 3px solid rgb(251 24 175 / 32%);
+    outline-offset: 2px;
+}
+
+.alerta-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.alerta-lista:empty {
+    display: none;
+}
+
+.alerta-vazio {
+    margin: 36px 0 16px;
+    color: var(--alerta-texto-suave);
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* com algum alerta na lista, a mensagem de vazio some */
+.alerta-lista:not(:empty) + .alerta-vazio {
+    display: none;
+}
+
+/* prévia: só aparece quando /alerta/ é aberta direto */
+.alerta-previa {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 100vh;
+    margin: 0;
+    padding: 32px;
+    background: var(--detalhe, #f5f7fa);
+    font-family: var(--font-primary, "Outfit"), Arial, Helvetica, sans-serif;
+}
+
+.alerta-previa-btn {
+    padding: 10px 20px;
+    background: var(--white, #fff);
+    border: var(--border-subtle, 0.8px solid rgb(220 227 234 / 60%));
+    border-radius: var(--radius-box, 33px);
+    font: inherit;
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .alerta,
+    .alerta::backdrop {
+        transition-duration: 0.01ms;
+    }
+}

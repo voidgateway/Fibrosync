@@ -1,0 +1,81 @@
+/* Barra lateral (aprovada em 14/11/2026, ajustes de 14/11 e 18/11). Só navegação:
+   marca (símbolo + nome) no topo, cinco destinos e Sair no rodapé. "Registrar hoje" NÃO fica aqui.
+   Flutuante (margem 16, raio de card, sombra de flutuar), itens de 52 com texto body-lg e ícone 26.
+   A página marca o destino atual com aria-current="page" no próprio HTML.
+
+   <div class="com-barra">
+     <aside class="barra">
+       <a class="barra-marca" href="../dashboard/" aria-label="Fibrosync, Início">
+         <span class="marca-simbolo" aria-hidden="true"></span><span class="marca-nome" aria-hidden="true"></span>
+       </a>
+       <nav aria-label="Principal"><ul class="barra-nav" role="list">
+         <li><a href="../dashboard/" aria-current="page"><span class="icone" style="--icone:url(…/inicio.svg)" aria-hidden="true"></span>Início</a></li>
+         …
+       </ul></nav>
+       <ul class="barra-nav barra-rodape" role="list"><li><a href="…">…Sair</a></li></ul>
+     </aside>
+     <main class="com-barra-conteudo">…</main>
+   </div> */
+
+:root { --barra-largura: calc(264px + var(--space-4)); }
+
+.com-barra { display: grid; grid-template-columns: var(--barra-largura) minmax(0, 1fr); min-height: 100vh; }
+
+.barra {
+  position: sticky;
+  top: var(--space-4);
+  margin: var(--space-4) 0 var(--space-4) var(--space-4);
+  height: calc(100vh - var(--space-4) * 2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-float);
+  view-transition-name: barra; /* fica parada na troca de página */
+}
+[data-theme="dark"] .barra { box-shadow: inset 0 1px 0 color-mix(in oklab, var(--glass-border), transparent 40%), var(--shadow-float); }
+
+.barra-marca {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-control);
+  text-decoration: none;
+}
+.barra-marca .marca-simbolo { width: 36px; }
+.barra-marca .marca-nome { width: auto; height: 21px; }
+
+.barra-nav { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.barra-nav a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 52px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: var(--text-body-lg-size);
+  transition: background-color var(--motion-fast) var(--motion-ease), color var(--motion-fast) var(--motion-ease);
+}
+.barra-nav a:hover { background: var(--bg-sunken); color: var(--text-primary); }
+.barra-nav a[aria-current="page"] { background: var(--accent-subtle); color: var(--accent); font-weight: var(--weight-strong); }
+.barra-nav a:focus-visible { outline-offset: calc(var(--focus-width) * -1); }
+.barra-nav .icone { width: 26px; height: 26px; }
+
+.barra-rodape { margin-top: auto; }
+.barra-rodape a { color: var(--text-tertiary); }
+
+.com-barra-conteudo { min-width: 0; }
+
+/* Celular: o protótipo aprovado esconde a barra e não define outra navegação.
+   Navegação para celular é item OPCIONAL e não bloqueia a migração (19/11/2026). */
+@media (max-width: 760px) {
+  .com-barra { grid-template-columns: 1fr; }
+  .barra { display: none; }
+}

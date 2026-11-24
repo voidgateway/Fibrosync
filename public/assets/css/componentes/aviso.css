@@ -1,0 +1,36 @@
+/* Aviso flutuante (toast). Criado pelo js/componentes/aviso.js; a página não escreve HTML.
+   Base: redesign/revisao/03-tokens-fibrosync.html, "Vidro: única camada" (.glass-demo .bar.glass).
+   Vidro é a única camada de vidro da tela, sobre conteúdo real (receita .glass dos tokens,
+   com fundo sólido de reserva e "reduzir transparência").
+   Tempos (19/11/2026): com "Desfazer", 8 s; sem, 3,5 s; pausa com o ponteiro ou o foco em cima.
+   Entra crescendo e sai encolhendo (padrão 5 do sistema de movimento). */
+
+.aviso-zona {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: var(--space-6);
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+/* Posição das telas de Registro e Início: centralizado na área de conteúdo, descontando a barra
+   (equivale ao left: calc(50% + 140px) delas); abaixo de 760 px, no centro da tela. */
+body:has(.barra) .aviso-zona { padding-left: var(--barra-largura); }
+@media (max-width: 760px) { body:has(.barra) .aviso-zona { padding-left: 0; } }
+
+.aviso {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
+  border-radius: var(--radius-card);
+  color: var(--text-primary);
+  font: var(--weight-strong) var(--text-body-size)/var(--text-body-line) var(--font-text);
+  transform-origin: 50% 100%;
+}
+.aviso:not(:has(.btn)) { padding-right: var(--space-5); } /* sem Desfazer: 24 dos dois lados (19/11/2026) */
+.aviso .btn { min-height: 40px; }
+.aviso span { white-space: nowrap; }

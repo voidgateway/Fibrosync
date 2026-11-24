@@ -1,0 +1,49 @@
+# CI do Fibrosync
+# roda a cada Pull Request para a main e a cada push na main
+# instala as dependências e roda o smoke test (tests/smoke.test.js)
+# decisão registrada no ADR 0003 (docs/decisions/0003-ci-com-github-actions.md)
+
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+# o workflow só precisa ler o repositório
+permissions:
+  contents: read
+
+# um push novo no mesmo PR cancela a execução anterior
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Instala e testa
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Baixa o repositório
+        uses: actions/checkout@v7
+
+      # a versão do pnpm vem do "packageManager" do package.json
+      - name: Instala o pnpm
+        uses: pnpm/action-setup@v6
+
+      # 22 = versão mínima do "engines" do package.json
+      - name: Instala o Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      # --frozen-lockfile falha se o pnpm-lock.yaml não foi commitado junto com o package.json
+      - name: Instala as dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: Roda o smoke test
+        run: pnpm test
