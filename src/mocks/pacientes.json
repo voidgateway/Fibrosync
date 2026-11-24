@@ -4,5 +4,11 @@
     "nome": "Vivi Teste",
     "email": "vivi@gmail.com",
     "senha": "Vivi1234"
+  },
+  {
+    "id": 2,
+    "nome": "teste1",
+    "email": "teste1@fibrosync.com",
+    "senha": "9AgXytMncK9pE9F@"
   }
 ]

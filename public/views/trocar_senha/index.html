@@ -1,194 +1,82 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>FibroSync | Recuperar senha</title>
-      <!--Link css-->
-    <link rel="stylesheet" href="style.css">
-    <!--Link imagens do Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Crie uma senha nova para a sua conta do Fibrosync.">
+<title>Esqueci a senha</title>
+<script src="../../assets/js/tema.js"></script>
+<link rel="icon" href="../../assets/marca/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/fibrosync-tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/componentes/botoes.css">
+<link rel="stylesheet" href="../../assets/css/componentes/campo.css">
+<link rel="stylesheet" href="../../assets/css/componentes/aviso.css">
+<link rel="stylesheet" href="../../assets/css/entrada.css">
+<script src="../../assets/js/movimento.js" defer></script>
+<script src="../../assets/js/componentes/campo.js" defer></script>
+<script src="../../assets/js/componentes/aviso.js" defer></script>
+<script src="../../assets/js/entrada.js" defer></script>
+<script src="script.js" defer></script>
 </head>
-
 <body>
+<main class="entrada">
+  <div class="entrada-card">
+    <aside class="painel texture-halftone" aria-label="Sobre o app">
+      <div class="painel-marca"><span class="marca-simbolo" aria-hidden="true"></span><span class="marca-nome" role="img" aria-label="Fibrosync"></span></div>
+      <p class="painel-frase">Um diário da dor que mostra o que anda junto com ela.</p>
+      <ul class="painel-lista">
+        <li><span class="icone" style="--icone: url(../../assets/icones/registrar.svg)" aria-hidden="true"></span><div><b>Registre em menos de um minuto</b><span>Só a dor é obrigatória.</span></div></li>
+        <li><span class="icone" style="--icone: url(../../assets/icones/calendario.svg)" aria-hidden="true"></span><div><b>Veja o mês num olhar</b><span>O calendário mostra a dor de cada dia.</span></div></li>
+        <li><span class="icone" style="--icone: url(../../assets/icones/padroes.svg)" aria-hidden="true"></span><div><b>Entenda o que anda junto</b><span>Sono, cansaço e humor, com os dias que embasam cada achado.</span></div></li>
+        <li><span class="icone" style="--icone: url(../../assets/icones/cadeado.svg)" aria-hidden="true"></span><div><b>Seus dados são seus</b><span>Só você vê. Dá para exportar ou apagar quando quiser.</span></div></li>
+      </ul>
+    </aside>
 
-    <main class="recovery-container">
-        <section class="recovery-card">
-            <!-- VOLTAR PARA LOGIN -->
-            <a href="../login-paciente/index.html" class="back-link">
-                <span class="material-symbols-outlined">arrow_back</span>
-                Voltar para login
-            </a>
-            
-            <!-- LOGOTIPO -->
-            <div class="brand">
-                <img src="../../assets/img/logo-removebg-preview.png" alt="Logo FibroSync" class="brand-logo">
-            </div>
+    <section class="entrada-form">
+      <form class="etapa" id="esqueci" novalidate>
+        <a class="voltar" href="../login-paciente/"><span class="icone" style="--icone: url(../../assets/icones/seta-esquerda.svg)" aria-hidden="true"></span>Voltar para Entrar</a>
+        <h1 tabindex="-1">Esqueci a senha</h1>
+        <p class="etapa-sub">Mandamos um link para você criar uma senha nova.</p>
 
-            <!-- ETAPA 1: INFORMAR E-MAIL -->
-            <section id="emailStep" class="recovery-step">
-                
-                <h1>Confirme que é você</h1>
-                <p class="description">
-                    Insira o e-mail cadastrado, se esse e-mail existir
-                    você receberá um link de confirmação.
-                </p>
-                
-                <form id="emailForm">
-                    <div class="form-group">
-                        
-                        <label for="email">E-mail</label>
-                        <div class="input-wrapper">
-                            <span class="material-symbols-outlined">mail</span>
-
-                            <input type="email" id="email" placeholder="seu@email.com" required>
-                        </div>
-
-                        <small class="error-message" id="emailError"></small>
-
-                    </div>
-
-                    <button type="submit" class="primary-button"> Enviar link de redefinição </button>
-
-                </form>
-
-            </section>
-
-            <!-- ETAPA 2: CONFIRMAR E-MAIL -->
-            <section id="confirmationStep"
-                     class="recovery-step hidden">
-
-                <div class="confirmation-icon">
-                    <span class="material-symbols-outlined">mark_email_read</span>
-                </div>
-
-                <h2>Verifique sua caixa de entrada</h2>
-
-                <p class="description">
-                    Se o e-mail informado estiver em nossa base de dados,
-                    você receberá um link para redefinir sua senha.
-                </p>
-
-                <p class="email-destination" id="displayEmail"></p>
-
-                <div class="confirmation-info">Confira também sua caixa de spam.</div>
-
-                <button type="button"id="continueButton"class="primary-button">Confirmar e continuar</button>
-
-                <button type="button"id="resendButton"class="secondary-button">Enviar novamente</button>
-
-                <p class="success-message" id="resendMessage"></p>
-            </section>
-
-
-            <!-- ETAPA 3: NOVA SENHA -->
-            <section id="passwordStep"class="recovery-step hidden">
-
-                <h1>Crie uma nova senha</h1>
-
-                <p class="description">Escolha uma senha segura para proteger sua conta.</p>
-
-                <form id="passwordForm">
-
-                    <div class="form-group">
-
-                        <label for="newPassword">Nova senha</label>
-
-                        <div class="input-wrapper">
-
-                            <span class="material-symbols-outlined">lock</span>
-
-                            <input type="password" id="newPassword" placeholder="Digite sua nova senha" required>
-
-                            <button type="button"class="toggle-password"data-target="newPassword" aria-label="Mostrar senha">
-
-                                <span class="material-symbols-outlined">visibility</span>
-                            </button>
-                        </div>
-                        <small class="error-message"id="passwordError"></small>
-                    </div>
-                    
-                    <div class="password-rules">
-
-                        <p>A senha deve conter:</p>
-
-                        <ul>
-                            <li id="ruleLength">Pelo menos 8 caracteres</li>
-                            <li id="ruleUpper">Uma letra maiúscula</li>
-                            <li id="ruleLower">Uma letra minúscula</li>
-                            <li id="ruleNumber">Um número</li>
-                            <li id="ruleSpecial">Um caractere especial</li>
-                        </ul>
-                    </div>
-
-                    <div class="form-group">
-
-                        <label for="confirmPassword">Confirmar nova senha</label>
-
-                        <div class="input-wrapper">
-                            <span class="material-symbols-outlined">lock</span>
-
-                            <input type="password" id="confirmPassword"placeholder="Digite novamente sua senha" required>
-
-                            <button type="button" class="toggle-password" data-target="confirmPassword" aria-label="Mostrar senha">
-
-                                <span class="material-symbols-outlined">visibility</span>
-                            </button>
-                        </div>
-
-                        <small class="error-message" id="confirmError"></small>
-                    </div>
-
-                    <button type="submit" class="primary-button">Salvar nova senha</button>
-                </form>
-            </section>
-
-
-            <!-- ETAPA 4: SUCESSO -->
-            <section id="successStep"class="recovery-step hidden">
-
-                <div class="success-icon">
-                    <span class="material-symbols-outlined">check_circle</span>
-                </div>
-
-                <h2>Senha alterada com sucesso!</h2>
-
-                <p class="description">
-                    Sua nova senha foi cadastrada.
-                    Agora você já pode acessar sua conta FibroSync.
-                </p>
-
-                <a href="../login-paciente/index.html" class="primary-button login-button">
-                    Voltar para login
-                </a>
-            </section>
-        </section>
-    </main>
-
-    <!-- MENSAGEM JAVASCRIPT -->
-    <div id="messageBox" class="message-overlay hidden">
-
-        <div class="message-card">
-
-            <div class="message-icon">
-                <span class="material-symbols-outlined"> mark_email_read</span>
-            </div>
-
-            <h2 id="messageTitle">Verifique seu e-mail</h2>
-
-            <p id="messageText"></p>
-
-            <button id="messageConfirm" class="primary-button">Entendi</button>
-
+        <div class="campo">
+          <label class="campo-rotulo" for="email">E-mail da conta</label>
+          <div class="campo-caixa"><input id="email" name="email" type="email" autocomplete="email" inputmode="email" aria-describedby="email-erro"></div>
+          <p class="campo-erro" id="email-erro" aria-live="polite"><span class="icone icone-erro" style="--icone: url(../../assets/icones/erro.svg)" aria-hidden="true"></span><span></span></p>
         </div>
 
-    </div>
-<!--Link JavaScript-->
-    <script src="script.js" defer></script>
+        <button class="btn btn-primary" id="enviar-link">Enviar link</button>
+      </form>
+
+      <div class="etapa" id="espera" hidden>
+        <a class="voltar" href="../login-paciente/"><span class="icone" style="--icone: url(../../assets/icones/seta-esquerda.svg)" aria-hidden="true"></span>Voltar para Entrar</a>
+        <h1 tabindex="-1">Veja o seu e-mail</h1>
+        <p class="etapa-email">Se existir uma conta com <b id="espera-email">o e-mail informado</b>, o link chega em alguns minutos. Ele vale por 1 hora.</p>
+        <p class="etapa-nota">Não chegou? Olhe também a caixa de spam.</p>
+        <div class="etapa-acoes"><button type="button" class="btn btn-secondary" id="reenviar" disabled>Reenviar link</button><button type="button" class="btn btn-quiet" id="outro-email">Usar outro e-mail</button></div>
+      </div>
+
+      <form class="etapa" id="nova" novalidate hidden>
+        <h1 tabindex="-1">Criar senha nova</h1>
+        <p class="etapa-sub">Para a conta <span id="nova-email">do link</span>.</p>
+
+        <div class="campo">
+          <label class="campo-rotulo" for="nova-senha">Senha nova</label>
+          <div class="campo-caixa">
+            <input id="nova-senha" name="senha" type="password" autocomplete="new-password" aria-describedby="nova-senha-erro nova-senha-regras">
+            <button type="button" class="campo-acao" aria-label="Mostrar senha" aria-pressed="false" data-mostrar-senha data-icone-mostrar="../../assets/icones/mostrar-senha.svg" data-icone-ocultar="../../assets/icones/ocultar-senha.svg"><span class="icone" style="--icone: url(../../assets/icones/mostrar-senha.svg)" aria-hidden="true"></span></button>
+          </div>
+          <p class="campo-erro" id="nova-senha-erro" aria-live="polite"><span class="icone icone-erro" style="--icone: url(../../assets/icones/erro.svg)" aria-hidden="true"></span><span></span></p>
+          <ul class="regras" id="nova-senha-regras" aria-label="A senha precisa ter"><li><i><svg class="sim" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg class="nao" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></i><span>8 caracteres ou mais</span></li><li><i><svg class="sim" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg class="nao" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></i><span>uma letra maiúscula</span></li><li><i><svg class="sim" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg class="nao" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></i><span>um número</span></li><li><i><svg class="sim" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><svg class="nao" viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></i><span>um símbolo, como ! ? @ #</span></li></ul>
+        </div>
+
+        <button class="btn btn-primary" id="salvar">Salvar e entrar</button>
+      </form>
+    </section>
+  </div>
+</main>
 </body>
 </html>
