@@ -18,6 +18,8 @@ h1 { font: var(--weight-strong) var(--text-h1-size)/var(--text-h1-line) var(--fo
 .resumo { margin-top: var(--space-6); padding: var(--space-4) var(--space-5); border-radius: var(--radius-control); background: var(--bg-sunken); border: 1px solid var(--border-subtle); color: var(--text-secondary); }
 .read h2 { font: var(--weight-strong) var(--text-h3-size)/var(--text-h3-line) var(--font-display); margin: var(--space-7) 0 var(--space-3); scroll-margin-top: var(--space-6); }
 .read p.t { margin: 0 0 var(--space-4); font-size: var(--text-body-lg-size); line-height: var(--text-body-lg-line); color: var(--text-secondary); }
+.read ul.t { margin: 0 0 var(--space-4); padding-left: var(--space-5); list-style: disc; font-size: var(--text-body-lg-size); line-height: var(--text-body-lg-line); color: var(--text-secondary); }
+.read ul.t li { margin-bottom: var(--space-1); }
 
 .foot { display: flex; align-items: center; gap: var(--space-5); padding: var(--space-6) 0 var(--space-7); border-top: 1px solid var(--border-subtle); color: var(--text-secondary); font: var(--weight-regular) var(--text-caption-size)/1.4 var(--font-text); }
 .foot a { color: var(--text-secondary); }
