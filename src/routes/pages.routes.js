@@ -23,6 +23,8 @@ router.get('/', (req, res) => {
 //   /dashboard/             -> public/views/dashboard/index.html
 //   /alerta/                -> public/views/alerta/index.html (prévia do componente de alertas)
 //   /configuracao/          -> public/views/configuracao/index.html
+//   /termos/                -> public/views/termos/index.html
+//   /privacidade/           -> public/views/privacidade/index.html
 // Os style.css e script.js de cada pasta são servidos junto.
 //
 // TODO(sessão): todas as páginas são públicas, inclusive o /dashboard/.

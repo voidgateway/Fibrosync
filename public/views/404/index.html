@@ -1,42 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex">
-    <title>Página não encontrada | Fibrosync</title>
-
-    <!--
-        Esta página pode ser exibida em qualquer URL (ex.: /a/b/c),
-        então o <base> faz os caminhos relativos abaixo partirem da raiz do site.
-    -->
-    <base href="/">
-
-    <link rel="icon" href="assets/img/logo_icone.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/tokens.css">
-    <link rel="stylesheet" href="404/style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Página não encontrada</title>
+<!--
+    Esta página pode ser exibida em qualquer URL (ex.: /a/b/c),
+    então o <base> faz os caminhos relativos abaixo partirem da raiz do site.
+-->
+<base href="/">
+<script src="assets/js/tema.js"></script>
+<link rel="icon" href="assets/marca/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Urbanist:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/fibrosync-tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/componentes/botoes.css">
+<link rel="stylesheet" href="404/style.css">
+<script src="404/script.js" defer></script>
 </head>
-
 <body>
-    <main class="erro">
-        <img src="assets/img/logo_texto.png" alt="Fibrosync" class="erro-logo">
-
-        <p class="erro-codigo" aria-hidden="true">404</p>
-
-        <h1 class="erro-titulo">Página não encontrada</h1>
-        <p class="erro-texto">
-            O endereço que você tentou acessar não existe ou foi movido.
-        </p>
-
-        <div class="erro-acoes">
-            <a href="landing-page/" class="botao botao-principal">Voltar para o início</a>
-            <a href="login-paciente/" class="botao botao-secundario">Entrar na conta</a>
-        </div>
-    </main>
+<a class="marca" href="landing-page/" aria-label="Início"><span class="marca-simbolo" aria-hidden="true"></span><span class="marca-nome" aria-hidden="true"></span></a>
+<main class="erro">
+  <p class="erro-dado">Erro 404</p>
+  <h1>Página não encontrada</h1>
+  <p class="erro-texto">Este endereço não existe. Confira se está escrito certo.</p>
+  <div class="erro-acoes">
+    <button type="button" class="btn btn-quiet" data-voltar hidden>Voltar</button>
+    <a class="btn btn-primary" href="landing-page/">Ir para a página inicial</a>
+  </div>
+</main>
 </body>
-
 </html>
