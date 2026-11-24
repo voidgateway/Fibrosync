@@ -5,7 +5,10 @@
 </p>
 
 <p align="center">
-  <img src="docs/design/assets/fibrosync.png" alt="Logo do fibrosync" width="20%">
+  <img src="docs/design/assets/logo.png" alt="Logo do produto" width="18%">
+</p>
+<p align="center">
+  <img src="docs/design/assets/nome.png" alt="nome do produto" width="15%">
 </p>
 
 
