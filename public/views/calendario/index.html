@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calendário Clínico | FibroSync</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ÍCONES -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <a href="../dashboard/index.html" class="brand">
+            <img src="../../assets/img/logo-removebg-preview.png" alt="FibroSync">
+        </a>
+
+        <div class="sidebar-divider"></div>
+        <nav class="menu">
+
+            <a href="../dashboard/index.html">
+                <span class="material-symbols-rounded">assignment</span>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="../registro-diario/index.html" data-page="registro-diario">
+                <span class="material-symbols-rounded">edit_square</span>
+                <span>Registro Diário</span>
+            </a>
+
+            <a href="../calendario/index.html" class="active">
+                <span class="material-symbols-rounded">event</span>
+                <span>Calendário</span>
+            </a>
+
+            <a href="../relatorio/index.html">
+                <span class="material-symbols-rounded">description</span>
+                <span>Relatório</span>
+            </a>
+
+            <a href="../configuracao/index.html">
+                <span class="material-symbols-rounded">person</span>
+                <span>Configuração</span>
+            </a>
+
+        </nav>
+
+        <!-- USUÁRIO LOGADO -->
+        <div class="user-mini">
+            <div class="mini-avatar" id="sidebarAvatar">?</div>
+
+            <div class="mini-user-text">
+                <strong id="sidebarName">Usuário</strong>
+                <small>Paciente</small>
+            </div>
+
+            <a href="../perfil-usuario/index.html" class="logout-button" title="Sair">
+                <span class="material-symbols-rounded">logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL-->
+    <main class="main-content">
+        
+        <!-- CABEÇALHO -->
+        <header class="page-heading">
+            <div>
+                <h1>Calendário clínico do seu histórico</h1>
+
+                <p>
+                    Visualize cada dor no dia certo, acompanhe a intensidade
+                    ao longo do mês e abra os detalhes salvos em cada registro.
+                </p>
+            </div>
+
+            <button class="icon-button" aria-label="Notificações">
+                <span class="material-symbols-rounded">notifications</span>
+            </button>
+        </header>
+        
+        <!-- DASHBOARD-->
+        <section class="dashboard-grid">
+
+            <!-- CALENDÁRIO -->
+            <section class="panel calendar-panel">
+
+                <header class="calendar-top">
+
+                    <button class="arrow-button" id="prevMonth" aria-label="Mês anterior">
+                        <span class="material-symbols-rounded">chevron_left</span>
+                    </button>
+
+                    <div class="month-heading">
+                        <span id="yearLabel">2026</span>
+                        <h2 id="monthLabel">JUNHO</h2>
+                    </div>
+
+                    <button class="arrow-button" id="nextMonth" aria-label="Próximo mês">
+                        <span class="material-symbols-rounded">chevron_right</span>
+                    </button>
+                </header>
+
+                <!-- DIAS DA SEMANA -->
+                <div class="weekdays">
+
+                    <span>DOM</span>
+                    <span>SEG</span>
+                    <span>TER</span>
+                    <span>QUA</span>
+                    <span>QUI</span>
+                    <span>SEX</span>
+                    <span>SÁB</span>
+
+                </div>
+
+                <!-- DIAS GERADOS PELO JAVASCRIPT -->
+                <div class="calendar-grid" id="calendarGrid"></div>
+
+                <!-- LEGENDA -->
+                <div class="legend">
+                    <span>
+                        <i class="dot common"></i>
+                        Registro comum
+                    </span>
+
+                    <span>
+                        <i class="dot crisis"></i>
+                        Crise
+                    </span>
+
+                    <span>
+                        <i class="dot empty"></i>
+                        Sem registro
+                    </span>
+
+                </div>
+
+            </section>
+
+            <!-- COLUNA DIREITA -->
+            <div class="right-column">
+
+                <!-- RESUMO CLÍNICO -->
+                <section class="panel summary-panel">
+
+                    <h2>Resumo clínico do período</h2>
+
+                    <div class="stats-grid">
+
+                        <article class="stat-card">
+
+                            <span class="stat-label">
+                                <span class="material-symbols-rounded">monitor_heart</span>
+                                Registros
+                            </span>
+
+                            <strong id="totalRecords">0</strong>
+
+                            <small>Total no mês</small>
+                        </article>
+
+                        <article class="stat-card">
+
+                            <span class="stat-label">
+                                <span class="material-symbols-rounded">wb_sunny</span>
+                                Registros por dia
+                            </span>
+
+                            <strong id="frequency">0</strong>
+
+                            <small>Frequência</small>
+                        </article>
+
+                        <article class="stat-card">
+
+                            <span class="stat-label">
+                                <span class="material-symbols-rounded">blur_on</span>
+                                Dor média
+                            </span>
+
+                            <strong id="averagePain">0.0</strong>
+
+                            <small>Média</small>
+                        </article>
+                    </div>
+
+                    <!-- COBERTURA -->
+                    <div class="coverage">
+
+                        <div class="coverage-info">
+
+                            <span>Cobertura do calendário</span>
+
+                            <b id="coverageText">0%</b>
+                        </div>
+
+                        <div class="progress-track">
+                            <span id="coverageBar"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- REGISTRO DO DIA -->
+                <section class="panel day-panel">
+
+                    <div class="day-panel-heading">
+
+                        <h2>Registro do dia</h2>
+
+                        <span id="selectedDateLabel"></span>
+                    </div>
+
+                    <!-- REGISTROS DO DIA -->
+                    <div class="day-records" id="dayRecords">
+
+                        <div class="empty-state">
+
+                            <span class="material-symbols-rounded">
+                                event_busy
+                            </span>
+
+                            <p>Nenhum registro encontrado.</p>
+                        </div>
+                    </div>
+
+                    <!-- REDIRECIONAMENTO -->
+                    <button class="primary-button" id="newRecordButton">Novo Registro
+
+                        <span class="material-symbols-rounded">
+                            arrow_forward
+                        </span>
+                    </button>
+                </section>
+            </div>
+        </section>
+
+        <!-- PRIVACIDADE -->
+        <div class="privacy-note">
+
+            <span class="material-symbols-rounded">lock</span>
+            Suas informações de saúde são privadas e protegidas.
+        </div>
+    </main>
+</div>
+
+<!-- NOTIFICAÇÕES -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- JAVASCRIPT -->
+<script src="script.js"></script>
+</body>
+</html>
